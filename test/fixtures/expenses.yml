@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_id: 1
+  vendor_id: 1
+  amount: 9.99
+
+two:
+  event_id: 1
+  vendor_id: 1
+  amount: 9.99

@@ -1,0 +1,39 @@
+RUWA is a very simple web analytics in Ruby on Rails 2.2. 
+It's not complete and there may be bugs. The code is inspired by Piwik.org
+
+To install, first create the db
+rake db:schema:load
+
+then launch the ./script/server and visit 
+localhost:/users/add_user
+
+The first user will be the administrator, create a second
+user and login as "user". You'll create a project.
+
+This will take a while, since every time a new User is created, 
+500 random generated visitors are created for testing purpose.
+It's possible to see some graphs by clicking in Graphs.
+
+Every user has a project associated with him. The project_id 
+will be used by the javascript tracker code.
+
+
+To install a tracker in a website, you have to add this code
+(taken from Piwik.org, a excellent open source web analytics in PHP)
+
+<script type="text/javascript">
+var pkBaseURL = 
+	(("https:" == document.location.protocol) ? "https://thedomain-with-ruwa:4000/javascripts/" : "http://thedomain-with-ruwa:4000/javascripts/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+	piwik_action_name = document.location.href;
+	piwik_idsite = 1;
+	piwik_url = pkBaseURL + "log.js";
+	piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+</script>
+
+
+The piwik_idsite variable holds the project_id associated with the User.
+

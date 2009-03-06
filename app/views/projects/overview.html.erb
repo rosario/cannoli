@@ -1,0 +1,15 @@
+<ul id="subnavigation">
+	<li class="active"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
+	<li class="tab"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
+	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
+</ul>
+	
+
+<% if @project == nil %>
+	Empty project <%= button_to "Create Project", :action => "create" %>
+
+<% else %>
+	Project id = <%= @project.id%>
+<% end %>
+	
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README_FOR_APP</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README_FOR_APP</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>doc/README_FOR_APP
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Mar 06 11:46:30 +0000 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+RUWA is a simple web analytics in ruby on rails. It&#8216;s not complete
+and there may be bugs. The code is inspired by Piwik.org
+</p>
+<p>
+To install, launch the ./script/server and visit localhost:/users/add_user
+</p>
+<p>
+The first user will be the administrator
+</p>
+<p>
+Once logged in, the administrator can create new users.
+</p>
+<p>
+Create a new user and then logout.
+</p>
+<p>
+Go to /login/login and login using the administrator. There you can create
+a new <a href="../../classes/User.html">User</a>. Once the user is created,
+you want to logout again and login with <a
+href="../../classes/User.html">User</a>. After inserting the project name,
+you can create the project.
+</p>
+<p>
+This will take a while, since every time a new <a
+href="../../classes/User.html">User</a> is created, 500 random generated
+visitors are created for testing purpose.
+</p>
+<p>
+Every user has a project associated with him. The project_id will be used
+by the javascript tracker code.
+</p>
+<p>
+To install a tracker in a website, you have to add this code (taken from
+Piwik.org, a excellent open source web analytics in PHP)
+</p>
+<p>
+&lt;script type=&quot;text/javascript&quot;&gt; var pkBaseURL =
+</p>
+<pre>
+        ((&quot;https:&quot; == document.location.protocol) ? &quot;https://thedomain-with-ruwa:4000/javascripts/&quot; : &quot;http://thedomain-with-ruwa:4000/javascripts/&quot;);
+</pre>
+<p>
+document.write(unescape(&quot;%3Cscript src=&#8217;&quot; + pkBaseURL +
+&quot;piwik.js&#8217;
+type=&#8216;text/javascript&#8217;%3E%3C/script%3E&quot;)); &lt;/script&gt;
+</p>
+<p>
+&lt;script type=&quot;text/javascript&quot;&gt;
+</p>
+<pre>
+        piwik_action_name = document.location.href;
+        piwik_idsite = 1;
+        piwik_url = pkBaseURL + &quot;log.js&quot;;
+        piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+</pre>
+<p>
+&lt;/script&gt;
+</p>
+<p>
+The piwik_idsite variable holds the project_id associated with the <a
+href="../../classes/User.html">User</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

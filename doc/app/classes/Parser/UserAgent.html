@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Parser::UserAgent</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Parser::UserAgent</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/parser_rb.html">
+                lib/parser.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000034">browser_info</a>&nbsp;&nbsp;
+      <a href="#M000033">get_platform</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="#M000034" class="method-signature">
+          <span class="method-name">browser_info</span><span class="method-args">(user_agent)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Process the user agent string and returns the user&#8216;s browser info as
+a hash:
+</p>
+<pre>
+  user_agent = &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; nl; rv:1.8) Gecko/20051107 Firefox/1.5&quot;
+  Sitealizer::Parser::UserAgent.browser_info(user_agent)
+  =&gt; {:type =&gt; 'Firefox', :version =&gt; '1.5'}
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/parser.rb, line 69</span>
+ 69:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">browser_info</span>(<span class="ruby-identifier">user_agent</span>)
+ 70:         <span class="ruby-identifier">browser</span> = {
+ 71:           <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>,
+ 72:           <span class="ruby-identifier">:version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>
+ 73:         }
+ 74:         <span class="ruby-comment cmt">#Internet Exlorer</span>
+ 75:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/MSIE/i</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/AOL|America Online Browser/i</span>).<span class="ruby-identifier">empty?</span>
+ 76:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;MSIE&quot;</span>;
+ 77:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/MSIE ([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+ 78:         <span class="ruby-comment cmt">#Firefox/Firebird/Phoenix</span>
+ 79:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Firefox|Firebird|Phoenix/i</span>
+ 80:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Firefox&quot;</span>;
+ 81:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/[Firefox|Firebird|Phoenix].\/(\d.+)/i</span>).<span class="ruby-identifier">to_s</span>
+ 82:         <span class="ruby-comment cmt">#Galeon</span>
+ 83:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Galeon/i</span>
+ 84:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Galeon&quot;</span>;
+ 85:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Galeon\/([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+ 86:         <span class="ruby-comment cmt">#Safari</span>
+ 87:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Safari/i</span>
+ 88:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Safari&quot;</span>;
+ 89:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-value str">&quot;nil&quot;</span>
+ 90:         <span class="ruby-comment cmt">#Opera</span>
+ 91:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Opera/i</span>
+ 92:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Opera&quot;</span>;
+ 93:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Opera[ |\/]([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+ 94:         <span class="ruby-comment cmt">#AOL/America Online Browser</span>
+ 95:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/AOL|America Online Browser/i</span>
+ 96:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;AOL&quot;</span>
+ 97:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/AOL/i</span>
+ 98:               <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/AOL[ |\/]([\d.]+)/i</span>).<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">to_s</span>
+ 99:             <span class="ruby-keyword kw">else</span>
+100:               <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/America Online Browser ([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+101:            <span class="ruby-keyword kw">end</span>
+102:         <span class="ruby-comment cmt">#Camino</span>
+103:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Camino/i</span>
+104:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Camino&quot;</span>;
+105:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Camino\/([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+106:         <span class="ruby-comment cmt">#Konqueror</span>
+107:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Konqueror/i</span>
+108:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Konqueror&quot;</span>;
+109:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Konqueror\/([\d.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+110:         <span class="ruby-comment cmt">#K-Meleon</span>
+111:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/K-Meleon/i</span>
+112:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;K-Meleon&quot;</span>;
+113:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/K-Meleon\/([\d.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+114:         <span class="ruby-comment cmt">#Firefox BonEcho</span>
+115:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/BonEcho/i</span>
+116:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Firefox BonEcho&quot;</span>;
+117:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/BonEcho\/([\d.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+118:         <span class="ruby-comment cmt">#Netscape</span>
+119:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Netscape/i</span>
+120:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Netscape&quot;</span>;
+121:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Netscape\/([\d.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+122:         <span class="ruby-comment cmt">#PSP</span>
+123:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/PlayStation Portable/i</span>
+124:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;PlayStation Portable (PSP)&quot;</span>;
+125:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/PlayStation Portable\); ([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+126:         <span class="ruby-comment cmt">#PlayStation 3</span>
+127:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/PlayStation 3/i</span>
+128:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;PlayStation 3&quot;</span>;
+129:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/PlayStation 3; ([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+130:         <span class="ruby-comment cmt">#Lynx</span>
+131:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Lynx/i</span>
+132:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Lynx&quot;</span>;
+133:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Lynx\/([\d\.]+)/i</span>).<span class="ruby-identifier">to_s</span>
+134:         <span class="ruby-keyword kw">else</span>
+135:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>] = <span class="ruby-value str">&quot;Other&quot;</span>;
+136:           <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>] = <span class="ruby-value str">&quot;nil&quot;</span>
+137:         <span class="ruby-keyword kw">end</span>
+138:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">browser</span>
+139:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="#M000033" class="method-signature">
+          <span class="method-name">get_platform</span><span class="method-args">(user_agent)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Process the user agent string and returns the users&#8216;s platform:
+</p>
+<pre>
+  Sitealizer::Parser::UserAgent.get_platform(&quot;(Macintosh; U; PPC Mac OS X; en)&quot;)
+  =&gt; &quot;Macintosh&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/parser.rb, line 44</span>
+44:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_platform</span>(<span class="ruby-identifier">user_agent</span>)
+45:         <span class="ruby-identifier">platform</span> = <span class="ruby-keyword kw">nil</span>
+46:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Win/i</span>
+47:           <span class="ruby-identifier">platform</span> = <span class="ruby-value str">&quot;Windows&quot;</span>
+48:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Mac/i</span>
+49:           <span class="ruby-identifier">platform</span> = <span class="ruby-value str">&quot;Macintosh&quot;</span>
+50:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Linux/i</span>
+51:           <span class="ruby-identifier">platform</span> = <span class="ruby-value str">&quot;Linux&quot;</span>;
+52:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/SunOS/i</span>
+53:           <span class="ruby-identifier">platform</span> = <span class="ruby-value str">&quot;Sun Solaris&quot;</span>;
+54:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/BSD/i</span>
+55:           <span class="ruby-identifier">platform</span> = <span class="ruby-value str">&quot;FreeBSD&quot;</span>;
+56:         <span class="ruby-keyword kw">else</span>
+57:           <span class="ruby-identifier">platform</span> = <span class="ruby-value str">&quot;Other&quot;</span>
+58:         <span class="ruby-keyword kw">end</span>
+59:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">platform</span>
+60:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

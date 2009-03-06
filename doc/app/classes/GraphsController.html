@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: GraphsController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">GraphsController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/controllers/graphs_controller_rb.html">
+                app/controllers/graphs_controller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ApplicationController.html">
+                ApplicationController
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000017">graph1</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="#M000017" class="method-signature">
+          <span class="method-name">graph1</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Graphs are created in this method
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/graphs_controller.rb, line 6</span>
+ 6:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">graph1</span>
+ 7: 
+ 8: 
+ 9:     <span class="ruby-identifier">p</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">session</span>[<span class="ruby-identifier">:project_id</span>]) 
+10:     <span class="ruby-ivar">@project</span> = <span class="ruby-identifier">p</span>
+11: 
+12: 
+13:     <span class="ruby-comment cmt"># In the setup, the project was created with some random visitors</span>
+14:     <span class="ruby-comment cmt"># Here we decide, beginning and end of the time period</span>
+15:     <span class="ruby-identifier">bod</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-value str">&quot;2009-01-01&quot;</span>).<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)
+16:     <span class="ruby-identifier">eod</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-value str">&quot;2009-01-15&quot;</span>).<span class="ruby-identifier">end_of_day</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)
+17: 
+18:     <span class="ruby-identifier">vs</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">visitors</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'created_at'</span>, <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span>
+19:     [<span class="ruby-value str">&quot;created_at &gt; ? AND created_at &lt; ?&quot;</span>, <span class="ruby-node">&quot;#{bod}&quot;</span>, <span class="ruby-node">&quot;#{eod}&quot;</span>])
+20: 
+21: 
+22: 
+23:     <span class="ruby-comment cmt"># We group visitors by created_at </span>
+24:     <span class="ruby-identifier">list</span> = <span class="ruby-identifier">vs</span>.<span class="ruby-identifier">group_by</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> 
+25:       <span class="ruby-identifier">e</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%Y/%m/%d&quot;</span>)
+26:       <span class="ruby-comment cmt"># This line can be used to get visitors per hour</span>
+27:       <span class="ruby-comment cmt">#e.created_at.strftime(&quot;%Y/%m/%d %H&quot;)</span>
+28:       
+29:     <span class="ruby-keyword kw">end</span>
+30: 
+31: 
+32: 
+33:     <span class="ruby-comment cmt"># We need to convert the created_at in a timestamp accepted by the flot library</span>
+34:     <span class="ruby-identifier">total_clicks</span> =  []
+35:     <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">l</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">keys</span>
+36:       <span class="ruby-identifier">total_clicks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;[#{Time.parse(l).to_i*1000}, #{list[l].size}]&quot;</span>
+37:     <span class="ruby-keyword kw">end</span>
+38: 
+39:     <span class="ruby-comment cmt"># This variable is going to be used in the view</span>
+40:     <span class="ruby-ivar">@total_clicks</span> = <span class="ruby-node">&quot;[#{total_clicks.join(&quot;,&quot;)}]&quot;</span>
+41: 
+42: 
+43: 
+44:     <span class="ruby-comment cmt"># Group the visitors by time_spent</span>
+45:     <span class="ruby-identifier">list</span> = <span class="ruby-identifier">vs</span>.<span class="ruby-identifier">group_by</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+46:       <span class="ruby-identifier">e</span>.<span class="ruby-identifier">time_spent</span>
+47:     <span class="ruby-keyword kw">end</span>
+48: 
+49:     <span class="ruby-ivar">@time_spent</span> = <span class="ruby-node">&quot;[[1,#{list[&quot;0:30 sec&quot;].size}],[2,#{list[&quot;30:60 sec&quot;].size}],[3,#{list[&quot;+60 sec&quot;].size}]]&quot;</span>
+50: 
+51: 
+52: 
+53:     <span class="ruby-comment cmt"># Now group by browser_name</span>
+54:     <span class="ruby-identifier">list</span> =<span class="ruby-identifier">vs</span>.<span class="ruby-identifier">group_by</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>  
+55:       <span class="ruby-identifier">e</span>.<span class="ruby-identifier">config_browser_name</span>
+56:     <span class="ruby-keyword kw">end</span>
+57:     
+58: 
+59:     <span class="ruby-ivar">@browsers</span> =  <span class="ruby-node">&quot;[[1,#{list[&quot;Other&quot;].size}], 
+60:                   [2,#{list[&quot;Firefox&quot;].size }], 
+61:                   [3,#{list[&quot;Opera&quot;].size}], 
+62:                   [4,#{list[&quot;Konqueror&quot;].size}], 
+63:                   [5,#{list[&quot;Safari&quot;].size}], 
+64:                   [6,#{list[&quot;MSIE&quot;].size}], 
+65:                   [7,#{list[&quot;Galeon&quot;].size}], 
+66:                   [8,#{list[&quot;Lynx&quot;].size}], 
+67:                   [9,#{list[&quot;Netscape&quot;].size}]]&quot;</span>
+68:  
+69: 
+70: 
+71:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

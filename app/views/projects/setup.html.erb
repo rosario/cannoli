@@ -1,0 +1,12 @@
+Create New Project
+
+
+
+
+<%form_tag 'create' do %>
+		<label> Project Name </label>
+		<%= text_field_tag :project_name, params[:project_name]%> <br>
+		
+		
+		<%= submit_tag 'Create' %>
+<%end%>

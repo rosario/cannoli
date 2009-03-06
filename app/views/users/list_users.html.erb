@@ -1,0 +1,22 @@
+	<ul id="subnavigation">
+		<li class="active"><%= link_to "List users", :controller => 'users', :action => 'list_users' %> </li>
+		<li class="tab"><%= link_to "Add user", :controller => 'users', :action => 'add_user' %> </li>
+		<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
+	</ul>
+
+User List 
+
+<ul> 
+<% for user in @all_users %> 
+<li><%= link_to "[X]", { # link_to options 
+:controller => 'login', 
+:action => 'delete_user', 
+:id => user}, 
+{ # html options 
+:method => :post, 
+:confirm => "Really delete #{user.name}?" 
+} %> 
+<%= h(user.name) %> 
+</li> 
+<% end %> 
+</ul>

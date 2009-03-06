@@ -1,0 +1,109 @@
+<ul id="subnavigation">
+	<li class="tab"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
+	<li class="active"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
+	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
+
+</ul>
+
+
+
+<div id="placeholder1" style="width:600px;height:300px;"></div>
+<div id="placeholder2" style="width:600px;height:300px;"></div>
+<div id="placeholder3" style="width:600px;height:300px;"></div>
+
+ 
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var total = <%=@total_clicks %>;
+
+	var graph_options = {
+		lines : {show : true},
+		points : {show : true},
+		xaxis : {mode : "time" },
+		grid: { backgroundColor: "#fffff1"}	
+	}
+	
+	var line = {
+		label: "Total Clicks during the time",  
+		data: total  , 
+		lines : { 
+			show : true, 
+			fill : true,
+		}
+	}
+	
+
+    $.plot($("#placeholder1"), [line], graph_options);
+
+});
+</script>
+
+
+
+
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var bests = <%= @time_spent %>;
+
+
+
+	var graph_options = { 
+		points : {show : true},
+		xaxis : { minTickSize : 1, ticks: [[1,"0:30"],[2,"30:60"],[3,"+60"]] },
+		grid: { backgroundColor: "#fffff1"}	
+	}
+
+	line_bests =  { 
+		label: "Time spent",  
+			data: bests , 
+			bars : { 
+				show : true, 
+				fill : true,
+				align: "center"
+			},
+		
+	}
+	
+
+    $.plot($("#placeholder2"), [line_bests] , graph_options );
+
+
+});
+</script>
+
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var bests = <%= @browsers %>;
+
+
+
+	var graph_options = { 
+		points : {show : true},
+		xaxis : { minTickSize : 1, 
+			ticks: [[1,"Other"], [2,"Firefox"], [3,"Opera"], [4,"Konqueror"], [5,"Safari"], [6,"MSIE"], 
+			[7,"Galeon"], [8,"Lynx"], [9,"Netscape"]] },
+			
+		grid: { backgroundColor: "#fffff1"}	
+	}
+
+	line_bests =  { 
+		label: "Browsers",  
+			data: bests , 
+			bars : { 
+				show : true, 
+				fill : true,
+				align: "center"
+			},
+		
+	}
+	
+
+    $.plot($("#placeholder3"), [line_bests] , graph_options );
+
+
+});
+</script>
+

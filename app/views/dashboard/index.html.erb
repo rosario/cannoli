@@ -1,0 +1,8 @@
+
+
+<% if @project == nil %>
+Empty project <%= link_to "Setup Project", :controller=>'dashboard' , :action => "setup" %>
+
+<% else %>
+Project id = <%= @project.id%>
+<% end %>

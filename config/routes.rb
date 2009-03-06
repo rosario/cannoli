@@ -1,0 +1,85 @@
+ActionController::Routing::Routes.draw do |map|
+  #map.resources :projects
+#  map.resources :generations
+#  map.resources :evaluates
+#  map.resources :expenses
+#  map.resources :vendors
+ 
+ 
+  map.dashboard 'dashboard/index', :controller =>'dashboard', :action=>'index'
+
+#  map.graph1 'graphs/graph1', :controller => 'graphs', :action => 'graph1'
+#  map.graph2 'graphs/graph2', :controller => 'graphs', :action => 'graph2'
+#  map.graph1_code 'graphs/graph1_code', :controller =>'graphs', :action =>'graph1_code'
+#  map.graph_stacked 'graphs/graph_stacked', :controller =>'graphs', :action =>'graph_stacked'
+  
+  
+#  map.render_layout 'events/render_layout', :controller => 'events', :action => 'render_layout'
+#  map.conversion 'events/conversion', :controller => 'events', :action => 'conversion'
+#  map.goal 'events/goal', :controller => 'events', :action  => 'goal'
+#  map.setup_experiment 'events/setup_experiment', :controller =>'events', :action =>'setup_experiment'
+#  map.random_divs 'events/random_divs', :controller => 'events' , :action => 'random_divs'
+  
+   
+#  map.random_image_event 'events/random_image', :controller => 'events' , :action => 'random_image'
+ 
+  #map.resources :events , :has_many => :expenses 
+    
+
+
+# map.evolve_event  'events/evolve', :controller => 'events' , :action => 'evolve'
+ 
+  # The priority is based upon order of creation: first created -> highest priority.
+
+  # Sample of regular route:
+  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  # Keep in mind you can assign values other than :controller and :action
+
+  # Sample of named route:
+  # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
+  # This route can be invoked with purchase_url(:id => product.id)
+
+  map.project_index 'projects/:id/index', :controller => 'projects', :action => 'overview'
+  map.project_overview 'projects/:id/overview', :controller => 'projects', :action => 'overview'
+  map.project_variations 'projects/:id/variations', :controller => 'projects', :action => 'variations'
+  map.project_setup_variations 'projects/:id/variations/setup' , :controller =>'projects', :action =>'setup'
+  map.project_events 'projects/:id/events', :controller =>'projects', :action =>'events'
+  map.events_epoch 'projects/:id/events/epoch', :controller =>'projects', :action=>'epoch'
+  map.events_rollback 'projects/:id/events/rollback', :controller=>'projects', :action=>'rollback'
+  map.project_graph1 'projects/:id/graphs/graph1', :controller =>'graphs', :action =>'graph1'
+  
+
+  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  #   map.resources :products
+
+  # Sample resource route with options:
+  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
+
+  # Sample resource route with sub-resources:
+  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
+  
+  # Sample resource route with more complex sub-resources
+  #   map.resources :products do |products|
+  #     products.resources :comments
+  #     products.resources :sales, :collection => { :recent => :get }
+  #   end
+
+  # Sample resource route within a namespace:
+  #   map.namespace :admin do |admin|
+  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
+  #     admin.resources :products
+  #   end
+
+  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
+  # map.root :controller => "welcome"
+
+  # See how all your routes lay out with "rake routes"
+
+  # Install the default routes as the lowest priority.
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action.:format'
+  
+  map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action/:id/:var'
+ 
+end
