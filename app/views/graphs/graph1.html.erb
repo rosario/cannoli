@@ -2,7 +2,6 @@
 	<li class="tab"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
 	<li class="active"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
 	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
-
 </ul>
 
 
@@ -13,13 +12,20 @@
 
 
 
-<%= render  :partial => "bar_graph", :locals => {:data =>@data_bars, 
-			:placeholder => "placeholder2"}%>
-			
+
 			
 <%= render  :partial => "total_clicks" , 
 			:locals => {:data => @data, :placeholder => "placeholder1"} %>
 
 
+<%= render  :partial => "bar_graph", :locals => {:data =>@data_bars, 
+			:placeholder => "placeholder2"}%>
+			
+
+
 <%= render  :partial => "bar_graph", :locals => {:data =>@data_bars2, 
 			:placeholder => "placeholder3"}%>
+			
+
+<%= render  :partial => "bar_graph", :locals => {:data =>@data_bars3, 
+			:placeholder => "placeholder4"}%>

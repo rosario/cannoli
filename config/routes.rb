@@ -1,34 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  #map.resources :projects
-#  map.resources :generations
-#  map.resources :evaluates
-#  map.resources :expenses
-#  map.resources :vendors
+
  
  
   map.dashboard 'dashboard/index', :controller =>'dashboard', :action=>'index'
 
-#  map.graph1 'graphs/graph1', :controller => 'graphs', :action => 'graph1'
-#  map.graph2 'graphs/graph2', :controller => 'graphs', :action => 'graph2'
-#  map.graph1_code 'graphs/graph1_code', :controller =>'graphs', :action =>'graph1_code'
-#  map.graph_stacked 'graphs/graph_stacked', :controller =>'graphs', :action =>'graph_stacked'
-  
-  
-#  map.render_layout 'events/render_layout', :controller => 'events', :action => 'render_layout'
-#  map.conversion 'events/conversion', :controller => 'events', :action => 'conversion'
-#  map.goal 'events/goal', :controller => 'events', :action  => 'goal'
-#  map.setup_experiment 'events/setup_experiment', :controller =>'events', :action =>'setup_experiment'
-#  map.random_divs 'events/random_divs', :controller => 'events' , :action => 'random_divs'
-  
-   
-#  map.random_image_event 'events/random_image', :controller => 'events' , :action => 'random_image'
- 
-  #map.resources :events , :has_many => :expenses 
-    
 
+  
 
-# map.evolve_event  'events/evolve', :controller => 'events' , :action => 'evolve'
- 
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -41,11 +19,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.project_index 'projects/:id/index', :controller => 'projects', :action => 'overview'
   map.project_overview 'projects/:id/overview', :controller => 'projects', :action => 'overview'
-  map.project_variations 'projects/:id/variations', :controller => 'projects', :action => 'variations'
-  map.project_setup_variations 'projects/:id/variations/setup' , :controller =>'projects', :action =>'setup'
-  map.project_events 'projects/:id/events', :controller =>'projects', :action =>'events'
-  map.events_epoch 'projects/:id/events/epoch', :controller =>'projects', :action=>'epoch'
-  map.events_rollback 'projects/:id/events/rollback', :controller=>'projects', :action=>'rollback'
+
   map.project_graph1 'projects/:id/graphs/graph1', :controller =>'graphs', :action =>'graph1'
   
 

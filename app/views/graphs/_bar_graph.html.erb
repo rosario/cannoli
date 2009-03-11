@@ -1,5 +1,5 @@
 <%
-  
+  # Formatting the data.
    labels = []
    values = []
    
@@ -22,7 +22,7 @@
 
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
-	var bests = <%= values %>;
+	var points = <%= values %>;
 
 
 
@@ -34,9 +34,9 @@ $(function () {
 		grid: { backgroundColor: "#fffff1"}	
 	}
 
-	line_bests =  { 
+	line =  { 
 		label: "Time spent",  
-			data: bests , 
+			data: points , 
 			bars : { 
 	//		lines : {
 				show : true, 
@@ -47,7 +47,7 @@ $(function () {
 	}
 	
 
-    $.plot($(<%= placeholder %>), [line_bests] , graph_options );
+    $.plot($(<%= placeholder %>), [line] , graph_options );
 
 
 });
