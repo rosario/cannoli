@@ -1359,7 +1359,7 @@ class Visitor < ActiveRecord::Base
     return user_settings
 
 
-   end
+  end
   
   # Destroy the visitor and his actions
   def self.clean(v)
@@ -1379,6 +1379,9 @@ class Visitor < ActiveRecord::Base
     return v
   end
   
+  def created_at_day
+    created_at.strftime("%Y/%m/%d")
+  end
   
   # Time spent on the website - It's the difference between the first and last action
   def time_spent
@@ -1476,6 +1479,7 @@ class Visitor < ActiveRecord::Base
 
   end
  
+  
   
  
   

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
  end
  
- def list_users 
+  def list_users 
     @all_users = User.find(:all) 
   end
   

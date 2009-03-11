@@ -1,0 +1,56 @@
+<%
+  
+   labels = []
+   values = []
+   
+   i = 0
+   for d in data
+     labels << "[#{i}, '#{d.first}']"
+     values << "[#{i}, '#{d.second}']"
+     
+     i = i + 1
+     
+   end
+      
+   labels = "[#{labels.join(",")}]"
+   values = "[#{values.join(",")}]"
+
+
+%>
+
+<div id="<%= placeholder %>" style="width:600px;height:300px;"></div>
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var bests = <%= values %>;
+
+
+
+	var graph_options = { 
+		points : {show : true},
+		xaxis : { minTickSize : 1, ticks: <%= labels %> },
+		
+		
+		grid: { backgroundColor: "#fffff1"}	
+	}
+
+	line_bests =  { 
+		label: "Time spent",  
+			data: bests , 
+			bars : { 
+	//		lines : {
+				show : true, 
+				fill : true,
+				align: "center"
+			},
+		
+	}
+	
+
+    $.plot($(<%= placeholder %>), [line_bests] , graph_options );
+
+
+});
+</script>
+
+

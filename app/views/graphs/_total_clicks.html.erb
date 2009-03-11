@@ -1,0 +1,40 @@
+<% 
+# Format the data in order to be used by the flot library
+
+clicks = []
+for d in data
+  clicks << "[#{Time.parse(d.first).to_i*1000}, #{d.second}]"
+end
+
+clicks = "[#{clicks.join(",")}]"
+
+%>
+
+
+<div id="<%= placeholder %>" style="width:600px;height:300px;"></div>
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var total = <%= clicks %>;
+
+	var graph_options = {
+		lines : {show : true},
+		points : {show : true},
+		xaxis : {mode : "time" },
+		grid: { backgroundColor: "#fffff1"}	
+	}
+	
+	var line = {
+		label: "Total Clicks during the time",  
+		data: total  , 
+		lines : { 
+			show : true, 
+			fill : true,
+		}
+	}
+	
+
+    $.plot($(<%= placeholder %>), [line], graph_options);
+
+});
+</script>
