@@ -75,7 +75,7 @@ if (document.title && document.title!="") _pk_title = _pk_escape(document.title)
 
 var _pk_called;
 
-function _pk_getUrlLog( _pk_action_name, _pk_site, _pk_pkurl, _pk_custom_vars )
+function _pk_getUrlLog( _pk_action_name, _pk_site, _pk_pkurl, action_kind, _pk_custom_vars )
 {
 	var _pk_custom_vars_str = '';
 	if(typeof _pk_custom_vars == "undefined"){
@@ -93,6 +93,7 @@ function _pk_getUrlLog( _pk_action_name, _pk_site, _pk_pkurl, _pk_custom_vars )
 	var _pk_da = new Date();
 	var _pk_src = _pk_pkurl
 		+'?url='+_pk_escape(document.location.href)
+		+'&action_kind='+action_kind
 		+'&action_name='+_pk_escape(_pk_action_name)
 		+'&idsite='+_pk_site
 		+'&res='+screen.width+'x'+screen.height
@@ -106,10 +107,10 @@ function _pk_getUrlLog( _pk_action_name, _pk_site, _pk_pkurl, _pk_custom_vars )
 	return _pk_src;
 }
 
-function piwik_log( _pk_action_name, _pk_site, _pk_pkurl, _pk_custom_vars )
+function piwik_log( _pk_action_name, _pk_site, _pk_pkurl, action_kind, _pk_custom_vars )
 {
 	if(_pk_called && (!_pk_action_name || _pk_action_name=="")) return;
-	var _pk_src = _pk_getUrlLog(_pk_action_name, _pk_site, _pk_pkurl, _pk_custom_vars );
+	var _pk_src = _pk_getUrlLog(_pk_action_name, _pk_site, _pk_pkurl, action_kind, _pk_custom_vars );
 	document.writeln('<img src="'+_pk_src+'" alt="" style="border:0" />');
 	if(!_pk_action_name || _pk_action_name=="") _pk_called=1;
 	
