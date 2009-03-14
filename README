@@ -31,7 +31,8 @@ document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/ja
 	piwik_action_name = document.location.href;
 	piwik_idsite = 1;
 	piwik_url = pkBaseURL + "log.js";
-	piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+        action_kind = 0; // 0 normal action, 1 goals
+	piwik_log(piwik_action_name, piwik_idsite, piwik_url, action_kind);
 </script>
 
 
