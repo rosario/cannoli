@@ -3,6 +3,10 @@ class Visitor < ActiveRecord::Base
   has_many :actions
  
   include Parser
+  
+  # needed to use distance_of_time_in_words
+  include ActionView::Helpers::DateHelper
+  
   require 'digest/md5'
   
 
@@ -1379,21 +1383,16 @@ class Visitor < ActiveRecord::Base
     return v
   end
   
-  def created_at_day
-    created_at.strftime("%Y/%m/%d")
-  end
-  
+
   # Time spent on the website - It's the difference between the first and last action
+  # Improvement : Inserting a field with the time_spent in the visitor model and update it
+  # every time a new action is inserted 
+  
   def time_spent
-    as  = actions.sort_by {|a| a.created_at}
-    t = as.last.created_at - as.first.created_at
-    if t < 30
-      str = "0:30 sec"
-    elsif (t >=30) and (t < 60)
-      str = "30:60 sec"
-    elsif (t >= 60)
-      str = "+60 sec"
-    end
+    
+    # I can assume actions are always sorted by created_at
+    str = distance_of_time_in_words(actions.first.created_at, actions.last.created_at) 
+    
    
     return str
     
@@ -1468,13 +1467,17 @@ class Visitor < ActiveRecord::Base
     time = created_at
     nactions = 1 + rand(4)
   
-    
+    as = []
     nactions.times do
-      a = Action.create_random
+      a = Action.new_random
       a.created_at = time + rand(100).seconds
-      a.save
-      actions << a
+      as  << a      
     end
+    
+    #Actions are sorted 
+    sorted_actions = as.sort_by { |a| a.created_at}
+    
+    actions << sorted_actions
     
 
   end

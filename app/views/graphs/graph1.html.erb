@@ -5,28 +5,25 @@
 </ul>
 
 
-
-
- 
-
-
-
-
-
 			
 <%= render  :partial => "total_clicks" , 
-			:locals => {:data => @data, :placeholder => "placeholder1"} %>
+			:locals => {:data => @total_clicks, 
+						:placeholder => "placeholder1" }%>
 
-
-<%= render  :partial => "bar_graph", :locals => {:data =>@data_bars, 
-			:placeholder => "placeholder2"}%>
+<%= render  :partial => "bar_graph", 
+			:locals => {:data =>@browsers, 
+						:placeholder => "placeholder2",
+						:legend => "Browsers" }%>
 			
-
-
-<%= render  :partial => "bar_graph", :locals => {:data =>@data_bars2, 
-			:placeholder => "placeholder3"}%>
+<%= render  :partial => "bar_graph", 
+			:locals => {:data =>@config_os, 
+						:placeholder => "placeholder3" ,
+						:legend => "Operating Systems"}%>
 			
+<%= render  :partial => "bar_graph", 
+			:locals => {:data =>@hours_by_servertime, 
+						:placeholder => "placeholder4", 
+						:legend => "Hours by Server Time"}%>
 
-<%= render  :partial => "bar_graph", :locals => {:data =>@data_bars3, 
-			:placeholder => "placeholder4"}%>
-
+<%#= render  :partial => "bar_graph", 
+			:locals => {:data =>@data_bars4, :placeholder => "placeholder5"}%>

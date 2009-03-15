@@ -17,15 +17,19 @@ class Project < ActiveRecord::Base
     
   end
   
-  def graph_data_between(name, date_begin,date_end)
-    vs  = visitors_between(date_begin,date_end)
-    list = vs.group_by do |e|
-         e.send(name)
-     end
-
-
-     list.keys.map{|k| [k,list[k].size]}
+  
+  # Note, depending on the DB, it could be more efficient to 
+  # use a different approach: example, 
+  # p.visitors.count(:id, :group => :config_os) or
+  # p.visitors.count(:id, :group => 'strftime("%Y:%m:%d",created_at)')
+  # At the moment is used to group visitors by the time_spent (which is a method in the Visitor class)
+ 
+  def visitors_count(name, date_begin, date_end)
     
+    vs = visitors_between(date_begin, date_end)
+    hash = vs.group_by{|v| v.send(name)}
+    list = hash.keys.map{|k| [k,hash[k].size]}
+        
   end
   
   
