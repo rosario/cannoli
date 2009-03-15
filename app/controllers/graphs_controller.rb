@@ -8,18 +8,39 @@ class GraphsController < ApplicationController
   # Graphs are created in this method
   def graph1
 
-
     p = Project.find(session[:project_id]) 
     
     @project = p
     
-    @data = p.graph_data_between(:created_at_day, "2009-01-01", "2009-01-29")
+    bod = Time.parse("2009-01-01").strftime("%Y-%m-%d %H:%M:%S")
+    eod = Time.parse("2009-01-29").end_of_day.strftime("%Y-%m-%d %H:%M:%S")
+    
+    conditions = ["created_at > ? AND created_at < ?", "#{bod}", "#{eod}"]
+    
+      
+      
+    @total_clicks = p.visitors.count(:id, 
+              :group => 'strftime("%Y/%m/%d",created_at)', 
+              :conditions => conditions)
         
-    @data_bars = p.graph_data_between(:config_browser_name, "2009-01-01", "2009-01-29")
+    @browsers = p.visitors.count(:id, 
+                :group =>:config_browser_name,
+                :conditions => conditions).sort_by{|x,y| y}.reverse
     
-    @data_bars2 = p.graph_data_between(:config_os, "2009-01-01", "2009-01-29" )
+    @config_os = p.visitors.count(:id, 
+                  :group =>:config_os,
+                  :conditions => conditions).sort_by{|x,y| y}.reverse
     
-    @data_bars3 = p.graph_data_between(:time_spent, "2009-01-01", "2009-01-29")
+
+    @hours_by_servertime = p.visitors.count(:id, 
+                    :group => 'strftime("%H",created_at)',
+                    :conditions => conditions)
+    
+    # Need to be improved, see visitor.rb
+    #@data_bars4 = p.visitors_count(:time_spent, "2009-01-01", "2009-01-29")
+
+    
+   
 
   end
 

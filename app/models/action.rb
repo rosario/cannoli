@@ -20,7 +20,7 @@ class Action < ActiveRecord::Base
     
   end
   
-  def self.create_random
+  def self.new_random
     urls = ["http://0.0.0.0:3000/website/page1",
             "http://0.0.0.0:3000/website/page2",
             "http://0.0.0.0:3000/website/page3",
@@ -30,7 +30,7 @@ class Action < ActiveRecord::Base
     url = urls[rand(urls.size)]
     
     
-    Action.create(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(url))   
+    Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(url))   
     
     
   end
