@@ -44,7 +44,7 @@ class Action < ActiveRecord::Base
     url = urls[rand(urls.size)]
     
     
-    Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(url))   
+    Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(url), :kind => rand(2))   
     
     
   end

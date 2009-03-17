@@ -21,7 +21,10 @@ class JavascriptsController < ApplicationController
     p = Project.find(project_id) 
     
     # Save the action
-    action = Action.create(:url=>"#{params[:url]}", :url_id=> Digest::MD5.hexdigest(params[:url]))   
+    # Kind is used to distinguish between normal actions and goals
+    # Other kinds should be used too, (such as downloads)
+    action = Action.create(:url=>"#{params[:url]}", :url_id=> Digest::MD5.hexdigest(params[:url]),
+                           :kind => params[:action_kind].to_i)   
     
     
     # Check if the visitor has a session open
