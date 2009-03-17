@@ -15,7 +15,7 @@ class GraphsController < ApplicationController
     bod = Time.parse("2009-01-01").strftime("%Y-%m-%d %H:%M:%S")
     eod = Time.parse("2009-01-29").end_of_day.strftime("%Y-%m-%d %H:%M:%S")
     
-    conditions = ["created_at > ? AND created_at < ?", "#{bod}", "#{eod}"]
+    conditions = ["referer_type = ? AND created_at > ? AND created_at < ?", "1", "#{bod}", "#{eod}"]
     
       
       
@@ -35,7 +35,11 @@ class GraphsController < ApplicationController
     @hours_by_servertime = p.visitors.count(:id, 
                     :group => 'strftime("%H",created_at)',
                     :conditions => conditions)
-    
+                    
+    @search_engines = p.visitors.count(:id, 
+        :group => 'referer_name', 
+        :conditions =>  ["referer_type = 1 
+                          AND created_at > ? AND created_at < ? " , "#{bod}", "#{eod}"] ).sort_by{|x,y| y}.reverse
     # Need to be improved, see visitor.rb
     #@data_bars4 = p.visitors_count(:time_spent, "2009-01-01", "2009-01-29")
 

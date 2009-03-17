@@ -166,6 +166,31 @@ require 'uri'
         end    
       end
       
+      def self.search_engine(string)
+        return if string.nil?
+        domain = URI::split(string)[2]
+        if domain =~ /google/
+          name = "Google"
+        elsif domain =~ /alltheweb/
+          name ="All"
+        elsif domain =~ /msn/
+          name ="Msn"
+        elsif domain =~ /ask/
+          name ="Ask"
+        elsif domain =~ /altavista/
+          name = "Altavista"
+        elsif domain =~ /yahoo/
+          name = "Yahoo"
+        elsif domain =~ /aol/
+          name = "Aol"
+        else
+          name = nil
+        end
+        
+          
+        
+      end
+      
       # Process the referrers and returns the referer domain. 
       # <em>Host</em> is your site's url (request.host) but 
       # you don't have to worry about this, it's all handled

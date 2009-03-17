@@ -1340,6 +1340,11 @@ class Visitor < ActiveRecord::Base
      month = 1
      localtime = Time.parse("2009/#{month}/#{day} #{hours}:#{minutes}")
      
+     
+     urlref = referers[rand(referers.size)]
+     
+     refererinfo = Tracker.referer_info(urlref)
+     
      user_settings = { 
       :config_md5config => configuration_hash,
       :config_os      => os,
@@ -1357,7 +1362,12 @@ class Visitor < ActiveRecord::Base
       :location_ip      => ip,
       :location_browser_lang => browserLang,
       # The time the request is done by the user using at his local time 
-      :localtime => localtime # THIS does NOT go into the md5 hash
+      :localtime => localtime, 
+      :referer_name => refererinfo[:referer_name], 
+      :referer_keyword => refererinfo[:referer_keyword] , 
+      :referer_type => refererinfo[:referer_type],
+      :campaign_name =>refererinfo[:campaign_name], # This field is not stored in the DB ( at the moment )
+      :referer_url => urlref
      }
 
     return user_settings
@@ -1412,15 +1422,7 @@ class Visitor < ActiveRecord::Base
   # Create a visitor having user_settings
   def self.create_with_settings(user_settings)
     
-      # Not used, yet. To be added
-         refererinfo = {
-           :referer_type => 0,
-           :referer_name => "",
-           :referer_url => "",
-           :referer_keyword => ""
-         }
-         
-      
+        
       dati =
       { 
         :config_md5config       => user_settings[:config_md5config], 
@@ -1440,13 +1442,13 @@ class Visitor < ActiveRecord::Base
         :location_browser_lang  => user_settings[:location_browser_lang],
         :location_country       =>  user_settings[:location_browser_lang],
         
-        :referer_type           => refererinfo[:referer_type],
-        :referer_name           => refererinfo[:referer_name],
-        :referer_url            => refererinfo[:referer_url],
-        :referer_keyword        => refererinfo[:referer_keyword],
+        :referer_type           => user_settings[:referer_type],
+        :referer_name           => user_settings[:referer_name],
+        :referer_url            => user_settings[:referer_url],
+        :referer_keyword        => user_settings[:referer_keyword],
         
         :localtime      => user_settings[:localtime],
-        :returning      => 0, # not used at the moment
+        :returning      => 0 # not used at the moment
       }
     
  

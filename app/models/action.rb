@@ -3,11 +3,25 @@ class Action < ActiveRecord::Base
   belongs_to :visitor
   require 'uri'
   
- 
+  # Non uso piu URI.split ma URI.parse
 
      # URI.split("http://www.site.com:8080/controller/action/var/var2?p=2&c=3")
      # => ["http", nil, "www.site.com", "8080", nil, "/controller/action/var/var2", nil, "p=2&c=3", nil]
-  
+     
+      # * Scheme
+      # * Userinfo
+      # * Host
+      # * Port
+      # * Registry
+      # * Path
+      # * Opaque
+      # * Query
+      # * Fragment
+        
+   
+ 
+    
+    
   def query
     URI.split(url)[7]
   end

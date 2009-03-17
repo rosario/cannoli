@@ -25,5 +25,10 @@
 						:placeholder => "placeholder4", 
 						:legend => "Hours by Server Time"}%>
 
+<%= render  :partial => "bar_graph", 
+			:locals => {:data =>@search_engines, 
+						:placeholder => "placeholder5", 
+						:legend => "Search Engines"}%>
+
 <%#= render  :partial => "bar_graph", 
 			:locals => {:data =>@data_bars4, :placeholder => "placeholder5"}%>
