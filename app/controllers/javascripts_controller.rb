@@ -17,7 +17,8 @@ class JavascriptsController < ApplicationController
   # It keeps track of the visitor.
   # It is called from a visitor browser using the tracking javascript code
   def log
-    project_id = params[:idsite]     
+    project_id = params[:idsite]
+    session[:project_id]  = project_id
     p = Project.find(project_id) 
     
     # Save the action
