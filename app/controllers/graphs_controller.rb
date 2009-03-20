@@ -17,8 +17,10 @@ class GraphsController < ApplicationController
     
     conditions = ["referer_type = ? AND created_at > ? AND created_at < ?", "1", "#{bod}", "#{eod}"]
     
-      
-      
+    # This data is used to show how to use the line_plot partial
+    @example = [[0,0],[1,1],[2,2]]
+    
+    
     @total_clicks = p.visitors.count(:id, 
               :group => 'strftime("%Y/%m/%d",created_at)', 
               :conditions => conditions)

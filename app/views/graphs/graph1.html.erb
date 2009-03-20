@@ -6,9 +6,12 @@
 
 
 			
-<%= render  :partial => "total_clicks" , 
-			:locals => {:data => @total_clicks, 
+<%= render  :partial => "line_plot" , 
+			:locals => {:data => @total_clicks,
+						:legend => "Total clicks",
+						:xaxis_mode => "time", # If this label is not present, a normal graph is plotted
 						:placeholder => "placeholder1" }%>
+
 
 <%= render  :partial => "bar_graph", 
 			:locals => {:data =>@browsers, 
@@ -29,6 +32,13 @@
 			:locals => {:data =>@search_engines, 
 						:placeholder => "placeholder5", 
 						:legend => "Search Engines"}%>
+						
+						
+<%# Example. The data is plotted, with no "time" formatting %>
+<%= render  :partial => "line_plot" , 
+			:locals => {:data => @example, 
+						:placeholder => "placeholder6",
+						:legend =>"This is just an example" }%>
 
 <%#= render  :partial => "bar_graph", 
 			:locals => {:data =>@data_bars4, :placeholder => "placeholder5"}%>

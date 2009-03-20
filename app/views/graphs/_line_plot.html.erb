@@ -1,13 +1,26 @@
 <% 
 # Format the data in order to be used by the flot library
 
-clicks = []
-for d in data
-  clicks << "[#{Time.parse(d.first).to_i*1000}, #{d.second}]"
+formatted_data = []
+
+
+if not defined? xaxis_mode
+	xaxis_mode = "null"
+	for d in data
+	  formatted_data << "[#{d.first}, #{d.second}]"
+	end
+	
+else  #Time series data
+
+	for d in data
+	  formatted_data << "[#{Time.parse(d.first).to_i*1000}, #{d.second}]"
+	end
+
+	
 end
 
-clicks = "[#{clicks.join(",")}]"
-
+	formatted_data = "[#{formatted_data.join(",")}]"
+	
 %>
 
 
@@ -15,17 +28,17 @@ clicks = "[#{clicks.join(",")}]"
 
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
-	var total = <%= clicks %>;
+	var total = <%= formatted_data %>;
 
 	var graph_options = {
 		lines : {show : true},
 		points : {show : true},
-		xaxis : {mode : "time" },
+		xaxis : {mode : '<%= xaxis_mode %>'},
 		grid: { backgroundColor: "#fffff1"}	
 	}
 	
 	var line = {
-		label: "Total Clicks during the time",  
+		label: "<%= legend %>",  
 		data: total  , 
 		lines : { 
 			show : true, 
@@ -38,3 +51,4 @@ $(function () {
 
 });
 </script>
+
