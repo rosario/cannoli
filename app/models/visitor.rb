@@ -1401,9 +1401,9 @@ class Visitor < ActiveRecord::Base
   def time_spent
     
     # I can assume actions are always sorted by created_at
-    str = distance_of_time_in_words(actions.first.created_at, actions.last.created_at) 
+    #str = distance_of_time_in_words(actions.first.created_at, actions.last.created_at) 
     
-   
+    str = actions.last.created_at - actions.first.created_at
     return str
     
   end

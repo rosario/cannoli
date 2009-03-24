@@ -1,6 +1,7 @@
 <ul id="subnavigation">
 	<li class="tab"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
 	<li class="active"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
+	<li class="tab"><%= link_to "Referers", referers_queries_url(@project) %> </li>
 	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
 </ul>
 

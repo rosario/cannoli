@@ -4,9 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title> Dashboard </title>
+  <title> Referers </title>
   	<%= stylesheet_link_tag 'screen' %>
-
 </head>
 <body>
 <p style="color: green"><%= flash[:notice] %></p>
@@ -14,12 +13,9 @@
 				This is header
 			</div>
 			<div id="main">
-						<ul id="subnavigation">
-						<li class="active"><%= link_to "Dashboard", :controller => 'dashboard', :action => 'index' %> </li>
-						<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
-					
-						</ul>
-				<%= yield  %>	
+								
+				<%= yield  %>
+				
 			</div>
 			<div id="footer">
 				This is footer

@@ -629,68 +629,60 @@ body.core #personal_grid {
 }
 
 
-/* API Table
----------------*/
-table.api_table {
-	width:740px;
-	margin-bottom:10px;
-	empty-cells: show;
+table {
+	border-collapse:collapse;
+	border: medium none ; 
+	position: relative;
+	margin-left: 10px;
 }
 
-table.api_table tr.even td {
-	background-color:#f7f7f7;
+table, thead, tbody, th, tr, td {
+	font-family:"Helvetica Neue",Arial,Tahoma;
+	margin: 0;
 }
 
-table.api_table td {
-	height:20px;
+table#tabledata th, td {
+	margin-top:2px;
+	max-width:400px;
+	min-width:50px;
+	padding:3px 4px;
+}
+table#tabledata th {
+	color:#3A61A1;
+	font-size:13px;
+	font-weight:normal;
+	letter-spacing:-0.05em;
+}
+table tbody th {
+	padding-right:1em;
+}
+
+th {
 	font-size:12px;
-	color:#333;
-	font-family:"Lucida Grande",Verdana;
-	padding:7px 5px 7px 5px;
-	border-bottom:1px solid #ddd;
-}
-
-table.api_table td.first {
-	border-left:1px solid #ddd;
-	padding-left:7px;
-}
-
-table.api_table td.last {
-	border-right:1px solid #ddd;
-}
-
-table.api_table td.default,
-table.api_table td.type {
-	font-size:10px;
-	color:#666;
-}
-
-table.api_table td.default,
-table.api_table td.type {
-	width:80px;
-}
-
-table.api_table td.example {
-	font-size:10px;
-	text-align:right;
-}
-
-table.api_table td.signature {
-	min-width:375px;
-}
-
-table.api_table thead td {
-	font-size:10px;
 	font-weight:bold;
-	color:#666;
+	text-align:left;
 }
-
-table.api_table td.small {
-	font-size:10px;
+td, th {
+	//border-bottom:1px solid #DDDDDD;
+	font-family:"Lucida Grande",Verdana,Arial,sans-serif;
+	font-size:11px;
+	line-height:13px;
+	vertical-align:top;
 }
-
-#main table.api_table td.right {
-	margin-left:none;
+table#tabledata tr td {
 	text-align:right;
-	float:inherit;
+}
+
+table#tabledata tbody tr:hover td {
+	background-color:#DDDDDD;
+}
+table#tabledata tbody tr:hover th {
+	background-color:#DDDDDD;
+}
+
+table#tabledata thead th, thead td {
+	color:#666666;
+	font-size:13px;
+	background-color:#CDC7C0;
+	padding:5px;
 }

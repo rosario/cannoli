@@ -22,7 +22,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.project_graph1 'projects/:id/graphs/graph1', :controller =>'graphs', :action =>'graph1'
   
-
+  map.referers_queries 'projects/:id/referers/queries', :controller =>'referers', :action =>'queries'
+  
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
 
