@@ -28,15 +28,15 @@ class ReferersController < ApplicationController
   
     queries.keys.each do |k|
       vs = queries[k]
-      nvisitors = queries[k].size + 0.0
+      nvisitors = queries[k].size
       
-      total_actions = vs.inject(0){|total,v| total + v.actions.size}
+      total_actions = vs.inject(0){|total,v| total + v.total_actions}
       total_time = vs.inject(0){|total,v| total + v.time_spent}
       avg_time = (total_time/nvisitors).to_i
       avg_time = [avg_time/60 % 60, avg_time % 60].map{|t| t.to_s.rjust(2,'0')}.join(':')
       list << [k,
         nvisitors,
-        "%.2f" % (total_actions/nvisitors),
+        "%.2f" % ((total_actions+0.0)/nvisitors),
         avg_time
         
       ]

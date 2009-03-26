@@ -1394,30 +1394,63 @@ class Visitor < ActiveRecord::Base
   end
   
 
-  # Time spent on the website - It's the difference between the first and last action
-  # Improvement : Inserting a field with the time_spent in the visitor model and update it
-  # every time a new action is inserted 
-  
-  def time_spent
+  def add_action(a)
+    t = self.total_actions
+    # this check is horrible...when working on the DB, I have to make sure that all the initializations will work  
+    if t.nil? 
+      t = 0 
+    end  
+    t = t + 1
+    self.total_actions = t
     
-    # I can assume actions are always sorted by created_at
-    #str = distance_of_time_in_words(actions.first.created_at, actions.last.created_at) 
+    actions << a
     
-    str = actions.last.created_at - actions.first.created_at
-    return str
+    if self.first_action_time.nil?
+      self.first_action_time = a.created_at
+    end
     
+    self.last_action_time = a.created_at
+    self.time_spent = self.last_action_time - self.first_action_time
+    self.save
   end
+  
+  def time_spent_in_words
+    str = distance_of_time_in_words(first_action_time,last_action_time)
+  end
+  
+  # def time_spent
+  #    
+  #    # I can assume actions are always sorted by created_at
+  #    #str = distance_of_time_in_words(actions.first.created_at, actions.last.created_at) 
+  #    
+  #    str = actions.last.created_at - actions.first.created_at
+  #    return str
+  #    
+  #  end
     
   # Check if a visitor having user_settings was here today
   def self.here_today?(user_settings)
     md5config = user_settings[:config_md5config]
     p "MD5 ==>" + user_settings[:config_md5config]
+    
+
     v= Visitor.find(:first, 
-      :conditions => ["created_at > '#{1.days.ago}' AND config_md5config = '#{md5config}'"])
+      :conditions => ["created_at > '#{1.day.ago}' AND config_md5config = '#{md5config}'"])
     return v
     
   end
  
+  # Set the was_here flag
+  def was_here!
+    if self.was_here.nil?
+      self.was_here = 1
+    else
+      self.was_here = self.was_here + 1
+    end
+    self.save
+    
+  end
+  
  
   # Create a visitor having user_settings
   def self.create_with_settings(user_settings)
@@ -1448,7 +1481,9 @@ class Visitor < ActiveRecord::Base
         :referer_keyword        => user_settings[:referer_keyword],
         
         :localtime      => user_settings[:localtime],
-        :returning      => 0 # not used at the moment
+        :was_here      => 0, # not used at the moment,
+        :total_actions  => 0
+
       }
     
  
@@ -1479,7 +1514,9 @@ class Visitor < ActiveRecord::Base
     #Actions are sorted 
     sorted_actions = as.sort_by { |a| a.created_at}
     
-    actions << sorted_actions
+    for a in sorted_actions
+      add_action(a)
+    end
     
 
   end

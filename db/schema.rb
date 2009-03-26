@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090313181618) do
+ActiveRecord::Schema.define(:version => 20090325151531) do
 
   create_table "actions", :force => true do |t|
     t.string   "url"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(:version => 20090313181618) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "localtime"
-    t.integer  "returning"
     t.integer  "referer_type"
     t.text     "referer_name"
     t.text     "referer_url"
@@ -72,6 +71,11 @@ ActiveRecord::Schema.define(:version => 20090313181618) do
     t.text     "location_country"
     t.text     "location_continent"
     t.integer  "project_id"
+    t.integer  "total_actions"
+    t.integer  "time_spent"
+    t.datetime "first_action_time"
+    t.datetime "last_action_time"
+    t.integer  "was_here"
   end
 
 end

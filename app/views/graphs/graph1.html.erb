@@ -34,12 +34,15 @@
 						:placeholder => "placeholder5", 
 						:legend => "Search Engines"}%>
 						
+
+<%= render  :partial => "bar_graph", 
+			:locals => {:data =>@time_spent, 
+						:placeholder => "placeholder6",
+						:legend => "Time Spent on Site"}%>
 						
 <%# Example. The data is plotted, with no "time" formatting %>
 <%= render  :partial => "line_plot" , 
 			:locals => {:data => @example, 
-						:placeholder => "placeholder6",
+						:placeholder => "placeholder7",
 						:legend =>"This is just an example" }%>
 
-<%#= render  :partial => "bar_graph", 
-			:locals => {:data =>@data_bars4, :placeholder => "placeholder5"}%>
