@@ -8,9 +8,10 @@ class Project < ActiveRecord::Base
   def add_action(action)
     a = self.actions.find_by_url(action.url)
     if a.nil? 
-      actions << action
+      a = action
+      actions << a
     end
-    
+    return a
   end
   
   # Get the visitors between two dates

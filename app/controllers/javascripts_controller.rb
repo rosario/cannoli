@@ -68,9 +68,10 @@ class JavascriptsController < ApplicationController
       action = Action.new(:url=>"#{params[:url]}", :url_id=> Digest::MD5.hexdigest(params[:url]),
                              :kind => params[:action_kind].to_i) 
     # Add the action to the project, only if it's new
-     p.add_action(action)  
+    # Return the old action if present
+     a = p.add_action(action)  
 
-     v.add_action(action)
+     v.add_action(a)
      
   end
 
