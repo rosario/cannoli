@@ -61,14 +61,17 @@ class JavascriptsController < ApplicationController
       
      
       
-      # Save the action
+      # Save the action only IF it's not already present.
       # Kind is used to distinguish between normal actions and goals
       # Other kinds should be used too, (such as downloads)
-      action = Action.create(:url=>"#{params[:url]}", :url_id=> Digest::MD5.hexdigest(params[:url]),
-                             :kind => params[:action_kind].to_i)   
-      v.add_action(action)
-      # Add the action to the project, only if it's new
-      p.add_action(action)
+      
+      action = Action.new(:url=>"#{params[:url]}", :url_id=> Digest::MD5.hexdigest(params[:url]),
+                             :kind => params[:action_kind].to_i) 
+    # Add the action to the project, only if it's new
+     p.add_action(action)  
+
+     v.add_action(action)
+     
   end
 
 
