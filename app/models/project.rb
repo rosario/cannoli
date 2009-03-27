@@ -2,7 +2,16 @@
 class Project < ActiveRecord::Base
   has_many :users
   has_many :visitors
+  has_many :actions
   
+  # Add an action to the project, only if it's new
+  def add_action(action)
+    a = self.actions.find_by_url(action.url)
+    if a.nil? 
+      actions << action
+    end
+    
+  end
   
   # Get the visitors between two dates
   def visitors_between(date_begin, date_end)

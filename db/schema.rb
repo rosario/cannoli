@@ -9,15 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090325151531) do
+ActiveRecord::Schema.define(:version => 20090327123548) do
 
   create_table "actions", :force => true do |t|
     t.string   "url"
-    t.integer  "visitor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url_id"
     t.integer  "kind"
+    t.integer  "project_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20090325151531) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(:version => 20090325151531) do
     t.datetime "first_action_time"
     t.datetime "last_action_time"
     t.integer  "was_here"
+  end
+
+  create_table "visits", :force => true do |t|
+    t.integer  "visitor_id"
+    t.integer  "action_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

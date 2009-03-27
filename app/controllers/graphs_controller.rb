@@ -62,9 +62,11 @@ class GraphsController < ApplicationController
     
     
     
-    @time_spent = vs.group_by {|v|v.time_spent_in_words }.map{|k,v|  [k,v.size]}
+    @time_spent = vs.group_by {|v|v.time_spent_in_words }.map{|k,v|  [k,v.size]}.sort_by{|t,s| s}.reverse
 
+    as = p.actions
     
+    @actions = as.map{|a| [a.path,a.visits.size]}.sort_by{|u,s| s}.reverse
    
 
   end

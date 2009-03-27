@@ -1,6 +1,10 @@
 # An Action represent the page the visitor requested
 class Action < ActiveRecord::Base
-  belongs_to :visitor
+ # belongs_to :visitor
+  belongs_to :project
+  has_many :visits
+  has_many :visitors, :through => :visits
+  
   require 'uri'
   
   # Non uso piu URI.split ma URI.parse
@@ -43,8 +47,12 @@ class Action < ActiveRecord::Base
             
     url = urls[rand(urls.size)]
     
+    a = Action.find_by_url(url)
+    if a.nil? 
+      a = Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(url), :kind => rand(2)) 
+    end
     
-    Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(url), :kind => rand(2))   
+    return a
     
     
   end

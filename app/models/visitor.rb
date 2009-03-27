@@ -1,6 +1,10 @@
 # Visitor handle the visits
 class Visitor < ActiveRecord::Base
-  has_many :actions
+  has_many :visits
+  has_many :actions, :through => :visits
+  
+  belongs_to :project
+  
  
   include Parser
   
@@ -1406,10 +1410,12 @@ class Visitor < ActiveRecord::Base
     actions << a
     
     if self.first_action_time.nil?
-      self.first_action_time = a.created_at
+      # It's important the time of the visit, not the time when the action was created
+      self.first_action_time = a.visits.last.created_at  # not this -> a.created_at
     end
     
-    self.last_action_time = a.created_at
+    # It's important the time of the visit, not the time when the action was created  
+    self.last_action_time = a.visits.last.created_at # not this -> a.created_at
     self.time_spent = self.last_action_time - self.first_action_time
     self.save
   end
@@ -1500,24 +1506,46 @@ class Visitor < ActiveRecord::Base
   
   
   # Add random actions to the visitor. For testing purpose
-  def add_random_actions
+  def add_random_actions(actions)
+    
+    # Need to add few random actions
+    # All the visits will start when the visitor is created
     time = created_at
-    nactions = 1 + rand(4)
-  
+    
+    # The number of actions is random
+    nactions = 1 + rand(actions.size)
+ 
+    # The time of the visit is also random, 
+    times = []
+    nactions.times do
+      times << time + rand(100).seconds
+    end
+    
+    # Sort the time of each visit
+    times.sort!
+    
+    
+    i = 0
     as = []
     nactions.times do
-      a = Action.new_random
-      a.created_at = time + rand(100).seconds
-      as  << a      
+      # Add a random action
+#      a = Action.new_random
+      self.add_action(actions[rand(nactions)])
+      
+      # Since the action is added "now", it will have the wrong creation time...
+      # We are supposing that the visitor was also created with a random time,
+      # so all the his visits will be after his "creation time"
+      # Now let's change the time of this visit
+      visit = visits.last
+      visit.created_at = times[i] # Change the time of the visit according to times
+      visit.save
+      i = i + 1
     end
-    
-    #Actions are sorted 
-    sorted_actions = as.sort_by { |a| a.created_at}
-    
-    for a in sorted_actions
-      add_action(a)
-    end
-    
+    #Calculate the time spent on the website
+    self.first_action_time = visits.first.created_at
+    self.last_action_time = visits.last.created_at 
+    self.time_spent = self.last_action_time - self.first_action_time
+    self.save
 
   end
  

@@ -40,6 +40,11 @@
 						:placeholder => "placeholder6",
 						:legend => "Time Spent on Site"}%>
 						
+<%= render  :partial => "bar_graph", 
+			:locals => {:data =>@actions, 
+						:placeholder => "placeholder8",
+						:legend => "Number of visitors per page"}%>
+						
 <%# Example. The data is plotted, with no "time" formatting %>
 <%= render  :partial => "line_plot" , 
 			:locals => {:data => @example, 
