@@ -7,6 +7,7 @@ class Action < ActiveRecord::Base
   
   require 'uri'
   
+ 
   # Non uso piu URI.split ma URI.parse
 
      # URI.split("http://www.site.com:8080/controller/action/var/var2?p=2&c=3")

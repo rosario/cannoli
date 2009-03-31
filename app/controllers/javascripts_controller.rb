@@ -65,7 +65,13 @@ class JavascriptsController < ApplicationController
       # Kind is used to distinguish between normal actions and goals
       # Other kinds should be used too, (such as downloads)
       
-      action = Action.new(:url=>"#{params[:url]}", :url_id=> Digest::MD5.hexdigest(params[:url]),
+      # Clean the URL from the last '/'
+      url = params[:url]
+      if url.last == "/"
+        url.delete!(url.last)
+      end
+      
+      action = Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(params[:url]),
                              :kind => params[:action_kind].to_i) 
     # Add the action to the project, only if it's new
     # Return the old action if present
