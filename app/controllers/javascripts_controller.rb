@@ -68,7 +68,7 @@ class JavascriptsController < ApplicationController
       # Clean the URL from the last '/'
       url = params[:url]
       if url.last == "/"
-        url.delete!(url.last)
+        url.chop!
       end
       
       action = Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(params[:url]),
