@@ -20,10 +20,25 @@ class JavascriptsController < ApplicationController
   
   
   def log
+      
+      
       # Should I check for session[:project_id] first or always overwrite ? 
       project_id = params[:idsite]
       session[:project_id]  = project_id
       p = Project.find(project_id) 
+
+
+      # Check if the params[:idsite] correspond to the right hostname
+      # because we dont want to record stats from other hosts
+      # Fix this code..it needs to work for www.hostname.com and hostname.com
+      # hostname = URI.parse(params[:url]).host
+      #       if p.name != hostname 
+      #         render :text => ""
+      #       end
+      #       
+      #       
+
+
 
 
       # If there's a session open, the visitor is known
