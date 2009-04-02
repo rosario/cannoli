@@ -66,7 +66,7 @@ class GraphsController < ApplicationController
 
     as = p.actions
     
-    @actions = as.map{|a| [a.path,a.visits.size]}.sort_by{|u,s| s}.reverse
+    @actions = as.map{|a| [a.path,a.visitors.count(:group => :visitor_id).size]}.sort_by{|u,s| s}.reverse
    
 
   end

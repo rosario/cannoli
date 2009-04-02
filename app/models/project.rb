@@ -4,6 +4,33 @@ class Project < ActiveRecord::Base
   has_many :visitors
   has_many :actions
   
+  
+ # Check if a visitor in this project was here today
+  def visitor_here_today?(user_settings)
+     md5config = user_settings[:config_md5config]
+     p "MD5 ==>" + user_settings[:config_md5config]
+
+
+     v = self.visitors.find(:first, 
+       :conditions => ["created_at > '#{1.day.ago}' AND config_md5config = '#{md5config}'"])
+     return v
+
+   end
+
+
+   # Set the was_here flag
+   def visitor_was_here!(v)
+     if v.was_here.nil?
+       v.was_here = 1
+     else
+       v.was_here = v.was_here + 1
+     end
+     v.save
+
+   end
+  
+  
+  
   # Add an action to the project, only if it's new
   def add_action(action)
     a = self.actions.find_by_url(action.url)

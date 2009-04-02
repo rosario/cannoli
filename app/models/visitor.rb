@@ -1434,29 +1434,31 @@ class Visitor < ActiveRecord::Base
   #    
   #  end
     
+    
+  # This methods are now in the class Project 
   # Check if a visitor having user_settings was here today
-  def self.here_today?(user_settings)
-    md5config = user_settings[:config_md5config]
-    p "MD5 ==>" + user_settings[:config_md5config]
-    
-
-    v= Visitor.find(:first, 
-      :conditions => ["created_at > '#{1.day.ago}' AND config_md5config = '#{md5config}'"])
-    return v
-    
-  end
- 
-  # Set the was_here flag
-  def was_here!
-    if self.was_here.nil?
-      self.was_here = 1
-    else
-      self.was_here = self.was_here + 1
-    end
-    self.save
-    
-  end
-  
+  # def self.here_today?(user_settings)
+  #    md5config = user_settings[:config_md5config]
+  #    p "MD5 ==>" + user_settings[:config_md5config]
+  #    
+  # 
+  #    v= Visitor.find(:first, 
+  #      :conditions => ["created_at > '#{1.day.ago}' AND config_md5config = '#{md5config}'"])
+  #    return v
+  #    
+  #  end
+  # 
+  #  # Set the was_here flag
+  #  def was_here!
+  #    if self.was_here.nil?
+  #      self.was_here = 1
+  #    else
+  #      self.was_here = self.was_here + 1
+  #    end
+  #    self.save
+  #    
+  #  end
+  #  
  
   # Create a visitor having user_settings
   def self.create_with_settings(user_settings)

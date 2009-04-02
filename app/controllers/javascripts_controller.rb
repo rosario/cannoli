@@ -19,12 +19,25 @@ class JavascriptsController < ApplicationController
   # It is called from a visitor browser using the tracking javascript code
   
   
+  # DA SISTEMAMRE il total action, che conta troppi visitatori (uno per ogni reload)
+
+  
   def log
       
       
-      # Should I check for session[:project_id] first or always overwrite ? 
       project_id = params[:idsite]
-      session[:project_id]  = project_id
+      
+      if (not session[:project_id].nil?) and (project_id != session[:project_id])
+        ## This means the visitor has found another website using RUWA
+        # Reset the visitor_id
+        session[:visitor_id] = nil
+      end
+      
+      session[:project_id] = project_id
+      
+  
+      
+
       p = Project.find(project_id) 
 
 
@@ -43,31 +56,30 @@ class JavascriptsController < ApplicationController
 
       # If there's a session open, the visitor is known
       if session[:visitor_id]
-        p "SESSION FOUND, VISITOR KNOWN"
+        puts "SESSION FOUND, VISITOR KNOWN"
         v = Visitor.find(session[:visitor_id])
       else
-        p "NO SESSION"
+        puts "NO SESSION"
         # There's no session, check if there was a visitor having the same browser configuration and IP today
         user_settings = Tracker.get_settings(params,request)  
-        p "USER SETTINGS" + user_settings[:config_md5config]
-        v = Visitor.here_today?(user_settings)
+        puts "USER SETTINGS" + user_settings[:config_md5config]
+        v = p.visitor_here_today?(user_settings)
           
-        # puts "#{v.nil?} or #{(Time.now - v.last_action_time) > 30.minutes}"
         if v.nil? 
-          p "VISITOR NEW"
+          puts "VISITOR NEW"
           # The visitor is new, create a new visitor and add him to the project
           v = Visitor.create_with_settings(user_settings)
           p.visitors << v
-        elsif (Time.now - v.last_action_time) < 30.minutes
-          p "VISITOR FOUND, but last action was 30 minutes ago"
+        elsif (Time.now - v.last_action_time) > 30.minutes
+          puts "VISITOR FOUND, but last action was more than 30 minutes ago"
           # The visitor was here, but more than 30 minutes ago, create a new visitor
            v = Visitor.create_with_settings(user_settings)
           p.visitors << v
         else
           # With no session, the visitor either cleared the cookies or restarted the browser...
           # I'll consider that as a returning visitor
-            p "RETURNING VISITOR"
-            v.was_here!
+            puts "RETURNING VISITOR"
+            p.visitor_was_here!(v)
         
         end
 
