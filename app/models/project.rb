@@ -17,6 +17,8 @@ class Project < ActiveRecord::Base
 
    end
 
+  
+
 
    # Set the was_here flag
    def visitor_was_here!(v)

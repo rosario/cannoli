@@ -24,17 +24,17 @@ end
 %>
 
 
-<div id="<%= placeholder %>" style="width:600px;height:300px;"></div>
+<div id="<%= placeholder %>" style="width:450px;height:250px; "></div>
 
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
 	var total = <%= formatted_data %>;
 
 	var graph_options = {
-		lines : {show : true},
+		lines : {show : true },
 		points : {show : true},
 		xaxis : {mode : '<%= xaxis_mode %>'},
-		grid: { backgroundColor: "#fffff1"}	
+		grid: { backgroundColor: "#eeeeee"},
 	}
 	
 	var line = {
@@ -43,7 +43,9 @@ $(function () {
 		lines : { 
 			show : true, 
 			fill : true,
-		}
+		},
+		color : "#99aaee"
+		
 	}
 	
 

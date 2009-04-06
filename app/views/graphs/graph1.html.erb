@@ -6,13 +6,11 @@
 </ul>
 
 
-			
 <%= render  :partial => "line_plot" , 
 			:locals => {:data => @total_clicks,
 						:legend => "Total clicks",
 						:xaxis_mode => "time", # If this label is not present, a normal graph is plotted
 						:placeholder => "placeholder1" }%>
-
 
 <%= render  :partial => "bar_graph", 
 			:locals => {:data =>@browsers, 

@@ -14,20 +14,117 @@ class JavascriptsController < ApplicationController
   end
   
   
-
-  # It keeps track of the visitor.
-  # It is called from a visitor browser using the tracking javascript code
-  
-  
-  # DA SISTEMAMRE il total action, che conta troppi visitatori (uno per ogni reload)
-
-  
   def log
       
       
+      if session[:user_id]
+        # User (not the visitor) is logged in..we dont count his actions
+        puts ">>>>>>>>>>>>>>>> USER LOGGED IN, ACTIONS not counted"
+        render :text => ""
+      else
+        
+           project_id = params[:idsite]
+
+            if (session[:project_id]) and (project_id != session[:project_id])
+              # This visitor has already a session open, but using another project
+              session[:visitor_id] = nil
+            end
+
+            session[:project_id] = project_id
+
+
+            p = Project.find(project_id) 
+
+
+            # Check if the params[:idsite] correspond to the right hostname
+            # because we dont want to record stats from other hosts
+            # Fix this code..it needs to work for www.hostname.com and hostname.com
+            # hostname = URI.parse(params[:url]).host
+            #       if p.name != hostname 
+            #         render :text => ""
+            #       end
+            #       
+            #       
+
+           visitor_settings = Tracker.get_settings(params,request)  
+            if session[:visitor_id]
+              # faccio qualche cosa
+              # Se c''e il visitor_id allora e' conosciuto
+              # Vedo se l'ultima azione e' stata fatta in meno di mezzo'ora
+              puts " >>>>>>>>>>>>>>>>> SESSION FOUND"
+              v = Visitor.find(session[:visitor_id])
+                if (Time.now - v.last_action_time) > 30.minutes
+                  # Sono passati piu' di 30 minuti, creo un nuovo visitor e lo metto come returning
+                  puts ">>>>>>>>>>>>>>>>>>>MORE THAN 30 minutes, create a new visitor"
+                  v = Visitor.create_with_settings(visitor_settings)
+                  p.visitors << v
+                  p.visitor_was_here!(v)
+                end
+
+            else
+
+              puts ">>>>>>>>>>>>>>>>> NO SESSION"
+              # There's no session, check if there was a visitor having the same browser configuration and IP today
+              puts ">>>>>>>>>>> USER SETTINGS" + visitor_settings[:config_md5config]
+              v = p.visitor_here_today?(visitor_settings)
+
+              if v.nil? 
+                puts ">>>>>>>>>>>> VISITOR NEW"
+                # The visitor is new, create a new visitor and add him 
+                v = Visitor.create_with_settings(visitor_settings)
+                p.visitors << v
+              else
+                p ">>>>>>>>>>>> VISITOR HERE"
+
+                if (Time.now - v.last_action_time) > 30.minutes
+                  puts ">>>>>>>>>>>>>> MORE THAN 30 minutes, create new visitor"
+                  # Sono passati piu' di 30 minuti, creo un nuovo visitor e lo metto come returning
+                  v = Visitor.create_with_settings(visitor_settings)
+                  p.visitors << v
+                  p.visitor_was_here!(v)
+                end
+
+              end
+
+            end
+
+            session[:visitor_id] = v.id
+
+
+            # Save the action only IF it's not already present.
+            # Kind is used to distinguish between normal actions and goals
+            # Other kinds should be used too, (such as downloads)
+
+            # Clean the URL from the last '/'
+            url = params[:url]
+            if url.last == "/"
+              url.chop!
+            end
+
+            action = Action.new(:url=>"#{url}", :url_id=> Digest::MD5.hexdigest(params[:url]),
+                                   :kind => params[:action_kind].to_i) 
+          # Add the action to the project, only if it's new
+          # Return the old action if present
+           a = p.add_action(action)  
+
+           v.add_action(a)
+        
+        
+        
+      end
+      
+       
+   
+     
+  end
+
+  
+  def log_old
+ 
+       
       project_id = params[:idsite]
       
-      if (not session[:project_id].nil?) and (project_id != session[:project_id])
+      if (session[:project_id]) and (project_id != session[:project_id])
         ## This means the visitor has found another website using RUWA
         # Reset the visitor_id
         session[:visitor_id] = nil
