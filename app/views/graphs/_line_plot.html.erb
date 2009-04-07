@@ -16,9 +16,7 @@ else  #Time series data
 	  formatted_data << "[#{Time.parse(d.first).to_i*1000}, #{d.second}]"
 	end
 
-	
 end
-
 	formatted_data = "[#{formatted_data.join(",")}]"
 	
 %>

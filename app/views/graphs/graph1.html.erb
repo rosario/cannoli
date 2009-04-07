@@ -1,51 +1,78 @@
-<ul id="subnavigation">
-	<li class="tab"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
-	<li class="active"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
-	<li class="tab"><%= link_to "Referers", referers_queries_url(@project) %> </li>
-	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
-</ul>
 
 
+
+<div id="panel">
+<table id="tabledata">
+
+<tbody>
+<tr>
+<td>  
 <%= render  :partial => "line_plot" , 
 			:locals => {:data => @total_clicks,
 						:legend => "Total clicks",
 						:xaxis_mode => "time", # If this label is not present, a normal graph is plotted
-						:placeholder => "placeholder1" }%>
+						:placeholder => "placeholder1" }
+%>
+					
+</td>
+<td>
+	
+<%= render  :partial => "line_plot" , 
+			:locals => {:data => @total_clicks,
+			:legend => "Total clicks",
+			:xaxis_mode => "time", # If this label is not present, a normal graph is plotted
+			:placeholder => "placeholder1bis" }%>
+</td>
+</tr>			
+<tr>
+<td>
+							
 
-<%= render  :partial => "bar_graph", 
-			:locals => {:data =>@browsers, 
-						:placeholder => "placeholder2",
-						:legend => "Browsers" }%>
-			
-<%= render  :partial => "bar_graph", 
-			:locals => {:data =>@config_os, 
-						:placeholder => "placeholder3" ,
-						:legend => "Operating Systems"}%>
-			
+		<%= render  :partial => "bar_graph", 
+					:locals => {:data =>@browsers, 
+								:placeholder => "placeholder2",
+								:legend => "Browsers" }%>
+</td>
+<td>
+		<%= render  :partial => "bar_graph", 
+					:locals => {:data =>@config_os, 
+								:placeholder => "placeholder3" ,
+								:legend => "Operating Systems"}%>
+</td>
+</tr>	
+<tr>
+<td>
 <%= render  :partial => "bar_graph", 
 			:locals => {:data =>@hours_by_servertime, 
 						:placeholder => "placeholder4", 
 						:legend => "Hours by Server Time"}%>
-
+</td>	
+<td>
 <%= render  :partial => "bar_graph", 
 			:locals => {:data =>@search_engines, 
 						:placeholder => "placeholder5", 
 						:legend => "Search Engines"}%>
-						
-
+</td>						
+</tr>
+<tr>
+<td>
 <%= render  :partial => "bar_graph", 
 			:locals => {:data =>@time_spent, 
 						:placeholder => "placeholder6",
 						:legend => "Time Spent on Site"}%>
-						
+</td>						
+<td>
 <%= render  :partial => "bar_graph", 
 			:locals => {:data =>@actions, 
 						:placeholder => "placeholder8",
 						:legend => "Number of visitors per page"}%>
-						
+</td>
+</tr>
+</tbody>
+</thead>
+</div>						
 <%# Example. The data is plotted, with no "time" formatting %>
-<%= render  :partial => "line_plot" , 
+<%#= render  :partial => "line_plot" , 
 			:locals => {:data => @example, 
 						:placeholder => "placeholder7",
 						:legend =>"This is just an example" }%>
-
