@@ -6,11 +6,47 @@
 }
 */
 
-* {
+/** {
 	margin:0 auto;
 	padding:0; 
 }
+*/
 
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, 
+h5, h6, pre, form, fieldset, input, p, blockquote, table, th, td {
+margin:0;
+padding:0;
+}
+
+
+#header-container {
+left:0;
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+}
+
+
+#header{
+	margin:0 18px 18px;
+}
+
+
+/*
+#header {
+//	background:#000000 none repeat scroll 0 0;
+	margin:0 auto;
+	padding:0; 
+	left:0;
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:1000;
+//		height:70px;
+
+}
+*/
 
 body {
 	color:#333333;
@@ -57,11 +93,7 @@ body {
 	border-bottom:5px solid #b1c0c9;
 }
 
-#header {
-	height:70px;
-/*	background:url("top.jpg"); */
-	background:#000000 none repeat scroll 0 0;
-}
+
 
 #header h2 {
 	margin:0;
@@ -195,7 +227,11 @@ body {
 	height:13px;
 	margin-top:0px; 
 	padding-top:3px;
-	padding-bottom:12px; 
+	padding-bottom:12px;
+	/* messe adesso */
+	text-decoration:none;
+	line-height:18px;
+	font-family:Verdana;
 	
 
 	
@@ -212,9 +248,7 @@ body {
 	padding-bottom:12px;
 
 }
-#subnavigation li a:hover {
-
-	
+#subnavigation li a:hover {	
 	background:#A4A4A4 none repeat scroll 0 0;
 	color:#FFFFFF;
 	height:13px;
@@ -227,15 +261,7 @@ body {
 /*	padding:10px 30px 10px 30px; */
 }
 
-#main #message {
-	background-color:#6d7a81;
-	font-size:18px;
-	font-family:"Myriad","Myriad Pro","Trebuchet MS";
-	color:#fff;
-	padding:15px;
-	position:relative;
-	z-index:999;
-}
+
 
 #main a.button {
 	display:block;
@@ -265,37 +291,8 @@ body {
 	color:#475e6a;
 }
 
-#main h1 {
-	font-family:"Myriad Pro","Trebuchet MS",Verdana;
-	color:#6d7a81;
-	font-size:42px;
-	font-weight:bold;
-	letter-spacing:-1px;
-	text-shadow:2px 2px 0px #d9d9d9;
-	margin:0 0 0 -2px;
-	padding:0 0 0 0;
-}
 
-#main h1.small {
-	font-size:32px;
-}
 
-#main h1 sup {
-	font-size:14px;
-	color:#aaa;
-	text-shadow:none;
-}
-
-#main p.introduction {
-	font-family:"Myriad","Myriad Pro","Lucida Grande","Lucida Sans Unicode",Verdana;
-	margin:0 0 25px 0;
-	padding:0 0 0 0;
-	font-size:14px;
-	line-height:5px;
-	font-weight:bold;
-	color:#a8a8a8;
-	letter-spacing:;
-}
 
 #main h2 {
 	font-family:"Myriad","Myriad Pro","Lucida Grande","Lucida Sans Unicode",Verdana;
@@ -328,20 +325,8 @@ body {
 	font-weight:normal;
 }
 
-#main h2.borderless,
-#main h3.borderless {
-	border-bottom:none;
-}
 
-#main .item_info {
-	padding-top:7px;
-	border-top:1px solid #eee;
-	text-align:right;
-	font-size:9px;
-	letter-spacing:0;
-	color:#999;
-	font-family:"Lucida Grande","Lucida Sans Unicode",Verdana;
-}
+
 
 #main {
 	font-family:Verdana;
@@ -446,125 +431,6 @@ body {
 	width:740px;
 }
 
-* html #main pre.highlighted {
-	width:798px;
-}
-
-/*
-#main code ol {
-	list-style:none;
-}
-*/
-#main code,
-#main .dp-highlighter li {
-	font-weight:normal;
-	font-family:"bitstream vera sans mono",monaco,"lucida console","courier new",courier,serif;
-	color:#fff;
-	font-size:12px;
-}
-
-#main .dp-highlighter ol {
-	margin:0;
-	padding:0;
-}
-
-#main .dp-highlighter ol,
-#main .dp-highlighter ol li {
-	list-style:none;
-}
-
-#main .dp-highlighter div.comment {
-	font-family:inherit;
-}
-
-.dp-highlighter ol.css .comment {
-	color:#545454;
-}
-
-.dp-highlighter ol.css .string {
-	color:#8B9F67;
-}
-
-.dp-highlighter ol.css .value {
-	color:#FAF092;
-}
-
-.dp-highlighter ol.css .keyword {
-	color:#D3A864;
-}
-
-.dp-highlighter ol.css .color {
-	color:#CA7840;
-}
-
-.dp-highlighter ol.css .size {
-	color:#CA7840;
-}
-
-.dp-highlighter ol.css .rule {
-	color:#7287A8;
-}
-
-.dp-highlighter ol.javascript .comment {
-	color:#545454;
-}
-
-.dp-highlighter ol.javascript .string {
-	color:#8B9F67;
-}
-
-.dp-highlighter ol.javascript .keyword {
-	color:#D3A864;
-}
-
-.dp-highlighter ol.javascript .constants {
-	color:#DF6547;
-}
-
-.dp-highlighter ol.javascript .const {
-	color:#DF6547;
-}
-
-.dp-highlighter ol.javascript ._this {
-	color:#7287A8;
-}
-
-.dp-highlighter ol.javascript .builtin {
-	color:#9F839E;
-}
-
-.dp-highlighter ol.javascript .regexp {
-	color:#D3A864;
-}
-
-.dp-highlighter ol.javascript .support_property {
-	color:#DF6547;
-}
-
-.dp-highlighter ol.javascript .support_method {
-	color:#FAF092;
-}
-
-.dp-highlighter ol.javascript .func_dec {
-	color:#A26F3A;
-}
-
-.dp-highlighter ol.xml .comments {
-	color:#545454;
-}
-
-.dp-highlighter ol.xml .tag,
-.dp-highlighter ol.xml .tag-name {
-	color:#A26F3A;
-}
-
-.dp-highlighter ol.xml .attribute {
-	color:#D3A864;
-}
-
-.dp-highlighter ol.xml .attribute-value {
-	color:#8B9F67;
-}
 
 
 
@@ -643,13 +509,13 @@ table, thead, tbody, th, tr, td {
 
 table#tabledata th, td {
 	margin-top:2px;
-	max-width:400px;
-	min-width:50px;
+//	max-width:400px;
+//	min-width:80px;
 	padding:3px 4px;
 }
 table#tabledata th {
 	color:#3A61A1;
-	font-size:13px;
+//	font-size:13px;
 	font-weight:normal;
 	letter-spacing:-0.05em;
 }
@@ -682,7 +548,28 @@ table#tabledata tbody tr:hover th {
 
 table#tabledata thead th, thead td {
 	color:#666666;
-	font-size:13px;
+//	font-size:13px;
 	background-color:#CDC7C0;
 	padding:5px;
 }
+
+///////////////////////////////////////////////////////////
+
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, table, th, td {
+margin:0;
+padding:0;
+}
+
+.pane-column {
+margin-bottom:0;
+}
+.display .pane, .display .pane-column {
+float:left;
+margin:0 0 18px 18px;
+min-width:340px;
+position:relative;
+}
+
+
+

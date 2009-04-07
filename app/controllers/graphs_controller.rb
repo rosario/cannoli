@@ -1,5 +1,6 @@
 
 class GraphsController < ApplicationController
+  before_filter :authorize
 
  
  

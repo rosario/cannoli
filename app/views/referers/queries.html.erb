@@ -1,35 +1,71 @@
-<ul id="subnavigation">
+<!-- <ul id="subnavigation">
 	<li class="tab"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
 	<li class="tab"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
 	<li class="active"><%= link_to "Referers", referers_queries_url(@project) %> </li>
 	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
-</ul>
+</ul> -->
 
 
-
-
-
-<table id="tabledata">
-	<tbody>
-	<thead>
-	<tr>
-		<th> Query String </th>
-		<td> Visits </td>
-		<td> Page/Visits </td>
-		<td> Avg. Time </td>
-		
-	</tr>
-	<tbody>
-	<%for q in @data%>
-		<tr>
-			<th> <%=h q[0]%> </th>
-			<td> <%=h q[1]%></td>
-			<td> <%=h q[2]%></td>
-			<td> <%=h q[3]%></td>
-		</tr>
-	<% end %>
+<div id="bello">
 	
-	</tbody>
-</table>
+	<div id="colonna_sx" class="pane-column" style="width :380px">
+		<h1> Referers </h1>
+		<div id="pane-0" class="pane">
+			<table id="tabledata">
+				<tbody>
+				<thead>
+				<tr>
+					<th> Query String </th>
+					<td> Visits </td>
+					<td> Page/Visits </td>
+					<td> Avg. Time </td>
+		
+				</tr>
+				<tbody>
+				<%for q in @data%>
+					<tr>
+						<th> <%=h truncate(q[0], :length => 30) %> </th>
+						<td> <%=h q[1]%></td>
+						<td> <%=h q[2]%></td>
+						<td> <%=h q[3]%></td>
+					</tr>
+				<% end %>
+	
+				</tbody>
+			</table>
+
+		</div>
+		
+		
+	</div>
+	<div id="colonna_dx" class="pane-column" style="width :380px">
+		<h1> Referers</h1>
+		<div id="pane-2" class="pane">
+		<table id="tabledata">
+			<tbody>
+			<thead>
+			<tr>
+				<th> Query String </th>
+				<td> Visits </td>
+				<td> Page/Visits </td>
+				<td> Avg. Time </td>
+	
+			</tr>
+			<tbody>
+			<%for q in @data%>
+				<tr>
+					<th> <%=h truncate(q[0], :length => 30) %> </th>
+					<td> <%=h q[1]%></td>
+					<td> <%=h q[2]%></td>
+					<td> <%=h q[3]%></td>
+				</tr>
+			<% end %>
+
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
 
 

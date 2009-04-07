@@ -5,20 +5,35 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title> Referers </title>
-  	<%= stylesheet_link_tag 'screen' %>
+  	<%= stylesheet_link_tag 'screen2' %>
 </head>
 <body>
 <p style="color: green"><%= flash[:notice] %></p>
-			<div id="header">
-				This is header
-			</div>
-			<div id="main">
-								
-				<%= yield  %>
-				
-			</div>
-			<div id="footer">
-				This is footer
-			</div>
+<div id="container">
+	<div id="header-container">
+		<div id="header">
+			<ul id="subnavigation">
+				<li class="tab"><%= link_to "Overview", project_overview_url(:id => @project ) %> </li>
+				<li class="tab"><%= link_to "Graphs", project_graph1_url(@project) %> </li>
+				<li class="active"><%= link_to "Referers", referers_queries_url(@project) %> </li>
+				<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
+			</ul>
+		</div>
+	</div>
+	
+		<%= yield  %>
+
+</div>
+
+
+			<!-- <div id="main">
+										
+						<%#= yield  %>
+						
+					</div>
+					</div>
+					<div id="footer">
+						This is footer
+					</div> -->
 </body>
 </html>

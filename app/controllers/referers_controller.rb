@@ -1,4 +1,5 @@
 class ReferersController < ApplicationController
+  before_filter :authorize
 
   def queries
     @project = Project.find(session[:project_id])
