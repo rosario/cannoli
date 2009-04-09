@@ -238,7 +238,7 @@ require 'uri'
             if robot
               browser[:type] = robot 
             else
-              browser[:type] = "Other"
+              browser[:type] = "Robot"
             end
             
           end

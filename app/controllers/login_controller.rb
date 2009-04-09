@@ -27,8 +27,9 @@ class LoginController < ApplicationController
  
 
   def logout 
-    session[:user_id] = nil 
-    session[:events_loaded] = nil
+    session[:user_id] = nil
+    session[:project_id] = nil
+    #session[:events_loaded] = nil
     flash[:notice] = "Logged out" 
     redirect_to(:action => "login") 
   end

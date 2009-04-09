@@ -38,7 +38,7 @@ class GraphsController < ApplicationController
     #              :conditions => conditions).sort_by{|x,y| y}.reverse
     # 
     
-    @browsers =vs.group_by{|v| v.config_browser_name}.map{|k,v|  [k,v.size]}.sort_by{|x,y| y}.reverse
+    @browsers =vs.group_by{|v| v.config_browser_name}.map{|k,v|  [k,v.size]}.sort_by{|x,y| y}.reverse.first(9)
     
     
     # @config_os = p.visitors.count(:id, 
@@ -46,7 +46,7 @@ class GraphsController < ApplicationController
     #                 :conditions => conditions).sort_by{|x,y| y}.reverse
     #   
     
-    @config_os = vs.group_by{|v| v.config_os}.map{|k,v|  [k,v.size]}.sort_by{|x,y| y}.reverse
+    @config_os = vs.group_by{|v| v.config_os}.map{|k,v|  [k,v.size]}.sort_by{|x,y| y}.reverse.first(9)
     
     
     # @hours_by_servertime = p.visitors.count(:id, 
