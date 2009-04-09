@@ -9,8 +9,9 @@ class ReferersController < ApplicationController
   
     
     bod = Time.parse("2009-01-01").strftime("%Y-%m-%d %H:%M:%S")
-    eod = Time.parse("2009-01-29").end_of_day.strftime("%Y-%m-%d %H:%M:%S")
-
+#    eod = Time.parse("2009-01-29").end_of_day.strftime("%Y-%m-%d %H:%M:%S")
+    eod = Time.now.end_of_day.strftime("%Y-%m-%d %H:%M:%S")
+  
     conditions = ["referer_type = ? AND created_at > ? AND created_at < ? AND referer_keyword IS NOT NULL", 
                   "1", "#{bod}", "#{eod}"]
     
@@ -44,7 +45,7 @@ class ReferersController < ApplicationController
 
     end
     
-    @data = list.sort_by{|q,v,p,t| v}.reverse
+    @data = list.sort_by{|q,v,p,t| v}.reverse.first(15)
     
       
   

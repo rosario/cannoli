@@ -2,7 +2,7 @@
 
 
 <div id="panel">
-<table id="tabledata">
+<table>
 
 <tbody>
 <tr>
@@ -16,12 +16,11 @@
 					
 </td>
 <td>
-	
-<%= render  :partial => "line_plot" , 
-			:locals => {:data => @total_clicks,
-			:legend => "Total clicks",
-			:xaxis_mode => "time", # If this label is not present, a normal graph is plotted
-			:placeholder => "placeholder1bis" }%>
+	<%= render  :partial => "bar_graph", 
+				:locals => {:data =>@actions, 
+							:placeholder => "placeholder8",
+							:legend => "Number of visitors per page"}%>
+
 </td>
 </tr>			
 <tr>
@@ -62,7 +61,7 @@
 						:legend => "Time Spent on Site"}%>
 </td>						
 <td>
-<%= render  :partial => "bar_graph", 
+<%#= render  :partial => "bar_graph", 
 			:locals => {:data =>@actions, 
 						:placeholder => "placeholder8",
 						:legend => "Number of visitors per page"}%>

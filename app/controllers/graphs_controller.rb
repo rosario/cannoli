@@ -14,7 +14,9 @@ class GraphsController < ApplicationController
     @project = p
     
     bod = Time.parse("2009-01-01").strftime("%Y-%m-%d %H:%M:%S")
-    eod = Time.parse("2009-01-29").end_of_day.strftime("%Y-%m-%d %H:%M:%S")   
+    #eod = Time.parse("2009-01-29").end_of_day.strftime("%Y-%m-%d %H:%M:%S")   
+    eod = Time.now.end_of_day.strftime("%Y-%m-%d %H:%M:%S")   
+    
     conditions = ["created_at > ? AND created_at < ?", "#{bod}", "#{eod}"]
 
     vs = p.visitors.find(:all,:conditions=>conditions)
