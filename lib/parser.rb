@@ -32,6 +32,83 @@ require 'uri'
   module Parser
     
     class UserAgent
+      def self.browser_list
+        {
+      					'msie'							=> 'IE',
+      					'microsoft internet explorer'	=> 'IE',
+      					'internet explorer'				=> 'IE',
+      					'netscape6'						=> 'NS',
+      					'netscape'						=> 'NS',
+      					'galeon'						=> 'GA',
+      					'phoenix'						=> 'PX',
+      					'firefox'						=> 'FF',
+      					'mozilla firebird'				=> 'FB',
+      					'firebird'						=> 'FB',
+      					'seamonkey'						=> 'SM',
+      					'camino'						=> 'CA',
+      					'safari'						=> 'SF',
+      					'chrome'						=> 'CH',
+      					'k-meleon'						=> 'KM',
+      					'mozilla'						=> 'MO',
+      					'opera'							=> 'OP',
+      					'konqueror'						=> 'KO',
+      					'icab'							=> 'IC',
+      					'lynx'							=> 'LX',
+      					'links'							=> 'LI',
+      					'ncsa mosaic'					=> 'MC',
+      					'amaya'							=> 'AM',
+      					'omniweb'						=> 'OW',
+      					'hotjava'						=> 'HJ',
+      					'browsex'						=> 'BX',
+      					'amigavoyager'					=> 'AV',
+      					'amiga-aweb'					=> 'AW',
+      					'ibrowse'						=> 'IB',
+      					'unknown'						=> 'UNK'
+      			}
+        
+      end
+      
+      def self.os_list
+         {
+      						'Nintendo Wii'	 => 'WII',
+      						'PlayStation Portable' => 'PSP',
+      						'PlayStation 3'  => 'PS3',
+      						'Windows NT 6.0' => 'WVI',
+      						'Windows Vista'  => 'WVI',
+      						'Windows NT 5.2' => 'WS3',
+      						'Windows Server 2003' => 'WS3',
+      						'Windows NT 5.1' => 'WXP',
+      						'Windows XP'     => 'WXP',
+      						'Win98'          => 'W98',
+      						'Windows 98'     => 'W98',
+      						'Windows NT 5.0' => 'W2K',
+      						'Windows 2000'   => 'W2K',
+      						'Windows NT 4.0' => 'WNT',
+      						'WinNT'          => 'WNT',
+      						'Windows NT'     => 'WNT',
+      						'Win 9x 4.90'    => 'WME',
+      						'Win 9x 4.90'    => 'WME',
+      						'Windows Me'     => 'WME',
+      						'Windows ME'     => 'WME',
+      						'Win32'          => 'W95',
+      						'Win95'          => 'W95',		
+      						'Windows 95'     => 'W95',
+      						'Mac_PowerPC'    => 'MAC', 
+      						'Mac PPC'        => 'MAC',
+      						'PPC'            => 'MAC',
+      						'Mac PowerPC'    => 'MAC',
+      						'Mac OS'         => 'MAC',
+      						'Linux'          => 'LIN',
+      						'SunOS'          => 'SOS', 
+      						'FreeBSD'        => 'BSD', 
+      						'AIX'            => 'AIX', 
+      						'IRIX'           => 'IRI', 
+      						'HP-UX'          => 'HPX', 
+      						'OS/2'           => 'OS2', 
+      						'NetBSD'         => 'NBS',
+      						'Unknown'        => 'UNK' 
+      		}
+      end
       
       # Process the user agent string and returns 
       # the users's platform:
@@ -39,7 +116,24 @@ require 'uri'
       #   Sitealizer::Parser::UserAgent.get_platform("(Macintosh; U; PPC Mac OS X; en)")
       #   => "Macintosh"
       # 
-  
+      
+      def self.get_os(user_agent)
+        
+       name = self.os_list.find{|k,v| user_agent.match(k)}
+       puts name
+       if not name.nil?
+          result = name[0]
+        else
+          result = "Other"
+        end
+
+      end
+      
+      def self.get_browser(browser)
+        self.browser_list.find{|k,v| browser.match(k)}        
+      end
+      
+      
       
       def self.get_platform(user_agent)
         platform = nil
@@ -56,6 +150,7 @@ require 'uri'
         else
           platform = "Other"
         end
+        
         return platform
       end
 
@@ -132,7 +227,22 @@ require 'uri'
           browser[:type] = "Lynx";
           browser[:version] = user_agent.scan(/Lynx\/([\d\.]+)/i).to_s
         else
-          browser[:type] = "Other";
+          # We didnt find a match, use the last method then
+          name = self.get_browser(user_agent)
+          #puts "name = "  + name.first
+          if name
+            browser[:type] = name.first
+          else
+            # Try if it's a robot then
+            robot = Robot.get_name(user_agent)
+            if robot
+              browser[:type] = robot 
+            else
+              browser[:type] = "Other"
+            end
+            
+          end
+          
           browser[:version] = "nil"
         end
         return browser

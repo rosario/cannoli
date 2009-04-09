@@ -1304,11 +1304,12 @@ class Visitor < ActiveRecord::Base
      useragent = user_agent[rand(user_agent.size)]
 
      p useragent
-     os = Parser::UserAgent.get_platform(useragent)
+     #os = Parser::UserAgent.get_platform(useragent)
+     os = Parser::UserAgent.get_os(useragent)
      browser  = Parser::UserAgent.browser_info(useragent)    
      browserName = browser[:type]
      browserVersion = browser[:version]
-
+ 
      #browserName = ""
      #browserVersion = ""
      a = rand(256)
