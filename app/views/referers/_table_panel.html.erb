@@ -1,0 +1,29 @@
+<div id="<%= placeholder %>" class="pane-column" style="width :400px;">
+<h1> <%= title %> </h1>
+
+	<div id="pane-0" class="pane">
+		<table id="tabledata" style="width: 100%;">
+			<tbody>
+			<thead>
+			<tr>
+				<th> Query String </th>
+				<td> Visits </td>
+				<td> Page/Visits </td>
+				<td> Avg. Time </td>
+
+			</tr>
+			<tbody>
+			<%for q in data%>
+				<tr>
+					<th> <%=h truncate(q[0], :length => 30) %> </th>
+					<td> <%=h q[1]%></td>
+					<td> <%=h q[2]%></td>
+					<td> <%=h q[3]%></td>
+				</tr>
+			<% end %>
+
+			</tbody>
+		</table>
+
+	</div>
+</div>

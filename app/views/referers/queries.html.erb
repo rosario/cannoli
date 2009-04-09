@@ -3,81 +3,31 @@
 <table>
 
 <tbody>
-<tr>
-<td>  
+	<tr>
+		<td>  
 	
-	<div id="colonna_sx" class="pane-column" style="width :400px">
-	
-	<h1> Referers </h1>
-	
-	<div id="pane-0" class="pane">
-		<table id="tabledata" style="width: 100%;">
-			<tbody>
-			<thead>
-			<tr>
-				<th> Query String </th>
-				<td> Visits </td>
-				<td> Page/Visits </td>
-				<td> Avg. Time </td>
-	
-			</tr>
-			<tbody>
-			<%for q in @data%>
-				<tr>
-					<th> <%=h truncate(q[0], :length => 30) %> </th>
-					<td> <%=h q[1]%></td>
-					<td> <%=h q[2]%></td>
-					<td> <%=h q[3]%></td>
-				</tr>
-			<% end %>
+	<%= render  :partial => "table_panel" , 
+				:locals => {:data => @data,
+							:title => "Search Engines",
+							:placeholder => "colonna_sx" 
+							} %>
 
-			</tbody>
-		</table>
-
-	</div>
-	</div>
-	
 	
 	
 					
-</td>
-<td>
-	<div id="colonna_sx" class="pane-column" style="width :400px">
-	
-	<h1> Referers </h1>
-	
-	<div id="pane-0" class="pane">
-		<table id="tabledata" style="width: 100%;">
-			<tbody>
-			<thead>
-			<tr>
-				<th> Query String </th>
-				<td> Visits </td>
-				<td> Page/Visits </td>
-				<td> Avg. Time </td>
-	
-			</tr>
-			<tbody>
-			<%for q in @data%>
-				<tr>
-					<th> <%=h truncate(q[0], :length => 30) %> </th>
-					<td> <%=h q[1]%></td>
-					<td> <%=h q[2]%></td>
-					<td> <%=h q[3]%></td>
-				</tr>
-			<% end %>
+		</td>
+		<td>
+	<%= render  :partial => "table_panel" , 
+				:locals => {:data => @data2,
+							:title => "Websites",
+							:placeholder => "colonna_dx" 
+							} %>
 
-			</tbody>
-		</table>
 
-	</div>
-	</div>
+		</td>
+	</tr>
+
 	
-	
-	
-	
-</td>
-</tr>
 </tbody>
 </table>
 
@@ -87,66 +37,3 @@
 
 
 
-<!-- <div id="panel">
-
-	<div id="colonna_sx" class="pane-column" style="width :400px">
-		<h1> Referers </h1>
-		<div id="pane-0" class="pane">
-			<table id="tabledata" style="width: 100%;">
-				<tbody>
-				<thead>
-				<tr>
-					<th> Query String </th>
-					<td> Visits </td>
-					<td> Page/Visits </td>
-					<td> Avg. Time </td>
-		
-				</tr>
-				<tbody>
-				<%for q in @data%>
-					<tr>
-						<th> <%=h truncate(q[0], :length => 30) %> </th>
-						<td> <%=h q[1]%></td>
-						<td> <%=h q[2]%></td>
-						<td> <%=h q[3]%></td>
-					</tr>
-				<% end %>
-	
-				</tbody>
-			</table>
-
-		</div>
-		
-		
-	</div>
-	<div id="colonna_dx" class="pane-column" style="width :400px">
-		<h1> Referers</h1>
-		<div id="pane-2" class="pane">
-		<table id="tabledata"  style="width: 100%;">
-			<tbody>
-			<thead>
-			<tr>
-				<th> Query String </th>
-				<td> Visits </td>
-				<td> Page/Visits </td>
-				<td> Avg. Time </td>
-	
-			</tr>
-			<tbody>
-			<%for q in @data%>
-				<tr>
-					<th> <%=h truncate(q[0], :length => 30) %> </th>
-					<td> <%=h q[1]%></td>
-					<td> <%=h q[2]%></td>
-					<td> <%=h q[3]%></td>
-				</tr>
-			<% end %>
-
-			</tbody>
-		</table>
-		</div>
-	</div>
-</div>
-
-
- -->
