@@ -144,7 +144,7 @@ class Tracker
        	# the request is done by the user using at his local time 
        	:localtime => p[:utc].to_s.to_time,
        	:referer_name => refererinfo[:referer_name], 
-        :referer_key => refererinfo[:referer_key] , 
+        :referer_keyword => refererinfo[:referer_keyword] , 
         :referer_type => refererinfo[:referer_type],
         :campaign_name =>refererinfo[:campaign_name], # This field is not stored in the DB ( at the moment )
         :referer_url => p[:urlref]
