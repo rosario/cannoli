@@ -1,0 +1,27 @@
+<ul id="subnavigation">
+	<li class="tab"><%= link_to "List users", :controller => 'users', :action => 'list_users' %> </li>
+	<li class="active"><%= link_to "Add user", :controller => 'users', :action => 'add_user' %> </li>
+	<li class="tab"><%= link_to "Logout", :controller => 'login', :action => 'logout' %> </li>
+</ul>
+
+<%= error_messages_for 'user' %> 
+<fieldset> 
+<legend>Enter User Details</legend> 
+<% form_for :user do |form| %> 
+	<p> 
+		<label for="user_name">Name:</label> 
+		<%= form.text_field :name, :size => 40 %> 
+	</p> 
+	<p> 
+		<label for="user_password">Password:</label> 
+		<%= form.password_field :password, :size => 40 %> 
+	</p> 
+	<p> 
+		<label for="user_password_confirmation">Confirm:</label> 
+		<%= form.password_field :password_confirmation, :size => 40 %> 
+	</p> 
+	<%= submit_tag "Add User", :class => "submit" %> 
+<% end %> 
+</fieldset> 
+
+

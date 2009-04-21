@@ -1,0 +1,96 @@
+
+DISPLAY = {
+	findPosX: function(obj){
+		var curleft = 0;
+		if (obj.offsetParent){
+			while (obj.offsetParent){
+				curleft += obj.offsetLeft
+				obj = obj.offsetParent;
+			}
+		}else if (obj.x){
+			curleft += obj.x;
+		}
+		return curleft;
+	},
+
+	findPosY: function(obj){
+		var curtop = 0;
+		if (obj.offsetParent){
+			while (obj.offsetParent){
+				curtop += obj.offsetTop
+				obj = obj.offsetParent;
+			}
+		}else if (obj.y){
+			curtop += obj.y;
+		}
+		return curtop;
+	},
+	
+
+	heatmap_style: function(){
+		var firstElement=document.getElementById('prova');
+		// Calculate offsets
+		var IE = document.all?true:false
+		
+		//find the offset coordinates
+		xOffset = 0;
+		yOffset = 0;
+		xOffset=this.findPosX(firstElement);
+		yOffset=this.findPosY(firstElement);
+		if (IE){ // In IE there's a default margin in the page body. If margin's not defined, use defaults
+			var marginLeftExplorer  = parseInt(document.getElementById('prova').style.marginLeft);
+			var marginTopExplorer   = parseInt(document.getElementById('prova').style.marginTop);
+			/*assume default 10px/15px margin in explorer*/
+			if (isNaN(marginLeftExplorer)) {marginLeftExplorer=10;}
+			if (isNaN(marginTopExplorer)) {marginTopExplorer=15;}
+			xOffset=xOffset+marginLeftExplorer;
+			yOffset=yOffset+marginTopExplorer;
+		}		
+		
+
+		// add the image element to the dom, absolutely positioned
+		var style="z-index:100;position:absolute;left:"+xOffset+"px;top:"+yOffset+"px";
+		return style;
+		
+	},
+	
+  heatmap: function( tab_options) {
+	document.write("<%= @overlay_style %>");
+ 	var hstyle = this.heatmap_style()
+
+      
+	this.tab_options = {};
+	this.tab_options.color = '#4368ff';
+	
+    this.tab_html = '<a href="#" id="clip" style="background-color:'+this.tab_options.color+'">HEATMAP</a>';
+    this.overlay_html = '<div id="heatmap_panel" style="display:none" onclick="DISPLAY.hide();return false">' +
+							'<img src="<%= @heatmap %>" style="'+hstyle+'" >' +
+                          '<div id="gray_panel"></div>' +
+                        '</div>';                        
+
+    document.write(this.tab_html);
+    document.write(this.overlay_html);      
+ 
+    this.gId('clip').onclick = function() { DISPLAY.show(); return false; }
+  },
+  set_position: function() {
+    this.scroll_top = document.documentElement.scrollTop || document.body.scrollTop;
+    this.scroll_height = document.documentElement.scrollHeight;
+    this.client_height = window.innerHeight || document.documentElement.clientHeight;
+    this.gId('gray_panel').style.height = this.scroll_height+"px";
+  },
+  show: function() {
+    this.set_position();
+    this.gId('heatmap_panel').style.display = "block";
+  },
+  hide: function() {
+    this.gId('heatmap_panel').style.display = "none";
+  },
+  gId: function(id) {
+    return document.getElementById(id);
+  }
+}
+
+
+document.write('<script type="text/javascript" charset="utf-8">	DISPLAY.heatmap({});</script>');
+

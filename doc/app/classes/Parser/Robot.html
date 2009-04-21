@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Parser::Robot</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Parser::Robot</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/parser_rb.html">
+                lib/parser.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000037">get_name</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="#M000037" class="method-signature">
+          <span class="method-name">get_name</span><span class="method-args">(agent)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Process the robots (when available) found on the user agent strings and
+returns its name:
+</p>
+<pre>
+  user_agent = &quot;Googlebot/2.X (+http://www.googlebot.com/bot.html)&quot;
+  Sitealizer::Parser::Robot.get_name(user_agent)
+  =&gt; &quot;Googlebot&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/parser.rb, line 195</span>
+195:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_name</span>(<span class="ruby-identifier">agent</span>)
+196:         <span class="ruby-identifier">robot</span> = <span class="ruby-keyword kw">nil</span>
+197:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Atomz/i</span>
+198:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'Atomz.com'</span>
+199:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Googlebot/i</span>
+200:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'Googlebot'</span>
+201:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/InfoSeek/i</span>
+202:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'InfoSeek'</span>
+203:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Ask Jeeves/i</span>
+204:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'Ask Jeeves'</span>
+205:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Lycos/i</span>
+206:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'Lycos'</span>
+207:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/MSNBOT/i</span>
+208:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'MSNBot'</span>
+209:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Slurp/i</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/Yahoo/i</span>).<span class="ruby-identifier">empty?</span>
+210:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'Inktomi'</span>
+211:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">agent</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Yahoo/i</span>
+212:           <span class="ruby-identifier">robot</span> = <span class="ruby-value str">'Yahoo Slurp'</span>
+213:         <span class="ruby-keyword kw">end</span>
+214:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">robot</span>
+215:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

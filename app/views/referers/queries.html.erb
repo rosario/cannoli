@@ -1,0 +1,39 @@
+
+<div id="panel">
+<table>
+
+<tbody>
+	<tr>
+		<td>  
+	
+	<%= render  :partial => "table_panel" , 
+				:locals => {:data => @data,
+							:title => "Search Engines",
+							:placeholder => "colonna_sx" 
+							} %>
+
+	
+	
+					
+		</td>
+		<td>
+	<%= render  :partial => "table_panel" , 
+				:locals => {:data => @data2,
+							:title => "Websites",
+							:placeholder => "colonna_dx" 
+							} %>
+
+
+		</td>
+	</tr>
+
+	
+</tbody>
+</table>
+
+
+
+
+
+
+

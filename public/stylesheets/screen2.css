@@ -1,0 +1,272 @@
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, 
+h5, h6, pre, form, fieldset, input, p, blockquote, table, th, td {
+margin:0;
+padding:0;
+}
+
+#container {
+	width:100%;
+	margin:0 0 0 0;
+	position:relative;
+	background-color:#fff;
+//	border-top:0px solid #b1c0c9;
+//	border-bottom:5px solid #b1c0c9;
+	padding-top: 50px;
+	background-color:#eeeeee;
+	
+}
+
+#bello {
+	background:#EEEEEE;
+
+	padding-left: 20px;
+	//	float:left;
+	//	padding-top: 0px;
+	//	width: 100%;
+	
+}
+
+#panel {
+	
+	padding-left: 20px;
+}
+
+
+.pane {
+	background:#EEEEEE;
+	float:left;
+	min-width:392px;
+	margin:0 0 4px 4px;
+	
+	
+}
+
+
+.pane-column {
+float:left;
+margin:0 0 18px 18px;
+min-width:392px;
+background:#898989;
+//padding-left: 20px;
+
+}
+
+
+
+
+
+#header-container {
+left:0;
+position:fixed;
+top:0;
+bottom:0;
+width:100%;
+z-index:1000;
+background:#EEEEEE;
+margin:0 0 30px 0px;
+height: 30px;*/
+/*filter:alpha(opacity=78);
+-moz-opacity:.78;
+opacity:.78;
+*/
+
+}
+
+.pane-column h1 {
+	font-family:"Helvetica Neue",Helvetica,Arial;
+	font-size:1.6em;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1em;
+	padding:6px 4px 4px;
+	color: #2e2e2e;
+	text-align: left;
+	
+}
+
+
+
+
+
+body {
+	color:#333333;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:12px;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:15px;
+	background-color:#f5f5f5;
+	
+}
+
+
+
+
+
+
+#subnavigation {
+	padding:0 0 0 0;
+	list-style:none;	
+	background:#A4A4A4 url(/images/bg-tab.png) repeat-x scroll 0 0;
+	border-bottom:1px solid #898989;
+	border-top:0px solid #898989;
+	
+	height:27px; 
+	margin:0 auto;
+}
+
+
+#subnavigation li { 
+	
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:12px;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:15px;
+}
+
+#subnavigation li a {
+
+//	color:#bcbcbc;
+	font-weight:normal;
+//	display:block;
+	font-size:13px;
+//	margin:-5px 0 0 0; 
+	letter-spacing:-1px;
+	color:#000000;
+	display:block;
+	float:left;
+	padding:7px 12px; 
+
+//	text-decoration:none;
+//	background:#A4A4A4 none repeat scroll 0 0;
+	color:#000000;
+	height:13px;
+	margin-top:0px; 
+	padding-top:3px;
+	padding-bottom:12px;
+	/* messe adesso */
+	text-decoration:none;
+	line-height:18px;
+	font-family:Verdana;
+	
+
+	
+}
+
+
+
+#subnavigation li.active a {
+	background:#408DFB none repeat scroll 0 0;
+	color:#FFFFFF;
+	height:13px;
+	margin-top:0px; 
+	padding-top:3px;
+	padding-bottom:12px;
+
+}
+#subnavigation li a:hover {	
+	background:#A4A4A4 none repeat scroll 0 0;
+	color:#FFFFFF;
+	height:13px;
+	margin-top:0px; 
+	padding-top:3px;
+	padding-bottom:12px;
+}
+
+
+
+
+
+table {
+	border-collapse:collapse;
+	border: medium none ; 
+	position: relative;
+//	margin-left: 10px;
+	margin: 0 auto;
+//	width: 100%;
+}
+
+table, thead, tbody, th, tr, td {
+	font-family:"Helvetica Neue",Arial,Tahoma;
+	margin: 0;
+}
+
+table#tabledata th, td {
+	margin-top:2px;
+//	max-width:430px;
+//	min-width:80px;
+	padding:3px 5px;
+//	width: 360px;
+	margin: 0;
+	
+}
+
+table#tabledata td{
+	color:#333333;
+	
+}
+table#tabledata th {
+	color:#3A61A1;
+//	font-size:13px;
+	font-weight:normal;
+	letter-spacing:-0.05em;
+}
+table tbody th {
+	padding-right:1em;
+}
+
+th {
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+}
+td, th {
+	//border-bottom:1px solid #DDDDDD;
+	font-family:"Lucida Grande",Verdana,Arial,sans-serif;
+	font-size:11px;
+	line-height:13px;
+	vertical-align:top;
+}
+table#tabledata tr td {
+	text-align:right;
+	padding: 5px;
+}
+
+table#tabledata tbody tr:hover td {
+	background-color:#DDDDDD;
+}
+table#tabledata tbody tr:hover th {
+	background-color:#DDDDDD;
+}
+
+table#tabledata thead th, thead td {
+	color:#666666;
+//	font-size:13px;
+	background-color:#CDC7C0;
+	padding:5px;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, table, th, td {
+margin:0;
+padding:0;
+}
+.pane-column {
+margin-bottom:0;
+}
+.display .pane, .display .pane-column {
+float:left;
+margin:0 0 18px 18px;
+min-width:340px;
+position:relative;
+}
+
+

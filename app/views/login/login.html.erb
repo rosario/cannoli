@@ -1,0 +1,33 @@
+
+
+<h1 style="text-align:left;padding-left:18px "> Sign in</h1>
+<% form_tag do %> 
+
+<fieldset id="user-email">	
+
+	<p> 
+		<label for="name">Name:</label> 
+		<span>
+		<%= text_field_tag :name, params[:name] %> 
+		</span>
+	</p> 
+</fieldset>
+
+
+
+<fieldset id="user-email">	
+	<p> 
+		<label for="password">Password:</label> 
+		<span>
+		<%= password_field_tag :password, params[:password] %> 
+		</span>
+	</p> 
+</fieldset>
+<p> 
+	 
+		<%#= submit_tag "Login" , :type => "image", :src=>"/images/btn_sign-in.gif"%> 
+		<%= submit_tag "Login" , {:class => "input_submit_button"} %> 
+
+</p> 
+
+<% end %> 

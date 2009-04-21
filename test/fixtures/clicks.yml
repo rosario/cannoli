@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  action_id: 1
+  visitor_id: 1
+  x: 1
+  y: 1
+
+two:
+  action_id: 1
+  visitor_id: 1
+  x: 1
+  y: 1

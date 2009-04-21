@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Parser::Language</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Parser::Language</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/parser_rb.html">
+                lib/parser.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000032">get_name</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="#M000032" class="method-signature">
+          <span class="method-name">get_name</span><span class="method-args">(lang)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Process the user language and returns the &#8216;human readable&#8217;
+format if found, otherwise its raw code gets returned:
+</p>
+<pre>
+  Sitealizer::Parser::Language.get_name('en-us')
+  =&gt; &quot;English/United States&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/parser.rb, line 227</span>
+227:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_name</span>(<span class="ruby-identifier">lang</span>)
+228:         <span class="ruby-identifier">lang</span> = <span class="ruby-identifier">lang</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/([^,;].*)/</span>).<span class="ruby-identifier">to_s</span>
+229:         <span class="ruby-identifier">lang</span> = <span class="ruby-identifier">lang</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>,<span class="ruby-value">5</span>)
+230:         <span class="ruby-identifier">languages</span> = {<span class="ruby-value str">&quot;af&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Afrikaans&quot;</span>,
+231:                      <span class="ruby-value str">&quot;sq&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Albanian&quot;</span>,
+232:                      <span class="ruby-value str">&quot;eu&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Basque&quot;</span>,
+233:                      <span class="ruby-value str">&quot;bg&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Bulgarian&quot;</span>,
+234:                      <span class="ruby-value str">&quot;be&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Byelorussian&quot;</span>,
+235:                      <span class="ruby-value str">&quot;ca&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Catalan&quot;</span>,
+236:                      <span class="ruby-value str">&quot;zh&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Chinese&quot;</span>,
+237:                      <span class="ruby-value str">&quot;zh-cn&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Chinese/China&quot;</span>,
+238:                      <span class="ruby-value str">&quot;zh-tw&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Chinese/Taiwan&quot;</span>,
+239:                      <span class="ruby-value str">&quot;zh-hk&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Chinese/Hong Kong&quot;</span>,
+240:                      <span class="ruby-value str">&quot;zh-sg&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Chinese/singapore&quot;</span>,
+241:                      <span class="ruby-value str">&quot;hr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Croatian&quot;</span>,
+242:                      <span class="ruby-value str">&quot;cs&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Czech&quot;</span>,
+243:                      <span class="ruby-value str">&quot;da&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Danish&quot;</span>,
+244:                      <span class="ruby-value str">&quot;nl&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Dutch&quot;</span>,
+245:                      <span class="ruby-value str">&quot;nl-nl&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Dutch/Netherlands&quot;</span>,
+246:                      <span class="ruby-value str">&quot;nl-be&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Dutch/Belgium&quot;</span>,
+247:                      <span class="ruby-value str">&quot;en&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English&quot;</span>,
+248:                      <span class="ruby-value str">&quot;en-gb&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/United Kingdom&quot;</span>,
+249:                      <span class="ruby-value str">&quot;en-us&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/United States&quot;</span>,
+250:                      <span class="ruby-value str">&quot;en-au&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/Australian&quot;</span>,
+251:                      <span class="ruby-value str">&quot;en-ca&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/Canada&quot;</span>,
+252:                      <span class="ruby-value str">&quot;en-nz&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/New Zealand&quot;</span>,
+253:                      <span class="ruby-value str">&quot;en-ie&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/Ireland&quot;</span>,
+254:                      <span class="ruby-value str">&quot;en-za&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/South Africa&quot;</span>,
+255:                      <span class="ruby-value str">&quot;en-jm&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/Jamaica&quot;</span>,
+256:                      <span class="ruby-value str">&quot;en-bz&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/Belize&quot;</span>,
+257:                      <span class="ruby-value str">&quot;en-tt&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;English/Trinidad&quot;</span>,
+258:                      <span class="ruby-value str">&quot;et&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Estonian&quot;</span>,
+259:                      <span class="ruby-value str">&quot;fo&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Faeroese&quot;</span>,
+260:                      <span class="ruby-value str">&quot;fa&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Farsi&quot;</span>,
+261:                      <span class="ruby-value str">&quot;fi&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Finnish&quot;</span>,
+262:                      <span class="ruby-value str">&quot;fr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French&quot;</span>,
+263:                      <span class="ruby-value str">&quot;fr-be&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French/Belgium&quot;</span>,
+264:                      <span class="ruby-value str">&quot;fr-fr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French/France&quot;</span>,
+265:                      <span class="ruby-value str">&quot;fr,fr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French/France&quot;</span>,
+266:                      <span class="ruby-value str">&quot;fr-ch&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French/Switzerland&quot;</span>,
+267:                      <span class="ruby-value str">&quot;fr-ca&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French/Canada&quot;</span>,
+268:                      <span class="ruby-value str">&quot;fr-lu&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;French/Luxembourg&quot;</span>,
+269:                      <span class="ruby-value str">&quot;gd&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Gaelic&quot;</span>,
+270:                      <span class="ruby-value str">&quot;gl&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Galician&quot;</span>,
+271:                      <span class="ruby-value str">&quot;de&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;German&quot;</span>,
+272:                      <span class="ruby-value str">&quot;de-at&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;German/Austria&quot;</span>,
+273:                      <span class="ruby-value str">&quot;de-de&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;German/Germany&quot;</span>,
+274:                      <span class="ruby-value str">&quot;de-ch&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;German/Switzerland&quot;</span>,
+275:                      <span class="ruby-value str">&quot;de-lu&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;German/Luxembourg&quot;</span>,
+276:                      <span class="ruby-value str">&quot;de-li&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;German/Liechtenstein&quot;</span>,
+277:                      <span class="ruby-value str">&quot;el&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Greek&quot;</span>,
+278:                      <span class="ruby-value str">&quot;he&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Hebrew&quot;</span>,
+279:                      <span class="ruby-value str">&quot;he-il&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Hebrew/Israel&quot;</span>,
+280:                      <span class="ruby-value str">&quot;hi&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Hindi&quot;</span>,
+281:                      <span class="ruby-value str">&quot;hu&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Hungarian&quot;</span>,
+282:                      <span class="ruby-value str">&quot;ie-ee&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Internet Explorer/Easter Egg&quot;</span>,
+283:                      <span class="ruby-value str">&quot;is&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Icelandic&quot;</span>,
+284:                      <span class="ruby-value str">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Indonesian&quot;</span>,
+285:                      <span class="ruby-value str">&quot;in&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Indonesian&quot;</span>,
+286:                      <span class="ruby-value str">&quot;ga&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Irish&quot;</span>,
+287:                      <span class="ruby-value str">&quot;it&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Italian&quot;</span>,
+288:                      <span class="ruby-value str">&quot;it-ch&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Italian/ Switzerland&quot;</span>,
+289:                      <span class="ruby-value str">&quot;ja&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Japanese&quot;</span>,
+290:                      <span class="ruby-value str">&quot;ko&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Korean&quot;</span>,
+291:                      <span class="ruby-value str">&quot;lv&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Latvian&quot;</span>,
+292:                      <span class="ruby-value str">&quot;lt&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Lithuanian&quot;</span>,
+293:                      <span class="ruby-value str">&quot;mk&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Macedonian&quot;</span>,
+294:                      <span class="ruby-value str">&quot;ms&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Malaysian&quot;</span>,
+295:                      <span class="ruby-value str">&quot;mt&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Maltese&quot;</span>,
+296:                      <span class="ruby-value str">&quot;no&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Norwegian&quot;</span>,
+297:                      <span class="ruby-value str">&quot;pl&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Polish&quot;</span>,
+298:                      <span class="ruby-value str">&quot;pt-pt&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Portuguese&quot;</span>,
+299:                      <span class="ruby-value str">&quot;pt-br&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Portuguese/Brazil&quot;</span>,
+300:                      <span class="ruby-value str">&quot;rm&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Rhaeto-Romanic&quot;</span>,
+301:                      <span class="ruby-value str">&quot;ro&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Romanian&quot;</span>,
+302:                      <span class="ruby-value str">&quot;ro-mo&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Romanian/Moldavia&quot;</span>,
+303:                      <span class="ruby-value str">&quot;ru-ru&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Russian&quot;</span>,
+304:                      <span class="ruby-value str">&quot;ru-mo&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Russian /Moldavia&quot;</span>,
+305:                      <span class="ruby-value str">&quot;gd&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Scots Gaelic&quot;</span>,
+306:                      <span class="ruby-value str">&quot;sr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Serbian&quot;</span>,
+307:                      <span class="ruby-value str">&quot;sk&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Slovack&quot;</span>,
+308:                      <span class="ruby-value str">&quot;sl&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Slovenian&quot;</span>,
+309:                      <span class="ruby-value str">&quot;sb&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Sorbian&quot;</span>,
+310:                      <span class="ruby-value str">&quot;es&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish&quot;</span>,
+311:                      <span class="ruby-value str">&quot;es-do&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish&quot;</span>,
+312:                      <span class="ruby-value str">&quot;es-ar&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Argentina&quot;</span>,
+313:                      <span class="ruby-value str">&quot;es-co&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Colombia&quot;</span>,
+314:                      <span class="ruby-value str">&quot;es-mx&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Mexico&quot;</span>,
+315:                      <span class="ruby-value str">&quot;es-es&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Spain&quot;</span>,
+316:                      <span class="ruby-value str">&quot;es-gt&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Guatemala&quot;</span>,
+317:                      <span class="ruby-value str">&quot;es-cr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Costa Rica&quot;</span>,
+318:                      <span class="ruby-value str">&quot;es-pa&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Panama&quot;</span>,
+319:                      <span class="ruby-value str">&quot;es-ve&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Venezuela&quot;</span>,
+320:                      <span class="ruby-value str">&quot;es-pe&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Peru&quot;</span>,
+321:                      <span class="ruby-value str">&quot;es-ec&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Ecuador&quot;</span>,
+322:                      <span class="ruby-value str">&quot;es-cl&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Chile&quot;</span>,
+323:                      <span class="ruby-value str">&quot;es-uy&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Uruguay&quot;</span>,
+324:                      <span class="ruby-value str">&quot;es-py&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Paraguay&quot;</span>,
+325:                      <span class="ruby-value str">&quot;es-bo&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Bolivia&quot;</span>,
+326:                      <span class="ruby-value str">&quot;es-sv&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/El salvador&quot;</span>,
+327:                      <span class="ruby-value str">&quot;es-hn&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Honduras&quot;</span>,
+328:                      <span class="ruby-value str">&quot;es-ni&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Nicaragua&quot;</span>,
+329:                      <span class="ruby-value str">&quot;es-pr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Spanish/Puerto Rico&quot;</span>,
+330:                      <span class="ruby-value str">&quot;sx&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Sutu&quot;</span>,
+331:                      <span class="ruby-value str">&quot;sv&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Swedish&quot;</span>,
+332:                      <span class="ruby-value str">&quot;sv-se&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Swedish/Sweden&quot;</span>,
+333:                      <span class="ruby-value str">&quot;sv-fi&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Swedish/Finland&quot;</span>,
+334:                      <span class="ruby-value str">&quot;ts&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Thai&quot;</span>,
+335:                      <span class="ruby-value str">&quot;tn&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Tswana&quot;</span>,
+336:                      <span class="ruby-value str">&quot;tr&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Turkish&quot;</span>,
+337:                      <span class="ruby-value str">&quot;uk&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Ukrainian&quot;</span>,
+338:                      <span class="ruby-value str">&quot;ur&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Urdu&quot;</span>,
+339:                      <span class="ruby-value str">&quot;vi&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Vietnamese&quot;</span>,
+340:                      <span class="ruby-value str">&quot;xh&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Xshosa&quot;</span>,
+341:                      <span class="ruby-value str">&quot;ji&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Yiddish&quot;</span>,
+342:                      <span class="ruby-value str">&quot;zu&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Zulu&quot;</span>}
+343:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">languages</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">lang</span>, <span class="ruby-identifier">lang</span>) 
+344:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

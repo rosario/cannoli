@@ -1,0 +1,1759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Visitor</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Visitor</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/visitor_rb.html">
+                app/models/visitor.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Visitor.html">Visitor</a> handle the visits
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000027">add_random_actions</a>&nbsp;&nbsp;
+      <a href="#M000022">clean</a>&nbsp;&nbsp;
+      <a href="#M000023">create_random</a>&nbsp;&nbsp;
+      <a href="#M000026">create_with_settings</a>&nbsp;&nbsp;
+      <a href="#M000025">here_today?</a>&nbsp;&nbsp;
+      <a href="#M000021">random_settings</a>&nbsp;&nbsp;
+      <a href="#M000024">time_spent</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Parser.html">Parser</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="#M000022" class="method-signature">
+          <span class="method-name">clean</span><span class="method-args">(v)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destroy the visitor and his actions
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 1365</span>
+1365:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clean</span>(<span class="ruby-identifier">v</span>)
+1366:     <span class="ruby-identifier">v</span>.<span class="ruby-identifier">actions</span>.<span class="ruby-identifier">destroy_all</span>
+1367:     <span class="ruby-identifier">v</span>.<span class="ruby-identifier">destroy</span>
+1368:     
+1369:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="#M000023" class="method-signature">
+          <span class="method-name">create_random</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a random visitor
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 1372</span>
+1372:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create_random</span>
+1373:     <span class="ruby-identifier">settings</span> = <span class="ruby-constant">Visitor</span>.<span class="ruby-identifier">random_settings</span>
+1374:     <span class="ruby-identifier">v</span> = <span class="ruby-constant">Visitor</span>.<span class="ruby-identifier">create_with_settings</span>(<span class="ruby-identifier">settings</span>)
+1375:     <span class="ruby-identifier">gap</span> =[<span class="ruby-value">-4</span>,<span class="ruby-value">-3</span>,<span class="ruby-value">-2</span>,<span class="ruby-value">-1</span>,<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>,<span class="ruby-value">4</span>]
+1376:     <span class="ruby-identifier">time</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">localtime</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">gap</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">gap</span>.<span class="ruby-identifier">size</span>)].<span class="ruby-identifier">hours</span>
+1377:     <span class="ruby-identifier">v</span>.<span class="ruby-identifier">created_at</span> = <span class="ruby-identifier">time</span>
+1378:     <span class="ruby-identifier">v</span>.<span class="ruby-identifier">save</span>
+1379:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">v</span>
+1380:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">create_with_settings</span><span class="method-args">(user_settings)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a visitor having user_settings
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 1411</span>
+1411:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create_with_settings</span>(<span class="ruby-identifier">user_settings</span>)
+1412:     
+1413:       <span class="ruby-comment cmt"># Not used, yet. To be added</span>
+1414:          <span class="ruby-identifier">refererinfo</span> = {
+1415:            <span class="ruby-identifier">:referer_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+1416:            <span class="ruby-identifier">:referer_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+1417:            <span class="ruby-identifier">:referer_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+1418:            <span class="ruby-identifier">:referer_keyword</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>
+1419:          }
+1420:          
+1421:       
+1422:       <span class="ruby-identifier">dati</span> =
+1423:       { 
+1424:         <span class="ruby-identifier">:config_md5config</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_md5config</span>], 
+1425:         <span class="ruby-identifier">:config_os</span>                              =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_os</span>],
+1426:         <span class="ruby-identifier">:config_browser_name</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_browser_name</span>],
+1427:         <span class="ruby-identifier">:config_browser_version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_browser_version</span>],
+1428:         <span class="ruby-identifier">:config_resolution</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_resolution</span>],
+1429:         <span class="ruby-identifier">:config_pdf</span>                           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_pdf</span>],
+1430:         <span class="ruby-identifier">:config_flash</span>                       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_flash</span>],
+1431:         <span class="ruby-identifier">:config_java</span>                          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_java</span>],
+1432:         <span class="ruby-identifier">:config_director</span>                    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_director</span>],
+1433:         <span class="ruby-identifier">:config_quicktime</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_quicktime</span>],
+1434:         <span class="ruby-identifier">:config_realplayer</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_realplayer</span>],
+1435:         <span class="ruby-identifier">:config_windowsmedia</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_windowsmedia</span>],
+1436:         <span class="ruby-identifier">:config_cookie</span>                =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_cookie</span>],
+1437:         <span class="ruby-identifier">:location_ip</span>                          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:location_ip</span>],
+1438:         <span class="ruby-identifier">:location_browser_lang</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:location_browser_lang</span>],
+1439:         <span class="ruby-identifier">:location_country</span>       =<span class="ruby-operator">&gt;</span>  <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:location_browser_lang</span>],
+1440:         
+1441:         <span class="ruby-identifier">:referer_type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">refererinfo</span>[<span class="ruby-identifier">:referer_type</span>],
+1442:         <span class="ruby-identifier">:referer_name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">refererinfo</span>[<span class="ruby-identifier">:referer_name</span>],
+1443:         <span class="ruby-identifier">:referer_url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">refererinfo</span>[<span class="ruby-identifier">:referer_url</span>],
+1444:         <span class="ruby-identifier">:referer_keyword</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">refererinfo</span>[<span class="ruby-identifier">:referer_keyword</span>],
+1445:         
+1446:         <span class="ruby-identifier">:localtime</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:localtime</span>],
+1447:         <span class="ruby-identifier">:returning</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-comment cmt"># not used at the moment</span>
+1448:       }
+1449:     
+1450:  
+1451:       
+1452:       <span class="ruby-identifier">v</span> = <span class="ruby-constant">Visitor</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">dati</span>)
+1453:       
+1454:     
+1455:     
+1456:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">v</span>
+1457: 
+1458:     
+1459:     
+1460:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="#M000025" class="method-signature">
+          <span class="method-name">here_today?</span><span class="method-args">(user_settings)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check if a visitor having user_settings was here today
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 1400</span>
+1400:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">here_today?</span>(<span class="ruby-identifier">user_settings</span>)
+1401:     <span class="ruby-identifier">md5config</span> = <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_md5config</span>]
+1402:     <span class="ruby-identifier">p</span> <span class="ruby-value str">&quot;MD5 ==&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">user_settings</span>[<span class="ruby-identifier">:config_md5config</span>]
+1403:     <span class="ruby-identifier">v</span>= <span class="ruby-constant">Visitor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, 
+1404:       <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;created_at &gt; '#{1.days.ago}' AND config_md5config = '#{md5config}'&quot;</span>])
+1405:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">v</span>
+1406:     
+1407:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="#M000021" class="method-signature">
+          <span class="method-name">random_settings</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method is used to create random settings, (to create a random visitor
+for testing purpose)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000021-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 11</span>
+  11:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">random_settings</span>
+  12: 
+  13: 
+  14:     <span class="ruby-identifier">user_agent</span> = [
+  15:     <span class="ruby-value str">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)&quot;</span>,
+  16:     <span class="ruby-value str">&quot;Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0 )&quot;</span>,
+  17:     <span class="ruby-value str">&quot;Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; Win 9x 4.90)&quot;</span>,
+  18:     <span class="ruby-value str">&quot;Mozilla/4.8 [en] (Windows NT 5.1; U)&quot;</span>,
+  19:     <span class="ruby-value str">&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; en) Opera 8.0&quot;</span>,
+  20:     <span class="ruby-value str">&quot;Opera/7.51 (Windows NT 5.1; U) [en]&quot;</span>,
+  21:     <span class="ruby-value str">&quot;Opera/7.50 (Windows XP; U)&quot;</span>,
+  22:     <span class="ruby-value str">&quot;Avant Browser/1.2.789rel1 (http://www.avantbrowser.com)&quot;</span>,
+  23:     <span class="ruby-value str">&quot;Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.4) Gecko Netscape/7.1 (ax)&quot;</span>,
+  24:     <span class="ruby-value str">&quot;Mozilla/5.0 (Windows; U; Windows XP) Gecko MultiZilla/1.6.1.0a&quot;</span>,
+  25:     <span class="ruby-value str">&quot;Opera/7.50 (Windows ME; U) [en]&quot;</span>,
+  26:     <span class="ruby-value str">&quot;Mozilla/3.01Gold (Win95; I)&quot;</span>,
+  27:     <span class="ruby-value str">&quot;Mozilla/2.02E (Win95; U)&quot;</span>,
+  28:     <span class="ruby-value str">&quot;Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)&quot;</span>,
+  29:     <span class="ruby-value str">&quot;Googlebot/2.1 (+http://www.googlebot.com/bot.html)&quot;</span>,
+  30:     <span class="ruby-value str">&quot;msnbot/1.0 (+http://search.msn.com/msnbot.htm)&quot;</span>,
+  31:     <span class="ruby-value str">&quot;msnbot/0.11 (+http://search.msn.com/msnbot.htm)&quot;</span>,
+  32:     <span class="ruby-value str">&quot;Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)&quot;</span>,
+  33:     <span class="ruby-value str">&quot;Mozilla/2.0 (compatible; Ask Jeeves/Teoma)&quot;</span>,
+  34:     <span class="ruby-value str">&quot;Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/125.2 (KHTML, like Gecko) Safari/125.8&quot;</span>,
+  35:     <span class="ruby-value str">&quot;Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/125.2 (KHTML, like Gecko) Safari/85.8&quot;</span>,
+  36:     <span class="ruby-value str">&quot;Mozilla/4.0 (compatible; MSIE 5.15; Mac_PowerPC)&quot;</span>,
+  37:     <span class="ruby-value str">&quot;Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.7a) Gecko/20040614 Firefox/0.9.0+&quot;</span>,
+  38:     <span class="ruby-value str">&quot;Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-US) AppleWebKit/125.4 (KHTML, like Gecko, Safari) OmniWeb/v563.15&quot;</span>,
+  39:     <span class="ruby-value str">&quot;Mozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Debian/1.6-7&quot;</span>,
+  40:     <span class="ruby-value str">&quot;ozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Epiphany/1.2.5&quot;</span>,
+  41:     <span class="ruby-value str">&quot;Mozilla/5.0 (X11; U; Linux i586; en-US; rv:1.7.3) Gecko/20040924 Epiphany/1.4.4 (Ubuntu)&quot;</span>,
+  42:     <span class="ruby-value str">&quot;Mozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Galeon/1.3.14&quot;</span>,
+  43:     <span class="ruby-value str">&quot;Konqueror/3.0-rc4; (Konqueror/3.0-rc4; i686 Linux;;datecode)&quot;</span>,
+  44:     <span class="ruby-value str">&quot;Mozilla/5.0 (compatible; Konqueror/3.3; Linux 2.6.8-gentoo-r3; X11;&quot;</span>,
+  45:     <span class="ruby-value str">&quot;Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040614 Firefox/0.8&quot;</span>,
+  46:     <span class="ruby-value str">&quot;ELinks/0.9.3 (textmode; Linux 2.6.9-kanotix-8 i686; 127x41)&quot;</span>,
+  47:     <span class="ruby-value str">&quot;ELinks (0.4pre5; Linux 2.6.10-ac7 i686; 80x33)&quot;</span>,
+  48:     <span class="ruby-value str">&quot;Links (2.1pre15; Linux 2.4.26 i686; 158x61)&quot;</span>,
+  49:     <span class="ruby-value str">&quot;Links/0.9.1 (Linux 2.4.24; i386;)&quot;</span>,
+  50:     <span class="ruby-value str">&quot;MSIE (MSIE 6.0; X11; Linux; i686) Opera 7.23&quot;</span>,
+  51:     <span class="ruby-value str">&quot;Lynx/2.8.5rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/0.8.12&quot;</span>,
+  52:     <span class="ruby-value str">&quot;w3m/0.5.1&quot;</span>,
+  53:     <span class="ruby-value str">&quot;Links (2.1pre15; FreeBSD 5.3-RELEASE i386; 196x84)&quot;</span>,
+  54:     <span class="ruby-value str">&quot;Mozilla/5.0 (X11; U; FreeBSD; i386; en-US; rv:1.7) Gecko&quot;</span>,
+  55:     <span class="ruby-value str">&quot;Mozilla/4.77 [en] (X11; I; IRIX;64 6.5 IP30)&quot;</span>,
+  56:     <span class="ruby-value str">&quot;Mozilla/4.8 [en] (X11; U; SunOS; 5.7 sun4u)&quot;</span>,
+  57:     <span class="ruby-value str">&quot;Mozilla/3.0 (compatible; NetPositive/2.1.1; BeOS)&quot;</span>,
+  58:     <span class="ruby-value str">&quot;Gulper Web Bot 0.2.4 (www.ecsl.cs.sunysb.edu/~maxim/cgi-bin/Link/GulperBot)&quot;</span>,
+  59:     <span class="ruby-value str">&quot;EmailWolf 1.00&quot;</span>,
+  60:     <span class="ruby-value str">&quot;grub-client-1.5.3; (grub-client-1.5.3; Crawl your own stuff with http://grub.org)&quot;</span>,
+  61:     <span class="ruby-value str">&quot;Download Demon/3.5.0.11&quot;</span>,
+  62:     <span class="ruby-value str">&quot;OmniWeb/2.7-beta-3 OWF/1.0&quot;</span>,
+  63:     <span class="ruby-value str">&quot;SearchExpress&quot;</span>,
+  64:     <span class="ruby-value str">&quot;Microsoft URL Control - 6.00.8862&quot;</span>
+  65:     ]
+  66: 
+  67:     <span class="ruby-identifier">referers</span> = 
+  68:     [<span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=statistique langues internet&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+  69:     <span class="ruby-value str">&quot;http://annusiteperso.free.fr/&quot;</span>,
+  70:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=logiciel arab gratuit&amp;spell=1&quot;</span>,
+  71:     <span class="ruby-value str">&quot;http://www.google.de/search?hl=de&amp;q=phpmyvisits&amp;meta=&amp;btnG=Google-Suche&quot;</span>,
+  72:     <span class="ruby-value str">&quot;http://www.narodnjaci-mp3.cro-windows-vista.info/permalink.php?article=6.txt&quot;</span>,
+  73:     <span class="ruby-value str">&quot;http://lelogiciellibre.net/telecharger/statistiques-audience-sites.php&quot;</span>,
+  74:     <span class="ruby-value str">&quot;http://www.framasoft.net/article2101.html&quot;</span>,
+  75:     <span class="ruby-value str">&quot;http://humour25.free.fr/index.php3?page=videos-sexe&quot;</span>,
+  76:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=smart&amp;bhv=web_fr&amp;rdata=google&amp;logid=2093200001174768155748412&amp;keap=28&amp;prevnbans=10&amp;ap=4&quot;</span>,
+  77:     <span class="ruby-value str">&quot;http://translate.google.com/translate_n?hl=en&amp;sl=fr&amp;u=http://www.phpmyvisites.net/&amp;prev=/search%3Fq%3Dopen%2Bsource%2Bweb%2Banalytics%26hl%3Den%26safe%3Doff%26sa%3DG&quot;</span>,
+  78:     <span class="ruby-value str">&quot;http://blog.bobobook.cn/?p=95&quot;</span>,
+  79:     <span class="ruby-value str">&quot;http://www.google.com/search?q=creer site gratuit facile logiciel&amp;sourceid=ie7&amp;rls=com.microsoft:en-US&amp;ie=utf8&amp;oe=utf8&quot;</span>,
+  80:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/voila?profil=voila&amp;bhv=web_fr&amp;rdata=site%20de%20traduction%20gratuit&quot;</span>,
+  81:     <span class="ruby-value str">&quot;http://www.google.com/search?sourceid=navclient&amp;hl=fr&amp;ie=UTF-8&amp;rls=SUNA,SUNA:2006-25,SUNA:fr&amp;q=configuration des mises %c3%a0 jour&quot;</span>,
+  82:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/faq/&quot;</span>,
+  83:     <span class="ruby-value str">&quot;http://www.framasoft.net/article2101.html&quot;</span>,
+  84:     <span class="ruby-value str">&quot;http://www.neutrinium238.com/tutoriaux/photoshop/index.php?id=9&quot;</span>,
+  85:     <span class="ruby-value str">&quot;http://www.google.co.th/search?hl=th&amp;q=web statistic php&amp;btnG=%E0%B8%84%E0%B9%89%E0%B8%99%E0%B8%AB%E0%B8%B2&amp;meta=&quot;</span>,
+  86:     <span class="ruby-value str">&quot;http://www.creer-un-site-internet.com/statistiques-site-internet.php&quot;</span>,
+  87:     <span class="ruby-value str">&quot;http://forums.phpbb-fr.com/viewtopic_122536.html?hl=statistique&quot;</span>,
+  88:     <span class="ruby-value str">&quot;http://www.computer.co.hu/index.php?option=com_contact&amp;task=view&amp;contact_id=3&amp;Itemid=3&quot;</span>,
+  89:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=phpmyvisites&amp;spell=1&quot;</span>,
+  90:     <span class="ruby-value str">&quot;http://siio.free.fr/12_Images3D_2005_001/index.htm&quot;</span>,
+  91:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+  92:     <span class="ruby-value str">&quot;http://philipeau.free.fr/logiciels.htm&quot;</span>,
+  93:     <span class="ruby-value str">&quot;http://www.girls-love-shit.com/&quot;</span>,
+  94:     <span class="ruby-value str">&quot;http://www.satellitemania.it/&quot;</span>,
+  95:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites.net&amp;meta=&quot;</span>,
+  96:     <span class="ruby-value str">&quot;http://www.videoscoop.ch/nature.php&quot;</span>,
+  97:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+  98:     <span class="ruby-value str">&quot;http://www.csr.gov.rw/&quot;</span>,
+  99:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=statistiques php&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 100:     <span class="ruby-value str">&quot;http://fr.search.yahoo.com/search?p=statistiques&amp;fr=yfp-t-501&amp;ei=UTF-8&amp;meta=vc%3D&quot;</span>,
+ 101:     <span class="ruby-value str">&quot;http://anonymouse.org/cgi-bin/anon-www.cgi/http://www.tempsgranollers.com/rss.xml&quot;</span>,
+ 102:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 103:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 104:     <span class="ruby-value str">&quot;http://anonymouse.org/cgi-bin/anon-www.cgi/http://www.tempsgranollers.com/rss.xml&quot;</span>,
+ 105:     <span class="ruby-value str">&quot;http://www.google.es/search?hl=es&amp;newwindow=1&amp;q=php my visit&amp;btnG=B%C3%BAsqueda&amp;meta=lr%3D&quot;</span>,
+ 106:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=creation de site web gratuit avec free&amp;meta=&quot;</span>,
+ 107:     <span class="ruby-value str">&quot;http://www.gayfluence.com/index2.php&quot;</span>,
+ 108:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/script.php?id=2120&quot;</span>,
+ 109:     <span class="ruby-value str">&quot;http://christophe.papin1.free.fr/cuisiniere.php?page=1&amp;total=27&quot;</span>,
+ 110:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/ullmanspage.php&quot;</span>,
+ 111:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=configuration phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=com.ubuntu:fr:official&amp;client=firefox-a&quot;</span>,
+ 112:     <span class="ruby-value str">&quot;http://www.rapidojeux.com/&quot;</span>,
+ 113:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 114:     <span class="ruby-value str">&quot;http://www.unopiuuno.ch/&quot;</span>,
+ 115:     <span class="ruby-value str">&quot;http://www.babylon-x-fr.com/vcount/index.php?site=1&amp;date=2007-03-23&amp;period=1&amp;mod=view_visits&quot;</span>,
+ 116:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=The server encountered an internal error or misconfiguration and was unable to complete your request.&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 117:     <span class="ruby-value str">&quot;http://forum.pluxml.org/viewtopic.php?pid=3670&quot;</span>,
+ 118:     <span class="ruby-value str">&quot;http://stats.pointdecroix.org/phpmyvisites.php&quot;</span>,
+ 119:     <span class="ruby-value str">&quot;http://www.imageshock.eu/hotovo.php?idcka=69950&amp;klic=st6njip0&quot;</span>,
+ 120:     <span class="ruby-value str">&quot;http://www.google.be/search?q=download&amp;hl=fr&amp;lr=lang_fr&amp;start=30&amp;sa=N&quot;</span>,
+ 121:     <span class="ruby-value str">&quot;http://www.justiciaviva.org.pe/phpmyvisites/index.php?part=pages&amp;img=1&amp;stats=1&amp;date=2007-03-24&amp;oldd=2007-03-24&amp;per=1&amp;site=1&quot;</span>,
+ 122:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=orange&amp;bhv=web_fr&amp;kw= &amp;rdata=jeu pour jouer maintenant gratuit&quot;</span>,
+ 123:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 124:     <span class="ruby-value str">&quot;http://www.phwinfo.com/forum/showthread.php?t=1316&quot;</span>,
+ 125:     <span class="ruby-value str">&quot;http://by139fd.bay139.hotmail.msn.com/cgi-bin/getmsg?msg=274D9F1D-403E-49E1-A79C-9C568CABCFD0&amp;start=0&amp;len=7532&amp;imgsafe=n&amp;curmbox=00000000%2d0000%2d0000%2d0000%2d000000000001&amp;a=3ce4627258ed7575c8d95f64bf4f6b108d8b30c775297517dcfee686fb26e3e0&quot;</span>,
+ 126:     <span class="ruby-value str">&quot;http://gibsea28.wifeo.com/index.php&quot;</span>,
+ 127:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 128:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fwww.moto-site.ru%2F%3Fpg%3D0201|onclick|L8&quot;</span>,
+ 129:     <span class="ruby-value str">&quot;http://www.closerie-des-sacres.com/accueil.php?page=accueil1&amp;lang=fr&quot;</span>,
+ 130:     <span class="ruby-value str">&quot;http://www.la-cuisine-marocaine.com/phpmyvisites/index.php?mod=login&amp;error_login=1&quot;</span>,
+ 131:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/&quot;</span>,
+ 132:     <span class="ruby-value str">&quot;http://shoe.free.fr/root.php?target=snap&quot;</span>,
+ 133:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 134:     <span class="ruby-value str">&quot;http://www.jecolorie.com/&quot;</span>,
+ 135:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;hl=fr&amp;ie=UTF-8&amp;rls=DVXB,DVXB:2005-27,DVXB:fr&amp;q=php my visite&quot;</span>,
+ 136:     <span class="ruby-value str">&quot;http://www.borber.com/en/projects/wp2drupal&quot;</span>,
+ 137:     <span class="ruby-value str">&quot;http://www.fil-en-scene.net/stats/phpmyvisites.php&quot;</span>,
+ 138:     <span class="ruby-value str">&quot;http://www.cote-dopale.com/statistiques/&quot;</span>,
+ 139:     <span class="ruby-value str">&quot;http://del.icio.us/search/?all=statistics&amp;page=2&quot;</span>,
+ 140:     <span class="ruby-value str">&quot;http://www.unilago.com.co/&quot;</span>,
+ 141:     <span class="ruby-value str">&quot;http://www.offestival.com/contact-fr.html&quot;</span>,
+ 142:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=telecharger plusieurs langue dans une site %2Bphp&amp;meta=&quot;</span>,
+ 143:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 144:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/documentation/Installation&quot;</span>,
+ 145:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/derniers.php&quot;</span>,
+ 146:     <span class="ruby-value str">&quot;http://belgant.winetux.be/forums/index.php?act=idx&quot;</span>,
+ 147:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/screenshots.html&quot;</span>,
+ 148:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 149:     <span class="ruby-value str">&quot;http://www.logement.com.tn/mvente.htm&quot;</span>,
+ 150:     <span class="ruby-value str">&quot;http://www.vinternet.net/&quot;</span>,
+ 151:     <span class="ruby-value str">&quot;http://crok.dockyr.com/&quot;</span>,
+ 152:     <span class="ruby-value str">&quot;http://www.lorajos.nl/&quot;</span>,
+ 153:     <span class="ruby-value str">&quot;http://homeomath.imingo.net/pagedr.htm&quot;</span>,
+ 154:     <span class="ruby-value str">&quot;http://www.tophost.it/aiuto/cat2/15/63/&quot;</span>,
+ 155:     <span class="ruby-value str">&quot;http://www.guides-webmaster.com/annuaire/&quot;</span>,
+ 156:     <span class="ruby-value str">&quot;http://www.google.co.ma/search?hl=fr&amp;q=hebergeur my site for free&amp;meta=&quot;</span>,
+ 157:     <span class="ruby-value str">&quot;http://www.delfiweb.com/v2/&quot;</span>,
+ 158:     <span class="ruby-value str">&quot;http://www.cuelgatuinvento.com/ideas/modules/news/article.php?storyid=113&quot;</span>,
+ 159:     <span class="ruby-value str">&quot;http://www.radioslavonija.hr/program/?o_programu&quot;</span>,
+ 160:     <span class="ruby-value str">&quot;http://www.mangas.adultes.free.fr/&quot;</span>,
+ 161:     <span class="ruby-value str">&quot;http://forum.telecharger.01net.com/telecharger/programmation_et_developpement/open_source/outil_gratuit_de_statistiques_de_sites_internet_pour_webmasters-311247/messages-1.html&quot;</span>,
+ 162:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 163:     <span class="ruby-value str">&quot;http://www.kaerwa-all-stars.de/rechts.htm&quot;</span>,
+ 164:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=statistique site web&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 165:     <span class="ruby-value str">&quot;http://www.chorus-chanson.fr/HOME2/NUMERO57/dossierBrassens572.htm&quot;</span>,
+ 166:     <span class="ruby-value str">&quot;http://www.shirtjemeteenmissie.nl/static/index.php?mod=admin_index&quot;</span>,
+ 167:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/etudes-de-cas.html&quot;</span>,
+ 168:     <span class="ruby-value str">&quot;http://www.google.co.ma/search?hl=fr&amp;q=logiciel gratuit&amp;meta=&quot;</span>,
+ 169:     <span class="ruby-value str">&quot;http://www.fnar-tounes.com/sitemap.php&quot;</span>,
+ 170:     <span class="ruby-value str">&quot;http://www.11vm-serv.net/index.php?p=domregister&quot;</span>,
+ 171:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla%3Afr%3Aofficial&amp;q=Fatal error%3A Call to undefined function&amp;btnG=Rechercher&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 172:     <span class="ruby-value str">&quot;http://proxyjoint.com/Y29t/ZGdhbWVza3k/d3d3/aHR0cDovL3d3dy5kZ2FtZXNreS5jb20vY2hlY2tvdXRfcGF5bWVudC5waHA/69/0/&quot;</span>,
+ 173:     <span class="ruby-value str">&quot;http://blog.bretagne-balades.org/index.php/&quot;</span>,
+ 174:     <span class="ruby-value str">&quot;http://www.framasoft.net/article2101.html&quot;</span>,
+ 175:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;hl=fr&amp;ie=UTF-8&amp;rls=GGLJ,GGLJ:2006-40,GGLJ:fr&amp;q=phpmyvisites&quot;</span>,
+ 176:     <span class="ruby-value str">&quot;http://www.unilago.com.co/&quot;</span>,
+ 177:     <span class="ruby-value str">&quot;http://www.google.ca/search?hl=fr&amp;q=statistiques site web&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 178:     <span class="ruby-value str">&quot;http://wars-world.fr/login.php&quot;</span>,
+ 179:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fal-kanz.org%2Fblog%2F|onclick|L0&quot;</span>,
+ 180:     <span class="ruby-value str">&quot;http://news.itoncc.com/MingPao/eaindex.htm&quot;</span>,
+ 181:     <span class="ruby-value str">&quot;http://yanael.com/&quot;</span>,
+ 182:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=en&amp;rls=SUNA,SUNA:2006-13,SUNA:en&amp;q=related:www.platinium-ca.com/nice.htm&quot;</span>,
+ 183:     <span class="ruby-value str">&quot;http://search.live.com/results.aspx?q=undefined&amp;first=31&amp;FORM=PERE3&quot;</span>,
+ 184:     <span class="ruby-value str">&quot;http://www.neutrinium238.com/tutoriaux/photoshop/utiliser_outil_plume.html&quot;</span>,
+ 185:     <span class="ruby-value str">&quot;http://www.scat-hell.com/&quot;</span>,
+ 186:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=orange&amp;bhv=web_fr&amp;rdata=GRATUIT&amp;logid=1533300001174789477883674&amp;keap=68&amp;prevnbans=11&amp;ap=8&quot;</span>,
+ 187:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=simsun.ttc download&amp;meta=&quot;</span>,
+ 188:     <span class="ruby-value str">&quot;http://www.webview360.com/room?room=165399&quot;</span>,
+ 189:     <span class="ruby-value str">&quot;http://www.zone-webmasters.net/scripts-php-41.php&quot;</span>,
+ 190:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=mesure d%27audience&amp;spell=1&quot;</span>,
+ 191:     <span class="ruby-value str">&quot;http://www.mercy-mercy.com&quot;</span>,
+ 192:     <span class="ruby-value str">&quot;http://www.xxxpass.se/&quot;</span>,
+ 193:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 194:     <span class="ruby-value str">&quot;http://www.google.ca/search?hl=en&amp;q=phpMyVisites&amp;meta=&quot;</span>,
+ 195:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;rls=GGLJ,GGLJ:2006-29,GGLJ:fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=php my visite&amp;spell=1&quot;</span>,
+ 196:     <span class="ruby-value str">&quot;http://foro.powers.cl/viewtopic.php?t=190228&amp;sid=44b527252cd76e00ec9da17a102b0bda&quot;</span>,
+ 197:     <span class="ruby-value str">&quot;http://www.thediary.org/coleo&quot;</span>,
+ 198:     <span class="ruby-value str">&quot;http://www.girls-love-shit.com/&quot;</span>,
+ 199:     <span class="ruby-value str">&quot;http://didier-ott.no-ip.org/public/genea/cousins/diff/diff%20Files/doc6905.htm&quot;</span>,
+ 200:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=statistique visite en PHP rapide&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 201:     <span class="ruby-value str">&quot;http://seznamka.uzdroje.cz/&quot;</span>,
+ 202:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;aq=t&amp;hl=fr&amp;ie=UTF-8&amp;rlz=1T4HPEB_frFR214FR214&amp;q=erreur 500&quot;</span>,
+ 203:     <span class="ruby-value str">&quot;javascript:Defcat(live)&quot;</span>,
+ 204:     <span class="ruby-value str">&quot;http://imagelatente.ernestotimor.com/pages/ym-houses_11b.html&quot;</span>,
+ 205:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=PHPMyVisites&amp;btnG=Recherche Google&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 206:     <span class="ruby-value str">&quot;http://news.itoncc.com/MingPao/jaindex.htm&quot;</span>,
+ 207:     <span class="ruby-value str">&quot;http://www.tosdn.com/script/script.php?sid=2622&amp;scat=23&quot;</span>,
+ 208:     <span class="ruby-value str">&quot;http://www.bswr.de/Fauna/Wanderfalke/OB_live1.htm&quot;</span>,
+ 209:     <span class="ruby-value str">&quot;http://linux.tlk.fr/games/Powermanga/screenshots/&quot;</span>,
+ 210:     <span class="ruby-value str">&quot;http://msdgmedia.free.fr/PagesNews/PageNews.html&quot;</span>,
+ 211:     <span class="ruby-value str">&quot;http://www.dotclear.net/forum/viewtopic.php?id=26210&quot;</span>,
+ 212:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/script.php?id=2120&quot;</span>,
+ 213:     <span class="ruby-value str">&quot;http://szex.szextra.hu/cikk/?r=1&quot;</span>,
+ 214:     <span class="ruby-value str">&quot;http://www.startrek-voyager.nl/voyager/dek1.htm&quot;</span>,
+ 215:     <span class="ruby-value str">&quot;http://www.svenalbert.de/24-0-meine-gedanken.html&quot;</span>,
+ 216:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 217:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 218:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;meta=&quot;</span>,
+ 219:     <span class="ruby-value str">&quot;http://siscalocca.org/blog/index.php&quot;</span>,
+ 220:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=smart&amp;bhv=web_fr&amp;kw= &amp;rdata=moteurs de recherches&quot;</span>,
+ 221:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/requirements.html&quot;</span>,
+ 222:     <span class="ruby-value str">&quot;http://www.roi-president.com/galerie/pages/Cardinal_de_Richelieu.htm&quot;</span>,
+ 223:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 224:     <span class="ruby-value str">&quot;http://e.bardiau.free.fr/bonheur.html&quot;</span>,
+ 225:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1328/0/&quot;</span>,
+ 226:     <span class="ruby-value str">&quot;http://www.geraldlevanchau.com/stat/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;mod=view_source&quot;</span>,
+ 227:     <span class="ruby-value str">&quot;http://www.asap-provence.fr/?get=Links&amp;do=top-rank&quot;</span>,
+ 228:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=logiciel pour creer des site internet gratuit avec exemple&amp;meta=&quot;</span>,
+ 229:     <span class="ruby-value str">&quot;http://www.meteo.lt/oru_prognoze.php&quot;</span>,
+ 230:     <span class="ruby-value str">&quot;http://meshlab.sourceforge.net/phpmv2/index.php?site=1&amp;period=1&amp;mod=view_referers&amp;date=2007-03-22&quot;</span>,
+ 231:     <span class="ruby-value str">&quot;http://www.icaformation.fr/Presentation.php&quot;</span>,
+ 232:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?sev=&amp;rtype=kw&amp;profil=orange&amp;bhv=web_fr&amp;rdata=SOUMETTRE UN SITE%2BORANGE&amp;submit.x=32&amp;submit.y=5&quot;</span>,
+ 233:     <span class="ruby-value str">&quot;http://www.google.cn/search?q=CV de statistique&amp;complete=1&amp;hl=zh-CN&amp;inlang=zh-CN&amp;newwindow=1&amp;client=aff-5566&amp;channel=searchbutton2&amp;hs=z7h&amp;affdom=5566.net&amp;start=40&amp;sa=N&quot;</span>,
+ 234:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;mod=view_visits&quot;</span>,
+ 235:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;mod=view_pages&quot;</span>,
+ 236:     <span class="ruby-value str">&quot;http://membres.lycos.fr/ecrausaz/?&quot;</span>,
+ 237:     <span class="ruby-value str">&quot;http://www.commentcamarche.net/forum/affich-1081477-adresse-ip-visiteur&quot;</span>,
+ 238:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/3252/0/&quot;</span>,
+ 239:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/documentation/Accueil&quot;</span>,
+ 240:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 241:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 242:     <span class="ruby-value str">&quot;http://www.framasoft.net/article2101.html&quot;</span>,
+ 243:     <span class="ruby-value str">&quot;http://www.framasoft.net/article2101.html&quot;</span>,
+ 244:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 245:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 246:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/documentation/Accueil&quot;</span>,
+ 247:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/documentation/Accueil&quot;</span>,
+ 248:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 249:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 250:     <span class="ruby-value str">&quot;http://www.framasoft.net/article2101.html&quot;</span>,
+ 251:     <span class="ruby-value str">&quot;http://www.lust-and-cross.com/&quot;</span>,
+ 252:     <span class="ruby-value str">&quot;http://frank.albrecht.free.fr/gestclasse_v7/index.php?page=accueil&quot;</span>,
+ 253:     <span class="ruby-value str">&quot;http://www.tendanceouest.com/radiolive.htm&quot;</span>,
+ 254:     <span class="ruby-value str">&quot;http://www.delfiweb.com/v2/&quot;</span>,
+ 255:     <span class="ruby-value str">&quot;http://www.pieces-auto-export.com/casse_auto_Aunis.php&quot;</span>,
+ 256:     <span class="ruby-value str">&quot;http://www.lavillat.com/news.php&quot;</span>,
+ 257:     <span class="ruby-value str">&quot;http://diskuse.jakpsatweb.cz/index.php?action=vthread&amp;forum=13&amp;topic=24403&quot;</span>,
+ 258:     <span class="ruby-value str">&quot;http://forums.wifeo.com/viewtopic.php?t=4997&quot;</span>,
+ 259:     <span class="ruby-value str">&quot;http://www.webmaster-experience.net/&quot;</span>,
+ 260:     <span class="ruby-value str">&quot;http://www.malta.poznan.pl/&quot;</span>,
+ 261:     <span class="ruby-value str">&quot;http://www.controlcomp.eu/webstat/demo&quot;</span>,
+ 262:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient-ff&amp;ie=UTF-8&amp;rls=GGGL,GGGL:2006-22,GGGL:fr&amp;q=lettre pour logo&quot;</span>,
+ 263:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;meta=&quot;</span>,
+ 264:     <span class="ruby-value str">&quot;http://www.linuxorable.fr/croquerrant/phpmyvisit/phpmyvisites.php&quot;</span>,
+ 265:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;rls=GGIH,GGIH:2007-02,GGIH:fr&amp;q=related:www.tele2.fr/&quot;</span>,
+ 266:     <span class="ruby-value str">&quot;http://www.lapalousey.com/agence_cav4.php?select=3&amp;n=3&quot;</span>,
+ 267:     <span class="ruby-value str">&quot;http://www.lapalousey.com/agence_cav2.php?select=3&amp;n=3&amp;cat=1&quot;</span>,
+ 268:     <span class="ruby-value str">&quot;http://perso.orange.fr/amp-racing/cadre/contenu.htm&quot;</span>,
+ 269:     <span class="ruby-value str">&quot;http://www.google.fr/custom?q=fonctionnement de debug&amp;hl=fr&amp;oe=ISO-8859-1&amp;client=pub-3703351194586770&amp;channel=1361273120&amp;cof=FORID:1%3BGL:1%3BLBGC:336699%3BLC:%230000ff%3BVLC:%23663399%3BGFNT:%230000ff%3BGIMP:%230000ff%3BDIV:%23336699%3B&amp;domains=french.ircfast.com&amp;start=20&amp;sa=N&quot;</span>,
+ 270:     <span class="ruby-value str">&quot;http://www.mycodes.net/soft/6536.htm&quot;</span>,
+ 271:     <span class="ruby-value str">&quot;http://www.kolucci.ru/&quot;</span>,
+ 272:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=outil stats php mysql &amp;meta=&quot;</span>,
+ 273:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 274:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=orange&amp;bhv=web_fr&amp;kw= &amp;rdata=dictionnaire gratuit&quot;</span>,
+ 275:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=demo&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 276:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=demo&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 277:     <span class="ruby-value str">&quot;http://aqua.lorca.free.fr/poissons.php3&quot;</span>,
+ 278:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/2593/0/&quot;</span>,
+ 279:     <span class="ruby-value str">&quot;http://www.controlcomp.eu/webstat/demo&quot;</span>,
+ 280:     <span class="ruby-value str">&quot;http://www.dhammadana.org/dhamma/3_caracteristiques.htm&quot;</span>,
+ 281:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 282:     <span class="ruby-value str">&quot;http://aj.garcia.free.fr/index10.htm&quot;</span>,
+ 283:     <span class="ruby-value str">&quot;http://www.hotel-post-nesselwang.de/inh_home.htm&quot;</span>,
+ 284:     <span class="ruby-value str">&quot;http://www.sex974.com/videocochon.php&quot;</span>,
+ 285:     <span class="ruby-value str">&quot;http://www.siteporno.be/stats/index.php?mod=login&quot;</span>,
+ 286:     <span class="ruby-value str">&quot;http://www.rouen.fr/vousetes/touriste&quot;</span>,
+ 287:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 288:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpMyVisites&amp;btnG=Rechercher&amp;meta=cr%3DcountryFR&quot;</span>,
+ 289:     <span class="ruby-value str">&quot;http://cgpa64.free.fr/bdd/base.php&quot;</span>,
+ 290:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=cr%C3%A9er un logiciel de jeu entierement gratuit&amp;spell=1&quot;</span>,
+ 291:     <span class="ruby-value str">&quot;http://delmotte.brice.free.fr/heol/maisonautonome/electricite.php&quot;</span>,
+ 292:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=oscommerce&amp;hl=fr&amp;lr=lang_fr&amp;start=40&amp;sa=N&quot;</span>,
+ 293:     <span class="ruby-value str">&quot;http://xcell05.free.fr/pages/divers/index.html&quot;</span>,
+ 294:     <span class="ruby-value str">&quot;http://www.google.it/search?hl=it&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla%3Ait%3Aofficial&amp;hs=fSj&amp;q=phpmyvisits&amp;btnG=Cerca&amp;meta=&quot;</span>,
+ 295:     <span class="ruby-value str">&quot;http://www.balsa-composites.com/&quot;</span>,
+ 296:     <span class="ruby-value str">&quot;http://msdgmedia.free.fr/Multimedia/Ge_FeuilleVolante/FeuilleVolanteComplet.htm&quot;</span>,
+ 297:     <span class="ruby-value str">&quot;http://www.starclubbing.com/component/option,com_zoom/Itemid,31/&quot;</span>,
+ 298:     <span class="ruby-value str">&quot;http://www.futureadvertising.net/&quot;</span>,
+ 299:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=logiciel libre cr%C3%A9ation site web &amp;meta=&quot;</span>,
+ 300:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 301:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 302:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=logiciel gratuit&amp;hl=fr&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla:fr:official&amp;hs=qxj&amp;start=10&amp;sa=N&quot;</span>,
+ 303:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=PHP Fatal error%3A  Call to undefined function utf8_decode&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 304:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=Call to undefined function%3A imagecreatefrompng%28%29  easyphp&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 305:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=Call to undefined function%3A imagecreatefrompng%28%29  easyphp&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 306:     <span class="ruby-value str">&quot;http://vauv.net/index.php&quot;</span>,
+ 307:     <span class="ruby-value str">&quot;http://planetenat2.free.fr/apljav/applets_java.htm&quot;</span>,
+ 308:     <span class="ruby-value str">&quot;http://www.lascholastique.fr/stats/phpmyvisites.php&quot;</span>,
+ 309:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=traduire en espagnol %22il faut que%22&amp;spell=1&quot;</span>,
+ 310:     <span class="ruby-value str">&quot;http://www.lessymboles.com/article_maladieschroniques.htm&quot;</span>,
+ 311:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/&quot;</span>,
+ 312:     <span class="ruby-value str">&quot;http://zerod.info/videos/&quot;</span>,
+ 313:     <span class="ruby-value str">&quot;http://by140fd.bay140.hotmail.msn.com/cgi-bin/getmsg?msg=FD8E5F4E-1F13-4322-AC97-82AB6D74FDB8&amp;mfs=&amp;_HMaction=move&amp;tobox=00000000-0000-0000-0000-000000000002&amp;direction=next&amp;wo=&amp;curmbox=00000000%2d0000%2d0000%2d0000%2d000000000001&amp;a=946d46e12e9c2bbdf47228e3483f2962a4c2c7622e3139d82e3a8f498e6c108f&quot;</span>,
+ 314:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=documentation logiciel statistique&amp;meta=&quot;</span>,
+ 315:     <span class="ruby-value str">&quot;http://laville.respublicae.org/eng/thecity.htm&quot;</span>,
+ 316:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/etudes-de-cas.html&quot;</span>,
+ 317:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 318:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/scripts.php?cat=Statistiques&amp;deb=10&amp;tri=NOM&amp;sens=ASC&quot;</span>,
+ 319:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 320:     <span class="ruby-value str">&quot;http://www.google.be/search?hl=fr&amp;q=site php my sql gratuit&amp;meta=&quot;</span>,
+ 321:     <span class="ruby-value str">&quot;http://www.fengshui.antylicho.pl/miejsca-mocy/&quot;</span>,
+ 322:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 323:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?sev=&amp;rtype=kw&amp;profil=orange&amp;bhv=web_fr&amp;rdata=dictionnaire gratuit&quot;</span>,
+ 324:     <span class="ruby-value str">&quot;http://toubibs.free.free.fr/index2.php?page=Votre%20ordinateur&amp;menu=Votre%20ordinateur&quot;</span>,
+ 325:     <span class="ruby-value str">&quot;http://www.google.com/search?client=opera&amp;rls=en&amp;q=open source web analytic&amp;sourceid=opera&amp;ie=utf-8&amp;oe=utf-8&quot;</span>,
+ 326:     <span class="ruby-value str">&quot;http://fr.google.mozilla.com/search?q=site de telechargement gratuit et rapide&amp;hl=fr&amp;lr=&amp;start=10&amp;sa=N&quot;</span>,
+ 327:     <span class="ruby-value str">&quot;http://www.google.com/search?sourceid=navclient&amp;hl=fr&amp;ie=UTF-8&amp;rls=SUNA,SUNA:2007-12,SUNA:fr&amp;q=telecharger net stats&quot;</span>,
+ 328:     <span class="ruby-value str">&quot;http://www.lagratte.net/index.php?error=404&quot;</span>,
+ 329:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=installer javascript&amp;hl=fr&amp;start=10&amp;sa=N&quot;</span>,
+ 330:     <span class="ruby-value str">&quot;http://www.educlasse.ch/&quot;</span>,
+ 331:     <span class="ruby-value str">&quot;http://www.sacaboulons.com/index.php?lng=fr&quot;</span>,
+ 332:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=erreur 500&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 333:     <span class="ruby-value str">&quot;http://www.frxoops.org/modules/newbb/viewtopic.php?topic_id=20495&amp;forum=12&quot;</span>,
+ 334:     <span class="ruby-value str">&quot;http://search.free.fr/google.pl&quot;</span>,
+ 335:     <span class="ruby-value str">&quot;http://mon-evenement.com/annuaire/annuaire_des_prestataires/fiche_prest.php?id_annu_prest=2990&amp;cp=91100&amp;submit=4&quot;</span>,
+ 336:     <span class="ruby-value str">&quot;http://209.85.129.104/search?q=cache:z-1yaW4CGjAJ:svt.ac-dijon.fr/dyn/article.php3%3Fid_article%3D62 ministere education nationale DP%26D svt coll%C3%A8ge&amp;hl=fr&amp;strip=1&quot;</span>,
+ 337:     <span class="ruby-value str">&quot;http://tropics-l.nuxit.net/lin%e9/Comming%20Soon%20-%20Lin%e9arts.net.htm&quot;</span>,
+ 338:     <span class="ruby-value str">&quot;http://localhost/essai/phpmyvisites_2_2/phpmv2/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;mod=view_visits&quot;</span>,
+ 339:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/itchyscratchy.php&quot;</span>,
+ 340:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=php my visit&amp;ie=utf-8&amp;oe=utf-8&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 341:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=Kq5&amp;q=joomla mesure d audience&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 342:     <span class="ruby-value str">&quot;http://sd-4869.dedibox.fr/mariage/index.php?option=com_content&amp;task=category&amp;sectionid=1&amp;id=1&amp;Itemid=5&quot;</span>,
+ 343:     <span class="ruby-value str">&quot;http://www.phpsecure.info/v2/zone/pComment?d=1093902187&quot;</span>,
+ 344:     <span class="ruby-value str">&quot;http://www.mon-evenement.com/annuaire/annuaire_des_prestataires/fiche_prest.php?submit=7&amp;id_annu_prest=1017&amp;cp=26790&quot;</span>,
+ 345:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 346:     <span class="ruby-value str">&quot;http://www.cri74.org/docs/web/&quot;</span>,
+ 347:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=The server encountered an internal error or misconfiguration and was unable to complete your request&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 348:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;&quot;</span>,
+ 349:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1302/0/&quot;</span>,
+ 350:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisit&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=com.ubuntu:fr:official&amp;client=firefox-a&quot;</span>,
+ 351:     <span class="ruby-value str">&quot;http://weblog.photos.free.fr/dotclear/index.php?General&quot;</span>,
+ 352:     <span class="ruby-value str">&quot;http://www.webrankinfo.com/forums/viewtopic_45017.htm&quot;</span>,
+ 353:     <span class="ruby-value str">&quot;http://www.jetelecharge.com/Scripts/530.php&quot;</span>,
+ 354:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=telecharger logiciel gratuit pour sites pour creation de site web&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 355:     <span class="ruby-value str">&quot;http://www.roseindia.net/software-technology-news/software-news.jsp?newsid=3503&quot;</span>,
+ 356:     <span class="ruby-value str">&quot;http://perso.numericable.fr/~penieric/&quot;</span>,
+ 357:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;q=logiciel de creation de calendrier en php&amp;lr=&quot;</span>,
+ 358:     <span class="ruby-value str">&quot;http://forum.pctuning.cz/viewforum.php?f=52&quot;</span>,
+ 359:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/voila?profil=voila&amp;bhv=web_fr&amp;rdata=google%20images&quot;</span>,
+ 360:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 361:     <span class="ruby-value str">&quot;http://www.fhs-ecommerce.nl/custom.php&quot;</span>,
+ 362:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1341/0/&quot;</span>,
+ 363:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=free web&amp;btnG=Rechercher&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 364:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr-FR%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=fput %2B socket&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 365:     <span class="ruby-value str">&quot;http://www.php-open.com/open191424.htm&quot;</span>,
+ 366:     <span class="ruby-value str">&quot;http://www.google.fr/custom?hl=fr&amp;ie=ISO-8859-1&amp;oe=ISO-8859-1&amp;client=pub-6180957820147812&amp;cof=FORID%3A1%3BGL%3A1%3BL%3Ahttp%3A%2F%2Fwww.amipclub.com%2Fnavlogo.png%3BLH%3A35%3BLW%3A100%3BLBGC%3A336699%3BLP%3A1%3BLC%3A%230066cc%3BVLC%3A%23663399%3BGFNT%3A%23e1771e%3BGIMP%3A%23e1771e%3BDIV%3A%23336699%3B&amp;q=logiciel cr%E9ation site internet test&amp;meta=&quot;</span>,
+ 367:     <span class="ruby-value str">&quot;http://aj.garcia.free.fr/index10.htm&quot;</span>,
+ 368:     <span class="ruby-value str">&quot;http://question.com/What/de/you/want/to/know/my/referer?&quot;</span>,
+ 369:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1302/0/&quot;</span>,
+ 370:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 371:     <span class="ruby-value str">&quot;http://www.adresse-ip.net/adresse-ip-complet2.php&quot;</span>,
+ 372:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 373:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/fonctionnalites.html&quot;</span>,
+ 374:     <span class="ruby-value str">&quot;http://controlcomp.eu/webstat/demo&quot;</span>,
+ 375:     <span class="ruby-value str">&quot;http://www.narodnjaci-mp3.cro-windows-vista.info/-Legende-Slagera-Muzika-grada-mog-2-17-Hej-sta-je-s-vama-ljudi.MP3.php&quot;</span>,
+ 376:     <span class="ruby-value str">&quot;http://www.narodnjaci-mp3.cro-windows-vista.info/64-Budjenje---Sve-da-hocu.mp3.php&quot;</span>,
+ 377:     <span class="ruby-value str">&quot;http://saggerboys.com/&quot;</span>,
+ 378:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=demo&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 379:     <span class="ruby-value str">&quot;http://www.google.co.ma/search?hl=en&amp;q=creation gratuite de site&quot;</span>,
+ 380:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/script.php?id=2120&quot;</span>,
+ 381:     <span class="ruby-value str">&quot;http://www.google.fr/custom?domains=phpmyvisites.net&amp;q=WWW&amp;sa=Recherche&amp;sitesearch=phpmyvisites.net&amp;client=pub-4902541541856011&amp;forid=1&amp;ie=ISO-8859-1&amp;oe=ISO-8859-1&amp;cof=GALT%3A%23008000%3BGL%3A1%3BDIV%3A%23336699%3BVLC%3A663399%3BAH%3Acenter%3BBGC%3AFFFFFF%3BLBGC%3A336699%3BALC%3A0000FF%3BLC%3A0000FF%3BT%3A000000%3BGFNT%3A0000FF%3BGIMP%3A0000FF%3BFORID%3A1%3B&amp;hl=fr&quot;</span>,
+ 382:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=related:perso.orange.fr/sos.derivesectaire/ARCHIVES%25202003.htm&quot;</span>,
+ 383:     <span class="ruby-value str">&quot;http://www.webdrole.com/histoire_drole/Sexe_&amp;_cochon/Sexe_&amp;_cochon01.htm&quot;</span>,
+ 384:     <span class="ruby-value str">&quot;http://www.commentcamarche.net/forum/affich-1081477-adresse-ip-visiteur&quot;</span>,
+ 385:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmy visites&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 386:     <span class="ruby-value str">&quot;http://7ii7.net/j/&quot;</span>,
+ 387:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmv2 &amp;btnG=Rechercher&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 388:     <span class="ruby-value str">&quot;http://aj.garcia.free.fr/index1.htm&quot;</span>,
+ 389:     <span class="ruby-value str">&quot;http://www.google.com/search?q=phpmyvisites&amp;ie=UTF-8&amp;oe=UTF-8&quot;</span>,
+ 390:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=http://www.phpmyvisites.net&amp;spell=1&quot;</span>,
+ 391:     <span class="ruby-value str">&quot;http://search.ninemsn.com.au/results.aspx?q=download chinese simplifie&amp;geovar=3025&amp;FORM=REDIR&quot;</span>,
+ 392:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=ins%C3%A9rer du java&amp;meta=&quot;</span>,
+ 393:     <span class="ruby-value str">&quot;http://www.revolutionsoundrecords.org/punbb/viewtopic.php?pid=13077&quot;</span>,
+ 394:     <span class="ruby-value str">&quot;http://rnaud.net/&quot;</span>,
+ 395:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=php my visites&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 396:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=php my visites&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 397:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=web statistics open source&amp;ie=utf-8&amp;oe=utf-8&amp;rls=org.debian:en-US:unofficial&amp;client=firefox-a&quot;</span>,
+ 398:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 399:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/documentation/Accueil&quot;</span>,
+ 400:     <span class="ruby-value str">&quot;http://www.21andy.com/blog/20050821/11.html&quot;</span>,
+ 401:     <span class="ruby-value str">&quot;http://www.rouen.fr/breve/3684-carnavaldesenfants&quot;</span>,
+ 402:     <span class="ruby-value str">&quot;http://www.aolrecherche.aol.fr/aol/search?enc=iso&amp;p=lb&amp;q=DEMO&quot;</span>,
+ 403:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 404:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=maximum execution time&amp;start=0&amp;ie=utf-8&amp;oe=utf-8&amp;client=firefox-a&amp;rls=org.mozilla:fr:official&quot;</span>,
+ 405:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;mod=view_source&quot;</span>,
+ 406:     <span class="ruby-value str">&quot;http://dolycho.free.fr/zenphoto/&quot;</span>,
+ 407:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;sa=X&amp;oi=spell&amp;resnum=1&amp;ct=result&amp;cd=1&amp;q=statistiques mots cl%C3%A9s sur Internet &amp;spell=1&quot;</span>,
+ 408:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 409:     <span class="ruby-value str">&quot;http://www.mycodes.net/soft/6536.htm&quot;</span>,
+ 410:     <span class="ruby-value str">&quot;http://www.joomlafrance.org/8/32.html&quot;</span>,
+ 411:     <span class="ruby-value str">&quot;http://www.tophost.it/aiuto/cat2/15/63/&quot;</span>,
+ 412:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 413:     <span class="ruby-value str">&quot;http://groups.google.fr/group/developpeur/web/applications-php&quot;</span>,
+ 414:     <span class="ruby-value str">&quot;http://www.ddrbordeaux.com/Site/Galerie/DDRBordeauxGL05/DDRBordeauxGL05.html&quot;</span>,
+ 415:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;rls=GGLG,GGLG:2005-45,GGLG:fr&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=logiciel gestion de sites gratuit&amp;spell=1&quot;</span>,
+ 416:     <span class="ruby-value str">&quot;http://www.raleigh-northcarolina.biz/search/Agriculture.html&quot;</span>,
+ 417:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=en&amp;q=related:perso.orange.fr/lelogisdantan/&quot;</span>,
+ 418:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=faire un chmod&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 419:     <span class="ruby-value str">&quot;http://www.forum-marketing.com/-t-1685-0.html&quot;</span>,
+ 420:     <span class="ruby-value str">&quot;http://mrfou.ath.cx/palune/&quot;</span>,
+ 421:     <span class="ruby-value str">&quot;http://www.pokerhouse.co.uk/virutal.html&quot;</span>,
+ 422:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net&quot;</span>,
+ 423:     <span class="ruby-value str">&quot;http://www.cmsps.cz/vedeni-skoly&quot;</span>,
+ 424:     <span class="ruby-value str">&quot;http://allez-stade-de-reims.wifeo.com/calendrier.php&quot;</span>,
+ 425:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;q=creation d un site web simple et gratuit&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 426:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;q=phpMyVisites 2.2 mise a jour&amp;btnG=Rechercher&amp;lr=&quot;</span>,
+ 427:     <span class="ruby-value str">&quot;http://linearts.net/forums/index.php?showtopic=1256&quot;</span>,
+ 428:     <span class="ruby-value str">&quot;http://www.pieces-auto-export.com/autos_occasion_autos_accidentees.php&quot;</span>,
+ 429:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla:fr:official&amp;hs=aG8&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=compatibilit%C3%A9 php5&amp;spell=1&quot;</span>,
+ 430:     <span class="ruby-value str">&quot;http://www.mywaysites.info/T4_0_2/index.php?id=132&quot;</span>,
+ 431:     <span class="ruby-value str">&quot;http://www.planetenergie.org/article.php3?id_article=486&quot;</span>,
+ 432:     <span class="ruby-value str">&quot;http://binarylook.net/2007/03/kak-prodvigat-open-source/&quot;</span>,
+ 433:     <span class="ruby-value str">&quot;http://patatorandco.free.fr/?page=liens&quot;</span>,
+ 434:     <span class="ruby-value str">&quot;http://www.schnouki.net/post/2007/01/15/Plugin-phpMyVisites-pour-DotClear-2-52&quot;</span>,
+ 435:     <span class="ruby-value str">&quot;http://besttrader.free.fr/pub/Linux_Debian_on_AMILO_Si_1520/index.html&quot;</span>,
+ 436:     <span class="ruby-value str">&quot;http://www.prepaidlegal.com/&quot;</span>,
+ 437:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/fonctionnalites.html&quot;</span>,
+ 438:     <span class="ruby-value str">&quot;http://babelfish.altavista.com/babelfish/trurl_pagecontent?lp=fr_en&amp;url=http%3A%2F%2Fwww.altersystems.fr%2FProduits-Joomla.Extensions-phpMyVisites.Tracker.html&quot;</span>,
+ 439:     <span class="ruby-value str">&quot;http://sex-sensuality.com/&quot;</span>,
+ 440:     <span class="ruby-value str">&quot;http://www.narodnjaci-mp3.cro-windows-vista.info/Narodni-MEGAMIX-2001-ala-Cika-DejOO.php&quot;</span>,
+ 441:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=orange&amp;bhv=web_fr&amp;kw= &amp;rdata=english&quot;</span>,
+ 442:     <span class="ruby-value str">&quot;http://aj.garcia.free.fr/Livret9/PageGardeLivret9.htm&quot;</span>,
+ 443:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1302/0/&quot;</span>,
+ 444:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/documentation/Main_Page&quot;</span>,
+ 445:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 446:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 447:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=logiciel de creation de site en php&amp;hl=fr&quot;</span>,
+ 448:     <span class="ruby-value str">&quot;http://fr.search.yahoo.com/search?ei=UTF-8&amp;p=logiciel gratuit&amp;meta=vl%3D&amp;ybs=0&amp;fl=1&amp;vl=&amp;pstart=1&amp;fr=slv7-&amp;b=21&quot;</span>,
+ 449:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1727/0/&quot;</span>,
+ 450:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fwww.ladsdate.net%2F|onclick|L0&quot;</span>,
+ 451:     <span class="ruby-value str">&quot;http://www.rochebuffere.com/&quot;</span>,
+ 452:     <span class="ruby-value str">&quot;http://www.google.com/search?sourceid=navclient&amp;ie=UTF-8&amp;rls=RNWE,RNWE:2004-53,RNWE:en&amp;q=statistiques recherches internet&quot;</span>,
+ 453:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=stats sites &amp;meta=&quot;</span>,
+ 454:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 455:     <span class="ruby-value str">&quot;http://theglu.tuxfamily.org/index.php/post/2007/01/05/Aidez-la-recherche-avec-les-resources-inutilisees-de-votre-pc-boinc-world-community-grid-fightaids&quot;</span>,
+ 456:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fwww.paysage-photo.ch%2F|onclick|L7&quot;</span>,
+ 457:     <span class="ruby-value str">&quot;http://autoimage.autoweb.cz/audi/index.htm&quot;</span>,
+ 458:     <span class="ruby-value str">&quot;http://www.easy-script.com/script.php?c=php&amp;sc=stat&amp;ord=click&quot;</span>,
+ 459:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=configurer le temp d%27un cookie &amp;meta=&quot;</span>,
+ 460:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=lettre de augmentation graduit&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 461:     <span class="ruby-value str">&quot;http://etablissements.ac-amiens.fr/0601188r/ecrire/?exec=admin_plugin&quot;</span>,
+ 462:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/derniers.php&quot;</span>,
+ 463:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/itchyscratchy.php&quot;</span>,
+ 464:     <span class="ruby-value str">&quot;http://www.phpbank.net/description.php?id=1270&quot;</span>,
+ 465:     <span class="ruby-value str">&quot;http://www.forzamotorsport2.fr/recherche/google-demo.html&quot;</span>,
+ 466:     <span class="ruby-value str">&quot;http://www.apprendre-en-ligne.net/blog/index.php&quot;</span>,
+ 467:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=comparaison google analytics et xiti&amp;sourceid=navclient-ff&amp;ie=UTF-8&amp;rlz=1B3GGGL_frFR210FR210&quot;</span>,
+ 468:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=demo&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 469:     <span class="ruby-value str">&quot;http://www.skunk.powa.fr/shadow/login.php&quot;</span>,
+ 470:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/scripts.php?cat=Statistiques&amp;deb=10&amp;tri=NOM&amp;sens=ASC&quot;</span>,
+ 471:     <span class="ruby-value str">&quot;http://216.239.59.104/search?q=cache:-TzFlx2Y6p8J:www.scienceetviejunior.fr/svj.php%3FrubriqueSvj%3Dindex-gratuit-article%255Camp%3Bid_article%3D1206 science et vie junior&amp;hl=fr&amp;strip=1&quot;</span>,
+ 472:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient-ff&amp;ie=UTF-8&amp;rls=GGGL,GGGL:2006-39,GGGL:fr&amp;q=phpmyvisites&quot;</span>,
+ 473:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 474:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 475:     <span class="ruby-value str">&quot;http://www.duplication-video.com/supports-video.html&quot;</span>,
+ 476:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;aq=t&amp;hl=fr&amp;ie=UTF-8&amp;rlz=1T4GFRG_frMA215MA215&amp;q=t%c3%a9l%c3%a9charger logiciel  nintendo ds&quot;</span>,
+ 477:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;aq=t&amp;hl=fr&amp;ie=UTF-8&amp;rls=GGLG,GGLG:2005-39,GGLG:fr&amp;q=phpmyvisits&quot;</span>,
+ 478:     <span class="ruby-value str">&quot;http://www.idbleues.com/catalogue-materiel.php&quot;</span>,
+ 479:     <span class="ruby-value str">&quot;http://dadoun.net/&quot;</span>,
+ 480:     <span class="ruby-value str">&quot;http://rcma.free.fr/escort/2004.htm&quot;</span>,
+ 481:     <span class="ruby-value str">&quot;http://www.google.ca/search?hl=fr&amp;q=stats site web&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 482:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;rlz=1T4ADBR_frFR212FR212&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=phpmyvisites&amp;spell=1&quot;</span>,
+ 483:     <span class="ruby-value str">&quot;http://cmkh.net/?q=user/1&quot;</span>,
+ 484:     <span class="ruby-value str">&quot;http://www.souvenirducameroun.com/productssimple.html&quot;</span>,
+ 485:     <span class="ruby-value str">&quot;http://www.epochtimes.com.ua/&quot;</span>,
+ 486:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;rlz=1T4GFRB_frFR206FR207&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=wiki licence application web&amp;spell=1&quot;</span>,
+ 487:     <span class="ruby-value str">&quot;http://www.pasdagence.com/&quot;</span>,
+ 488:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=The server encountered an internal error or misconfiguration and was unable to complete your request.&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 489:     <span class="ruby-value str">&quot;http://www.gea-erge.fr/&quot;</span>,
+ 490:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;meta=&quot;</span>,
+ 491:     <span class="ruby-value str">&quot;http://szex.szextra.hu/index.php&quot;</span>,
+ 492:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=mesure audience site&amp;hl=fr&amp;rls=GGLG,GGLG:2006-10,GGLG:fr&amp;start=10&amp;sa=N&quot;</span>,
+ 493:     <span class="ruby-value str">&quot;http://akatsuki.kurai.free.fr/site.php&quot;</span>,
+ 494:     <span class="ruby-value str">&quot;http://tw.search.yahoo.com/search?fr=fp-tab-web-t&amp;ei=UTF-8&amp;p=phpMyVisites&quot;</span>,
+ 495:     <span class="ruby-value str">&quot;http://www.google.com/search?client=safari&amp;rls=en&amp;q=phpmyvisites&amp;ie=UTF-8&amp;oe=UTF-8&quot;</span>,
+ 496:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 497:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;rls=GGIC,GGIC:1970--2,GGIC:fr&amp;q=related:www.free.fr/&quot;</span>,
+ 498:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=related:perso.orange.fr/resistances/lactonlesap/index.htm&quot;</span>,
+ 499:     <span class="ruby-value str">&quot;http://diskuse.jakpsatweb.cz/index.php?action=vthread&amp;forum=13&amp;topic=24403&quot;</span>,
+ 500:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/ullmanspage.php&quot;</span>,
+ 501:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=demande emploi mise %C3%A0 jour site internet&amp;btnG=Rechercher&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 502:     <span class="ruby-value str">&quot;http://www.juggletube.com/&quot;</span>,
+ 503:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;client=safari&amp;rls=fr&amp;q=statistique internet gratuit&amp;btnG=Rechercher&amp;lr=&quot;</span>,
+ 504:     <span class="ruby-value str">&quot;http://www.google.com/search?q=www.free.fr coppermine &amp;rls=com.microsoft:fr:IE-SearchBox&amp;ie=UTF-8&amp;oe=UTF-8&amp;sourceid=ie7&amp;rlz=1I7SKPB&quot;</span>,
+ 505:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 506:     <span class="ruby-value str">&quot;http://www.agilav.fr/DepartementReconditionnement.html&quot;</span>,
+ 507:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 508:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;q=statistiques site&amp;lr=lang_fr&quot;</span>,
+ 509:     <span class="ruby-value str">&quot;http://www.librairie-portugaise.com/&quot;</span>,
+ 510:     <span class="ruby-value str">&quot;http://www.raleigh-northcarolina.biz/search/Slippage.html&quot;</span>,
+ 511:     <span class="ruby-value str">&quot;http://blog-perso.onzeweb.info/2006/05/06/wordpress-phpmyvisites-10/&quot;</span>,
+ 512:     <span class="ruby-value str">&quot;http://starclubbing.com/&quot;</span>,
+ 513:     <span class="ruby-value str">&quot;http://www.gastonspectacles.com/?gclid=COve_eGmkIsCFQIvlAodV2mvSQ&quot;</span>,
+ 514:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/2677/0/&quot;</span>,
+ 515:     <span class="ruby-value str">&quot;http://www.google.com/search?client=safari&amp;rls=fr&amp;q=phpmyvisites&amp;ie=UTF-8&amp;oe=UTF-8&quot;</span>,
+ 516:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=smart&amp;bhv=web_fr&amp;rdata=GOOGLE&amp;logid=2354200001174838174938809&amp;keap=28&amp;prevnbans=10&amp;ap=4&quot;</span>,
+ 517:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/ullmanspage.php&quot;</span>,
+ 518:     <span class="ruby-value str">&quot;http://iut-rcc.univ-reims.fr/accueil.php?menu=5&amp;lang=fr&quot;</span>,
+ 519:     <span class="ruby-value str">&quot;http://www.industriespionage.net/main/?page_id=4&quot;</span>,
+ 520:     <span class="ruby-value str">&quot;http://www.ethicall-telecom.fr/ect_webcount/&quot;</span>,
+ 521:     <span class="ruby-value str">&quot;http://www.google.co.ma/search?hl=fr&amp;q=creer un sites web gratuit&amp;meta=&quot;</span>,
+ 522:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php?t=rview&amp;goto=13676&quot;</span>,
+ 523:     <span class="ruby-value str">&quot;http://www.google.com/search?client=opera&amp;rls=en&amp;q=phpmyvisites&amp;sourceid=opera&amp;ie=utf-8&amp;oe=utf-8&quot;</span>,
+ 524:     <span class="ruby-value str">&quot;http://127.0.0.1/www.info-distrib.fr/?sct=liste&amp;url=carte_mere.htm&quot;</span>,
+ 525:     <span class="ruby-value str">&quot;http://www.google.ch/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=6Y&amp;q=statistiques web&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 526:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;aq=t&amp;hl=fr&amp;ie=UTF-8&amp;rls=GFRD,GFRD:2007-09,GFRD:fr&amp;q=phpmyvisits&quot;</span>,
+ 527:     <span class="ruby-value str">&quot;http://www.nuitpourpre.net/leblog/index.php/?q=&quot;</span>,
+ 528:     <span class="ruby-value str">&quot;http://www.sex974.com/goodies.php&quot;</span>,
+ 529:     <span class="ruby-value str">&quot;http://beet.ddl.free.fr/index.php?id=05&quot;</span>,
+ 530:     <span class="ruby-value str">&quot;http://sex974.com/abonnement.php&quot;</span>,
+ 531:     <span class="ruby-value str">&quot;http://www.revolunet.com/sites.utiles.asp?Toutes-Statistiques%20PHP/MySQL&quot;</span>,
+ 532:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 533:     <span class="ruby-value str">&quot;http://www.opensourcescripts.com/dir/PHP/Web_Traffic_Analysis/297.html&quot;</span>,
+ 534:     <span class="ruby-value str">&quot;http://www.google.com/search?sourceid=gmail&amp;q=phpmyvisites&quot;</span>,
+ 535:     <span class="ruby-value str">&quot;http://www.google.es/search?hl=es&amp;q=download simsun.ttc&amp;btnG=B%C3%BAsqueda&amp;meta=&quot;</span>,
+ 536:     <span class="ruby-value str">&quot;http://www.raleigh-northcarolina.biz/search/May.html&quot;</span>,
+ 537:     <span class="ruby-value str">&quot;http://cm5.free.fr/index.htm&quot;</span>,
+ 538:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=ps&amp;q=php my stat&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 539:     <span class="ruby-value str">&quot;http://www.gsm-wifi.net/index.php?option=com_frontpage&amp;Itemid=1&quot;</span>,
+ 540:     <span class="ruby-value str">&quot;http://search.msn.fr/results.aspx?q=logiciel gratuit&amp;FORM=MSN6B&amp;lang=fr-fr&amp;cp=1252&quot;</span>,
+ 541:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=fJq&amp;q=stats phpmyvisite&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 542:     <span class="ruby-value str">&quot;http://www.google.com/search?client=safari&amp;rls=fr-fr&amp;q=php statistics&amp;ie=UTF-8&amp;oe=UTF-8&quot;</span>,
+ 543:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;q=d%C3%A9mo&amp;btnG=Recherche Google&amp;lr=&quot;</span>,
+ 544:     <span class="ruby-value str">&quot;http://ebw2.be/Saint-Joseph_Tubize/STJoseph.html&quot;</span>,
+ 545:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/phpmv2/&quot;</span>,
+ 546:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=aNq&amp;q=php typer les m%C3%A9thodes int string&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 547:     <span class="ruby-value str">&quot;http://www.google.com/search?client=opera&amp;rls=en&amp;q=phpmyvisites&amp;sourceid=opera&amp;ie=utf-8&amp;oe=utf-8&quot;</span>,
+ 548:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 549:     <span class="ruby-value str">&quot;http://www.castelpourpre.com/maison.html&quot;</span>,
+ 550:     <span class="ruby-value str">&quot;http://www.castelpourpre.com/maison.html&quot;</span>,
+ 551:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=phpmv2&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 552:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=SCRIPT STATISTIQUE&amp;hl=fr&amp;pwst=1&amp;start=10&amp;sa=N&quot;</span>,
+ 553:     <span class="ruby-value str">&quot;http://www.antennereunion.fr/rubrique.php3?id_rubrique=41&amp;debut_page=432&quot;</span>,
+ 554:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 555:     <span class="ruby-value str">&quot;http://www.0-8.biz/&quot;</span>,
+ 556:     <span class="ruby-value str">&quot;http://www.kess.snug.pl/&quot;</span>,
+ 557:     <span class="ruby-value str">&quot;http://www.google.ch/search?q=statistiques gratuites site web&amp;start=0&amp;ie=utf-8&amp;oe=utf-8&amp;client=firefox-a&amp;rls=org.mozilla:fr:official&quot;</span>,
+ 558:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=tout les site gratuit logiciel&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 559:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 560:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=phpmyvisites&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 561:     <span class="ruby-value str">&quot;http://www.animal-virtuel.com/stats/phpmyvisites.php&quot;</span>,
+ 562:     <span class="ruby-value str">&quot;http://www.fruits-basket-temple.com/index.php?section=anime&quot;</span>,
+ 563:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;meta=&quot;</span>,
+ 564:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 565:     <span class="ruby-value str">&quot;http://www.pilarcanalda.com/inici/index.php&quot;</span>,
+ 566:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 567:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;q=phpmyvisites&amp;btnG=Recherche Google&amp;lr=&quot;</span>,
+ 568:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 569:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 570:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 571:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;q=PhpMyVisit&amp;btnG=Rechercher&amp;lr=lang_fr&quot;</span>,
+ 572:     <span class="ruby-value str">&quot;http://info-afrique.be/&quot;</span>,
+ 573:     <span class="ruby-value str">&quot;http://www.jazzentete.com/&quot;</span>,
+ 574:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fwww.annuaire-telephone-portable.com%2Fsat%2Fdetection.php|onclick|L0&quot;</span>,
+ 575:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/2613/0/&quot;</span>,
+ 576:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=logiciel gratuit open source&amp;meta=&quot;</span>,
+ 577:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 578:     <span class="ruby-value str">&quot;http://spiritangeldesign.free.fr/index.php?p=credit&quot;</span>,
+ 579:     <span class="ruby-value str">&quot;http://generation1.free.fr/rubriques.htm&quot;</span>,
+ 580:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=outil informatique et statistique&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 581:     <span class="ruby-value str">&quot;http://www.commentcamarche.net/forum/affich-2802486-hebergement-et-statistiques-de-visites&quot;</span>,
+ 582:     <span class="ruby-value str">&quot;http://www.google.be/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 583:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=phpmyvisites&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 584:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1497/0/&quot;</span>,
+ 585:     <span class="ruby-value str">&quot;http://www.nili.be/&quot;</span>,
+ 586:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=fr&amp;client=safari&amp;rls=fr&amp;q=statistiques php&amp;btnG=Rechercher&amp;lr=&quot;</span>,
+ 587:     <span class="ruby-value str">&quot;http://www.parisrandovelo.com/forum/viewtopic.php?t=605&amp;start=15&quot;</span>,
+ 588:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=demo&amp;btnG=Recherche Google&amp;meta=cr%3DcountryFR&quot;</span>,
+ 589:     <span class="ruby-value str">&quot;http://natation.privas.dyndns.org/modules/intro_cnp/&quot;</span>,
+ 590:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 591:     <span class="ruby-value str">&quot;http://www.digigasin.ch/product_info.php?products_id=2214&amp;osCsid=70959f3746c784495a5032cbb79dbc3d&quot;</span>,
+ 592:     <span class="ruby-value str">&quot;http://msdgmedia.free.fr/Multimedia/DessinerPlume/index.htm&quot;</span>,
+ 593:     <span class="ruby-value str">&quot;http://msdgmedia.free.fr/Multimedia/DessinerPlume/index.htm&quot;</span>,
+ 594:     <span class="ruby-value str">&quot;http://fr.ask.com/web?q=gratuit&amp;l=dir&amp;o=1124&quot;</span>,
+ 595:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=r2q&amp;q=fichier contenant les sites visit%C3%A9s&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 596:     <span class="ruby-value str">&quot;http://www.lorajos.nl/&quot;</span>,
+ 597:     <span class="ruby-value str">&quot;http://www.rugby13montpellier.com/shop.php&quot;</span>,
+ 598:     <span class="ruby-value str">&quot;http://www.beautediscount.com/&quot;</span>,
+ 599:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla%3Afr%3Aofficial&amp;q=php site web&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 600:     <span class="ruby-value str">&quot;http://www.forum-newbeetle.fr/&quot;</span>,
+ 601:     <span class="ruby-value str">&quot;http://france.catsfamily.net/main/coupsdecoeur.html&quot;</span>,
+ 602:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 603:     <span class="ruby-value str">&quot;http://www.phpscripts-fr.net/scripts/derniers.php&quot;</span>,
+ 604:     <span class="ruby-value str">&quot;http://generation1.free.fr&quot;</span>,
+ 605:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=kwB&amp;q=free statistiques&amp;btnG=Rechercher&amp;meta=cr%3DcountryFR&quot;</span>,
+ 606:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=tout les site gratuit logiciel&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 607:     <span class="ruby-value str">&quot;http://forum.tvsport.ro//index.php?s=d2589da3f1f7173e22d695934e8fe0f4&amp;act=Forward&amp;f=92&amp;t=2053&quot;</span>,
+ 608:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=creation site libre OR open source&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 609:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/t/1302/0/&quot;</span>,
+ 610:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=unable open&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 611:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=statistiques sites&amp;meta=&quot;</span>,
+ 612:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/requirements.html&quot;</span>,
+ 613:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 614:     <span class="ruby-value str">&quot;http://www.satellitemania.it/&quot;</span>,
+ 615:     <span class="ruby-value str">&quot;http://www.google.com.tr/search?hl=tr&amp;q=phpmyvisites&amp;meta=&quot;</span>,
+ 616:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 617:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=d%C3%A9mo &amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 618:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;hl=fr&amp;ie=UTF-8&amp;rlz=1T4GGIC_frFR215&amp;q=demo&quot;</span>,
+ 619:     <span class="ruby-value str">&quot;http://www.amnestyinternational.be/shopping/page_101.php&quot;</span>,
+ 620:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmv2&amp;meta=&quot;</span>,
+ 621:     <span class="ruby-value str">&quot;http://www.google.fr/custom?hl=fr&amp;ie=ISO-8859-1&amp;oe=ISO-8859-1&amp;client=pub-4902541541856011&amp;cof=FORID%3A1%3BGL%3A1%3BLBGC%3A336699%3BLC%3A%230000ff%3BVLC%3A%23663399%3BGFNT%3A%230000ff%3BGIMP%3A%230000ff%3BDIV%3A%23336699%3B&amp;domains=phpmyvisites.net&amp;q=installation&amp;btnG=Rechercher&amp;sitesearch=phpmyvisites.net&amp;meta=&quot;</span>,
+ 622:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 623:     <span class="ruby-value str">&quot;http://www.google.co.ma/search?hl=fr&amp;q=related:search1-1.free.fr/&quot;</span>,
+ 624:     <span class="ruby-value str">&quot;http://www.google.co.ma/search?hl=fr&amp;q=related:search1-1.free.fr/&quot;</span>,
+ 625:     <span class="ruby-value str">&quot;http://www.szextra.hu/hir/?id=201&amp;r=5&quot;</span>,
+ 626:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;ned=&amp;q=type de serveur utilis%C3%A9 par free&amp;btnmeta%3Dsearch%3Dsearch=Rechercher sur le Web&quot;</span>,
+ 627:     <span class="ruby-value str">&quot;http://www.canner-evasion.com/&quot;</span>,
+ 628:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/itchyscratchy.php&quot;</span>,
+ 629:     <span class="ruby-value str">&quot;http://googeli.dynalias.com/&quot;</span>,
+ 630:     <span class="ruby-value str">&quot;http://aj.garcia.free.fr/index10.htm&quot;</span>,
+ 631:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;hl=fr&amp;ie=UTF-8&amp;rls=GGIH,GGIH:2006-51,GGIH:fr&amp;q=d%c3%a9mo&quot;</span>,
+ 632:     <span class="ruby-value str">&quot;http://www.le-phoenix.fr/&quot;</span>,
+ 633:     <span class="ruby-value str">&quot;http://www.bmcharmilles.fr/fenetres.php?menu=3&quot;</span>,
+ 634:     <span class="ruby-value str">&quot;http://www.nass-collection.com/visite/index.php?site=1&amp;date=2007-03-24&amp;period=1&amp;mod=view_referers&quot;</span>,
+ 635:     <span class="ruby-value str">&quot;http://www.neutrinium238.com/tutoriaux/photoshop/index.php?id=3&quot;</span>,
+ 636:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/&quot;</span>,
+ 637:     <span class="ruby-value str">&quot;http://www.annees-laser.com/Page/Boutique/Boutique.aspx&quot;</span>,
+ 638:     <span class="ruby-value str">&quot;http://www.wifeo.com/membre-actualite.php?article=32-phpmyvisites--statistiques-gratuite&quot;</span>,
+ 639:     <span class="ruby-value str">&quot;http://www.magalieforever.com/videos/clips.html&quot;</span>,
+ 640:     <span class="ruby-value str">&quot;http://192.168.1.1/~bureau3/Musica/Musiques.php&quot;</span>,
+ 641:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 642:     <span class="ruby-value str">&quot;http://www.antigone-net.net/index.php?option=com_content&amp;task=section&amp;id=5&amp;Itemid=79&quot;</span>,
+ 643:     <span class="ruby-value str">&quot;http://www.gonthier-be.com/qui.htm&quot;</span>,
+ 644:     <span class="ruby-value str">&quot;http://www.deosjuggling.fr/&quot;</span>,
+ 645:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=communaute de pratique open source&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 646:     <span class="ruby-value str">&quot;http://www.google.com/search?client=safari&amp;rls=fr&amp;q=phpmyvisites&amp;ie=UTF-8&amp;oe=UTF-8&quot;</span>,
+ 647:     <span class="ruby-value str">&quot;http://www.sex974.com/freetour.php?q=solo&quot;</span>,
+ 648:     <span class="ruby-value str">&quot;http://blog-perso.onzeweb.info/developpement/wp-phpmyvisites&quot;</span>,
+ 649:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=related:perso.orange.fr/laurent.cleon/&quot;</span>,
+ 650:     <span class="ruby-value str">&quot;http://www.google.be/search?q=les sites web les plus visit%C3%A9s&amp;hl=fr&amp;rls=SKPB,SKPB:2006-40,SKPB:fr&amp;start=20&amp;sa=N&quot;</span>,
+ 651:     <span class="ruby-value str">&quot;http://tourdumonde.cochisette.com/index2.php&quot;</span>,
+ 652:     <span class="ruby-value str">&quot;http://www.lespaladins.com/fr_accueil.php&quot;</span>,
+ 653:     <span class="ruby-value str">&quot;http://diskuse.jakpsatweb.cz/index.php?action=vthread&amp;forum=13&amp;topic=24403&quot;</span>,
+ 654:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=getthunderbird.com&amp;btnG=Rechercher&amp;meta=cr%3DcountryFR&quot;</span>,
+ 655:     <span class="ruby-value str">&quot;http://www.google.com/search?sourceid=navclient&amp;ie=UTF-8&amp;rls=RNWE,RNWE:2004-16,RNWE:en&amp;q=phpmyvisites&quot;</span>,
+ 656:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=php statistiques&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 657:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/m/15653/0/?srch=mot de passe&quot;</span>,
+ 658:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 659:     <span class="ruby-value str">&quot;http://www.tendanceouest.com/radiolive.htm&quot;</span>,
+ 660:     <span class="ruby-value str">&quot;http://www.puget-passion.fr/Champignon/lamorille.htm&quot;</span>,
+ 661:     <span class="ruby-value str">&quot;http://www.google.com/search?client=safari&amp;rls=fr-fr&amp;q=phpmyvisites&amp;ie=UTF-8&amp;oe=UTF-8&quot;</span>,
+ 662:     <span class="ruby-value str">&quot;http://smmobadix.free.fr/index.php?&quot;</span>,
+ 663:     <span class="ruby-value str">&quot;http://aide-a-la-navigation.orange.fr/process?key=0019f5a5de969bfa7df5c354e6fa71e7cac&quot;</span>,
+ 664:     <span class="ruby-value str">&quot;http://www.swalif.net/softs/showthread.php?t=146114&quot;</span>,
+ 665:     <span class="ruby-value str">&quot;http://fr.search.yahoo.com/search?ei=UTF-8&amp;p=google&amp;meta=vl%3D&amp;ybs=0&amp;fl=1&amp;vl=&amp;pstart=1&amp;fr=logout&amp;b=61&quot;</span>,
+ 666:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=9GD&amp;q=phpmyvisites&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 667:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;channel=s&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=nds&amp;q=Unable to open &amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 668:     <span class="ruby-value str">&quot;http://search.live.com/results.aspx?q=logiciel gratuit&amp;mkt=fr-fr&amp;FORM=LIVSOP&amp;go.x=0&amp;go.y=6&quot;</span>,
+ 669:     <span class="ruby-value str">&quot;http://www.furia-metal.com/&quot;</span>,
+ 670:     <span class="ruby-value str">&quot;http://www.posicionanet.com/garantias.html&quot;</span>,
+ 671:     <span class="ruby-value str">&quot;http://sos.primavista.net/Mail-Senden.93.0.html&quot;</span>,
+ 672:     <span class="ruby-value str">&quot;http://www.poeta.cz/&quot;</span>,
+ 673:     <span class="ruby-value str">&quot;http://diskuse.jakpsatweb.cz/index.php?action=vthread&amp;forum=13&amp;topic=24403&quot;</span>,
+ 674:     <span class="ruby-value str">&quot;http://localhost/&quot;</span>,
+ 675:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisits&amp;sourceid=navclient-ff&amp;ie=UTF-8&amp;rlz=1B2GGGL_frFR207FR207&quot;</span>,
+ 676:     <span class="ruby-value str">&quot;http://www.google.com/search?q=php nuke tracker&amp;rls=com.microsoft:fr-ca&amp;ie=UTF-8&amp;oe=UTF-8&amp;startIndex=&amp;startPage=1&quot;</span>,
+ 677:     <span class="ruby-value str">&quot;http://www.stumbleupon.com/refer.php?url=http%3A%2F%2Fwww.phpmyvisites.net%2F&quot;</span>,
+ 678:     <span class="ruby-value str">&quot;http://www.lenautilus.net/nautilusgb/galerie.html&quot;</span>,
+ 679:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=logiciel visite site internet&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 680:     <span class="ruby-value str">&quot;http://universsimpson.free.fr/ullmanspage.php&quot;</span>,
+ 681:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;rlz=1T4GFRG_frFR212FR212&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=h%C3%A9bergement sur free&amp;spell=1&quot;</span>,
+ 682:     <span class="ruby-value str">&quot;http://www.google.com/search?hl=en&amp;safe=off&amp;client=firefox-a&amp;rls=org.mozilla:en-US:official&amp;hs=SOY&amp;sa=X&amp;oi=spell&amp;resnum=0&amp;ct=result&amp;cd=1&amp;q=phpmyvisites&amp;spell=1&quot;</span>,
+ 683:     <span class="ruby-value str">&quot;http://lesemouvus.jeun.fr/index.htm?sid=ea0882e54624b43fa556e463c5ad299f&quot;</span>,
+ 684:     <span class="ruby-value str">&quot;http://www.google.fr/search?sourceid=navclient&amp;ie=UTF-8&amp;rlz=1T4GGLJ_enBE215BE215&amp;q=DEMO&quot;</span>,
+ 685:     <span class="ruby-value str">&quot;http://82.225.141.143/&quot;</span>,
+ 686:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=DEMO&amp;meta=&quot;</span>,
+ 687:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/telechargements.html&quot;</span>,
+ 688:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/forums/index.php/f/15/0/&quot;</span>,
+ 689:     <span class="ruby-value str">&quot;http://www.scat-hell.com/&quot;</span>,
+ 690:     <span class="ruby-value str">&quot;http://flouz.info/&quot;</span>,
+ 691:     <span class="ruby-value str">&quot;http://krimhlab.free.fr/index.php?main=gallerie&amp;menu_h=menuhga&quot;</span>,
+ 692:     <span class="ruby-value str">&quot;http://www.lordphoenix.info/logiciels/&quot;</span>,
+ 693:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fwww.saxy.fr%2F|onclick|L11&quot;</span>,
+ 694:     <span class="ruby-value str">&quot;http://www.commecadujapon.com/php/photo.php?photofile=20060110.1300.1.jpg&amp;titre=Shinseijin - nouvelle adulte&quot;</span>,
+ 695:     <span class="ruby-value str">&quot;http://www.jeffroy.eu/index2.php&quot;</span>,
+ 696:     <span class="ruby-value str">&quot;http://forum.spip.org/fr_174961.html?var_recherche=statistiques&quot;</span>,
+ 697:     <span class="ruby-value str">&quot;http://127.0.0.1/&quot;</span>,
+ 698:     <span class="ruby-value str">&quot;http://www.google.de/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:de:official&amp;client=firefox-a&quot;</span>,
+ 699:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 700:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=cr%C3%A9er  facilement un site web en php&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 701:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/?_RW_=http%3A%2F%2Fwww.diskutime.com%2Fdisk%2Fkerkopostime.php%3Fanetari%3DBlici%23bottom|onclick|L128&quot;</span>,
+ 702:     <span class="ruby-value str">&quot;http://www.phpmyvisites.net/documentation/index.php?title=Configuration&amp;oldid=1550&quot;</span>,
+ 703:     <span class="ruby-value str">&quot;http://www.google.fr/custom?domains=http%3A%2F%2Fwww.autourdecheznous.info&amp;q=ring bourguesan ffb&amp;sa=Recherche Google&amp;sitesearch=&amp;client=pub-6772093135347263&amp;forid=1&amp;ie=ISO-8859-1&amp;oe=ISO-8859-1&amp;cof=GALT%3A%23008000%3BGL%3A1%3BDIV%3A%23E6E6E6%3BVLC%3A663399%3BAH%3Acenter%3BBGC%3AFFFFFF%3BLBGC%3A336699%3BALC%3A0000FF%3BLC%3A0000FF%3BT%3A000000%3BGFNT%3A0000FF%3BGIMP%3A0000FF%3BFORID%3A11&amp;hl=fr&amp;ad=w9&amp;num=10&quot;</span>,
+ 704:     <span class="ruby-value str">&quot;http://www.commentcamarche.net/forum/affich-2802486-hebergement-et-statistiques-de-visites&quot;</span>,
+ 705:     <span class="ruby-value str">&quot;http://www.archives.rennes.fr/fonds/affichedetailfig.php?cot=100Fi378&quot;</span>,
+ 706:     <span class="ruby-value str">&quot;http://www.pechemouchecorse.com/phpBB2-fr/search.php&quot;</span>,
+ 707:     <span class="ruby-value str">&quot;http://www.autooptions.fr/catalogue_viewprod_1360_0_9_0_0.html&quot;</span>,
+ 708:     <span class="ruby-value str">&quot;http://www.nalao.com/&quot;</span>,
+ 709:     <span class="ruby-value str">&quot;http://www.mandrivalinux-online.eu/phpmv2/index.php?site=1&amp;date=2007-03-25&amp;period=1&amp;mod=view_referers&quot;</span>,
+ 710:     <span class="ruby-value str">&quot;http://www.google.be/search?hl=fr&amp;q=statistiques web phpmyvisites&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 711:     <span class="ruby-value str">&quot;http://fr.search.yahoo.com/search?p=t%C3%A9l%C3%A9charger cv gratuit&amp;rs=1&amp;fr2=rs-top&amp;ei=UTF-8&amp;meta=vl%3D&amp;ybs=0&amp;fl=1&amp;vl=&amp;fr=yfp-t-501&quot;</span>,
+ 712:     <span class="ruby-value str">&quot;http://www.arlon-is-on.be/&quot;</span>,
+ 713:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=t%C3%A9l%C3%A9charger gratuit de logiciel de cr%C3%A9ation de site internet en php&amp;meta=&quot;</span>,
+ 714:     <span class="ruby-value str">&quot;http://www.malta.poznan.pl/&quot;</span>,
+ 715:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisits&quot;</span>,
+ 716:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 717:     <span class="ruby-value str">&quot;http://www.phpmyvisites.us/&quot;</span>,
+ 718:     <span class="ruby-value str">&quot;http://www.mfhg.org/showmedia.php?mediaID=82&quot;</span>,
+ 719:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=phpmyvisites&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 720:     <span class="ruby-value str">&quot;http://www.animule.net/php/commentaires.php?id=90&quot;</span>,
+ 721:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=Fatal error%3A Call to undefined function%3A&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 722:     <span class="ruby-value str">&quot;http://www.google.fr/custom?hl=fr&amp;ie=ISO-8859-1&amp;oe=ISO-8859-1&amp;client=pub-4902541541856011&amp;cof=FORID%3A1%3BGL%3A1%3BLBGC%3A336699%3BLC%3A%230000ff%3BVLC%3A%23663399%3BGFNT%3A%230000ff%3BGIMP%3A%230000ff%3BDIV%3A%23336699%3B&amp;domains=phpmyvisites.net&amp;q=traduction&amp;btnG=Rechercher&amp;sitesearch=phpmyvisites.net&amp;meta=lr%3Dlang_fr&quot;</span>,
+ 723:     <span class="ruby-value str">&quot;http://www.webrankinfo.com/outils/echanges-de-liens.php?rub=res&quot;</span>,
+ 724:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=web analyse php&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:fr:official&amp;client=firefox-a&quot;</span>,
+ 725:     <span class="ruby-value str">&quot;http://www.donuts-models.com/pages/elite_pro.html&quot;</span>,
+ 726:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=fichier traduction php&amp;meta=&quot;</span>,
+ 727:     <span class="ruby-value str">&quot;http://www.google.ch/search?hl=fr&amp;q=website statistique open source&amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 728:     <span class="ruby-value str">&quot;http://www.saxy.fr/&quot;</span>,
+ 729:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?sev=&amp;rtype=kw&amp;profil=deskbar_ora_h&amp;bhv=web_fr&amp;rdata=teste&quot;</span>,
+ 730:     <span class="ruby-value str">&quot;http://www.rendy.eu/odkazy/&quot;</span>,
+ 731:     <span class="ruby-value str">&quot;http://homeomath.imingo.net/annales_bacsti.htm&quot;</span>,
+ 732:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;hs=F7Z&amp;q=imagecreatefrompng gd&amp;btnG=Rechercher&amp;meta=&quot;</span>,
+ 733:     <span class="ruby-value str">&quot;http://www.google.fr/search?client=firefox-a&amp;rls=org.mozilla%3Afr%3Aofficial&amp;channel=s&amp;hl=fr&amp;q=phpmyvisites&amp;meta=&amp;btnG=Recherche Google&quot;</span>,
+ 734:     <span class="ruby-value str">&quot;http://www.jeremysumpter.info/view.php?lang=e&amp;flag=5&amp;page=pp-cp&amp;num=1&quot;</span>,
+ 735:     <span class="ruby-value str">&quot;http://events.idi.ntnu.no/mrc2007/organisation.php&quot;</span>,
+ 736:     <span class="ruby-value str">&quot;http://www.google.fr/search?q=modifier droit utilisateur mysql&amp;hl=fr&amp;start=20&amp;sa=N&quot;</span>,
+ 737:     <span class="ruby-value str">&quot;http://streaming.bpi.fr/bpi-visites/catalogue/phpmyvisites.php&quot;</span>,
+ 738:     <span class="ruby-value str">&quot;http://www.forum-newbeetle.fr/recent.php&quot;</span>,
+ 739:     <span class="ruby-value str">&quot;http://www.captainnelson.com/archives/89&quot;</span>,
+ 740:     <span class="ruby-value str">&quot;http://insousciance.expose.free.fr/decidela/index.php&quot;</span>,
+ 741:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=phpmyvisites&amp;meta=&quot;</span>,
+ 742:     <span class="ruby-value str">&quot;http://www.google.fr/search?hl=fr&amp;q=guide de communaute arabe open source &amp;btnG=Recherche Google&amp;meta=&quot;</span>,
+ 743:     <span class="ruby-value str">&quot;http://donbass.free.fr/radio/profile.php?id=210&quot;</span>,
+ 744:     <span class="ruby-value str">&quot;http://www.psn3.com/Cerisier,Evans/fiche.html&quot;</span>,
+ 745:     <span class="ruby-value str">&quot;http://aide-a-la-navigation.orange.fr/process?key=002e98505757dcabd69a8a215dfe57cf9c6&quot;</span>,
+ 746:     <span class="ruby-value str">&quot;http://search.ke.voila.fr/S/orange?rtype=kw&amp;profil=smart&amp;bhv=web_fr&amp;kw= &amp;rdata=t%E9l%E9chargements&quot;</span>,
+ 747:     <span class="ruby-value str">&quot;http://www.epochtimes.ru/&quot;</span>,
+ 748:     <span class="ruby-value str">&quot;http://www.poterie-bois.com/petits animaux/chats&quot;</span>,
+ 749:     <span class="ruby-value str">&quot;http://forum.hardware.fr/hfr/WindowsSoftware/ajout-compteur-site-sujet_172698_1.htm&quot;</span>,
+ 750:     <span class="ruby-value str">&quot;http://www.gougueule.com/Spongestats&quot;</span>
+ 751:     ]
+ 752: 
+ 753:     <span class="ruby-identifier">accept_languages</span> = 
+ 754:     [
+ 755:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 756:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 757:     <span class="ruby-value str">&quot;fr-FR,fr;q=0.9,en;q=&quot;</span>,
+ 758:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 759:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 760:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 761:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 762:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 763:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 764:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 765:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 766:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 767:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 768:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 769:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 770:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 771:     <span class="ruby-value str">&quot;fr-ch&quot;</span>,
+ 772:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 773:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 774:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 775:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 776:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 777:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 778:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 779:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 780:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 781:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 782:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 783:     <span class="ruby-value str">&quot;fr-ca&quot;</span>,
+ 784:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 785:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 786:     <span class="ruby-value str">&quot;de&quot;</span>,
+ 787:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 788:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 789:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 790:     <span class="ruby-value str">&quot;fr-fr&quot;</span>,
+ 791:     <span class="ruby-value str">&quot;tr&quot;</span>,
+ 792:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+ 793:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 794:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 795:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 796:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 797:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 798:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 799:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 800:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 801:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 802:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 803:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 804:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 805:     <span class="ruby-value str">&quot;en&quot;</span>,
+ 806:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 807:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 808:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 809:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 810:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 811:     <span class="ruby-value str">&quot;hu-hu,hu;q=0.8,en-us&quot;</span>,
+ 812:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 813:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 814:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 815:     <span class="ruby-value str">&quot;cs,en-us;q=0.7,en;q=&quot;</span>,
+ 816:     <span class="ruby-value str">&quot;en,fr;q=0.91,de;q=0.&quot;</span>,
+ 817:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 818:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 819:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 820:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 821:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 822:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 823:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 824:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 825:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 826:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 827:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 828:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 829:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 830:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 831:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 832:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 833:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 834:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 835:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 836:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+ 837:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 838:     <span class="ruby-value str">&quot;it-it,it;q=0.8,en-us&quot;</span>,
+ 839:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 840:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 841:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 842:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 843:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 844:     <span class="ruby-value str">&quot;fr-fr&quot;</span>,
+ 845:     <span class="ruby-value str">&quot;el,fi;q=0.5&quot;</span>,
+ 846:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 847: 
+ 848:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 849:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 850:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 851:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 852:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 853:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 854: 
+ 855:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 856:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 857:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 858:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 859:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 860:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 861:     <span class="ruby-value str">&quot;fr,de-ch;q=0.5&quot;</span>,
+ 862:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 863:     <span class="ruby-value str">&quot;fr-ch&quot;</span>,
+ 864:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 865:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 866:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 867:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 868:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 869:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 870:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 871:     <span class="ruby-value str">&quot;fr-fr,fr;q=0.5&quot;</span>,
+ 872:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 873:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 874:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 875:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 876:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 877:     <span class="ruby-value str">&quot;fr-ca&quot;</span>,
+ 878:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 879:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 880:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 881:     <span class="ruby-value str">&quot;en-gb&quot;</span>,
+ 882:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 883:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 884:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 885:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 886:     <span class="ruby-value str">&quot;en,fr;q=0.8,fr-fr;q=&quot;</span>,
+ 887:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 888:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 889:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 890:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 891:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 892:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 893:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 894:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 895:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 896:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 897:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 898:     <span class="ruby-value str">&quot;pl&quot;</span>,
+ 899:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 900:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 901:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+ 902:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 903:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 904:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 905:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 906:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 907:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 908:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 909:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 910:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 911:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+ 912:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 913:     <span class="ruby-value str">&quot;de&quot;</span>,
+ 914:     <span class="ruby-value str">&quot;it&quot;</span>,
+ 915:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+ 916:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 917:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+ 918:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 919:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 920:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 921:     <span class="ruby-value str">&quot;fr, en&quot;</span>,
+ 922:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 923:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 924:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 925:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 926:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 927:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 928:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 929:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 930:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 931:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 932:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 933:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 934:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 935:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 936:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 937:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 938:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 939:     <span class="ruby-value str">&quot;fr,ar-dz;q=0.5&quot;</span>,
+ 940:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 941:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 942:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 943:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 944:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 945:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 946:     <span class="ruby-value str">&quot;pl,en-us;q=0.7,en;q=&quot;</span>,
+ 947:     <span class="ruby-value str">&quot;en-gb&quot;</span>,
+ 948:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 949:     <span class="ruby-value str">&quot;hu&quot;</span>,
+ 950:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 951:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 952:     <span class="ruby-value str">&quot;de-de,de;q=0.8,en-us&quot;</span>,
+ 953:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 954:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 955:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 956:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 957:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 958:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+ 959:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 960:     <span class="ruby-value str">&quot;fr-ch&quot;</span>,
+ 961:     <span class="ruby-value str">&quot;de&quot;</span>,
+ 962:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 963:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 964:     <span class="ruby-value str">&quot;bg&quot;</span>,
+ 965:     <span class="ruby-value str">&quot;fr,ar-ma;q=0.5&quot;</span>,
+ 966:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 967:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 968:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+ 969: 
+ 970:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 971:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 972:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 973:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 974:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 975:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 976:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+ 977:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 978:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 979:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 980:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 981:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 982:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 983:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 984:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 985:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 986:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 987:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 988:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 989:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 990:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 991:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 992:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 993:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+ 994:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 995:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 996:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 997:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 998:     <span class="ruby-value str">&quot;fr&quot;</span>,
+ 999:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1000:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1001:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1002:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1003:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1004:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1005:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1006:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1007:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1008:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1009:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1010:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1011:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1012:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1013:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1014:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1015:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1016:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1017:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1018:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1019:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1020:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+1021:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1022:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1023:     <span class="ruby-value str">&quot;fr-fr, fr;q=0.50&quot;</span>,
+1024:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1025:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1026:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1027:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1028:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1029:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1030:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1031:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1032:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1033:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1034:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1035:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1036:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1037:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1038:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1039:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1040:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1041:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1042:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1043:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1044:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1045:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1046:     <span class="ruby-value str">&quot;da-dk&quot;</span>,
+1047:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1048:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1049:     <span class="ruby-value str">&quot;he&quot;</span>,
+1050:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1051:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1052:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1053:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1054:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1055:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1056:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1057:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1058:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1059:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1060:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1061:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1062:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1063:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1064:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1065:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1066:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1067:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1068:     <span class="ruby-value str">&quot;fr-ca&quot;</span>,
+1069:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1070:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1071:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1072:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1073:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1074:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1075:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1076:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1077:     <span class="ruby-value str">&quot;zh-cn&quot;</span>,
+1078:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1079:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1080:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1081:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1082:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1083:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1084:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1085:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1086:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1087:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1088:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1089:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1090:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1091:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1092:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1093:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1094:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1095:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1096:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1097:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1098:     <span class="ruby-value str">&quot;it&quot;</span>,
+1099:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1100:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1101:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1102:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1103:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1104:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1105:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1106:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1107:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1108:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1109:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1110:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1111:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1112:     <span class="ruby-value str">&quot;fr-ch&quot;</span>,
+1113:     <span class="ruby-value str">&quot;cs,en-us;q=0.7,en;q=&quot;</span>,
+1114:     <span class="ruby-value str">&quot;th&quot;</span>,
+1115:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1116:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1117:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1118:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1119:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1120:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1121:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1122:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1123:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1124:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1125:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1126:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+1127:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1128:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1129:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1130:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1131:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1132:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1133:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1134:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1135:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1136:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1137:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1138:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1139:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.5&quot;</span>,
+1140:     <span class="ruby-value str">&quot;cs,en-us;q=0.7,en;q=&quot;</span>,
+1141:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1142:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1143:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1144:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+1145:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1146:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1147:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1148:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1149:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1150:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1151:     <span class="ruby-value str">&quot;ar-bh&quot;</span>,
+1152:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1153:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1154:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1155:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1156:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1157:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1158:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1159:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+1160:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1161:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1162:     <span class="ruby-value str">&quot;fr-ca&quot;</span>,
+1163:     <span class="ruby-value str">&quot;fr-FR,fr;q=0.9,en;q=&quot;</span>,
+1164:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1165:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1166:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1167:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+1168:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1169:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1170:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1171:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1172:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1173:     <span class="ruby-value str">&quot;fr-be,fr;q=0.5&quot;</span>,
+1174:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1175:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1176:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1177:     <span class="ruby-value str">&quot;en-us&quot;</span>,
+1178:     <span class="ruby-value str">&quot;fr-fr&quot;</span>,
+1179:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1180:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1181:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1182:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1183:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1184:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1185:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1186:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1187:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1188:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1189:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1190:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1191:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1192:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1193:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1194:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1195:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1196:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1197:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1198:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1199:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1200:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1201:     <span class="ruby-value str">&quot;fr-ca&quot;</span>,
+1202:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1203:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1204:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1205:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1206:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1207:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1208:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1209:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1210:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1211:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1212:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1213:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1214:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1215:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1216:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1217:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1218: 
+1219:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1220:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1221:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1222:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1223:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1224:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1225:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1226:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1227:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1228:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1229:     <span class="ruby-value str">&quot;fr-fr&quot;</span>,
+1230:     <span class="ruby-value str">&quot;tr&quot;</span>,
+1231:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1232:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1233:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1234:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1235:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1236:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1237:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1238:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1239:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1240:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1241:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1242:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1243:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1244:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1245:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1246:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1247:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1248:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1249:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1250:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1251:     <span class="ruby-value str">&quot;en-gb&quot;</span>,
+1252:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1253:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1254:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1255:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1256:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1257:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1258:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1259:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1260:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1261:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1262:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1263:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1264:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1265:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1266:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1267:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1268:     <span class="ruby-value str">&quot;fr-fr&quot;</span>,
+1269:     <span class="ruby-value str">&quot;es-es,es;q=0.8,en-us&quot;</span>,
+1270:     <span class="ruby-value str">&quot;fr,fr-fr;q=0.8,en-us&quot;</span>,
+1271:     <span class="ruby-value str">&quot;fr-be&quot;</span>,
+1272:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1273:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1274:     <span class="ruby-value str">&quot;en-us,en;q=0.5&quot;</span>,
+1275:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1276:     <span class="ruby-value str">&quot;fr&quot;</span>,
+1277:     <span class="ruby-value str">&quot;fr&quot;</span> 
+1278:     ]
+1279: 
+1280:     
+1281:     <span class="ruby-identifier">resolution</span> = [<span class="ruby-value str">&quot;1280x1024&quot;</span>, <span class="ruby-value str">&quot;1280x800&quot;</span> ,<span class="ruby-value str">&quot;1024x768&quot;</span> ,<span class="ruby-value str">&quot;1680x1050&quot;</span>      , <span class="ruby-value str">&quot;1440x900&quot;</span>]
+1282: 
+1283: 
+1284: 
+1285:      <span class="ruby-comment cmt"># get user settings informations</span>
+1286:      <span class="ruby-identifier">plugin_Flash</span>                         = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1287:      <span class="ruby-identifier">plugin_Director</span>      = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1288:      <span class="ruby-identifier">plugin_Quicktime</span>     = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1289:      <span class="ruby-identifier">plugin_RealPlayer</span>   = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1290:      <span class="ruby-identifier">plugin_Pdf</span>                             = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1291:      <span class="ruby-identifier">plugin_WindowsMedia</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1292:      <span class="ruby-identifier">plugin_Java</span>                          = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1293:      <span class="ruby-identifier">plugin_Cookie</span>                = <span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span>
+1294:      <span class="ruby-identifier">resolution</span>          = <span class="ruby-identifier">resolution</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">resolution</span>.<span class="ruby-identifier">size</span>)]
+1295: 
+1296:      <span class="ruby-identifier">useragent</span> = <span class="ruby-identifier">user_agent</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">user_agent</span>.<span class="ruby-identifier">size</span>)]
+1297: 
+1298:      <span class="ruby-identifier">p</span> <span class="ruby-identifier">useragent</span>
+1299:      <span class="ruby-identifier">os</span> = <span class="ruby-constant">Parser</span><span class="ruby-operator">::</span><span class="ruby-constant">UserAgent</span>.<span class="ruby-identifier">get_platform</span>(<span class="ruby-identifier">useragent</span>)
+1300:      <span class="ruby-identifier">browser</span>  = <span class="ruby-constant">Parser</span><span class="ruby-operator">::</span><span class="ruby-constant">UserAgent</span>.<span class="ruby-identifier">browser_info</span>(<span class="ruby-identifier">useragent</span>)    
+1301:      <span class="ruby-identifier">browserName</span> = <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:type</span>]
+1302:      <span class="ruby-identifier">browserVersion</span> = <span class="ruby-identifier">browser</span>[<span class="ruby-identifier">:version</span>]
+1303: 
+1304:      <span class="ruby-comment cmt">#browserName = &quot;&quot;</span>
+1305:      <span class="ruby-comment cmt">#browserVersion = &quot;&quot;</span>
+1306:      <span class="ruby-identifier">a</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">256</span>)
+1307:      <span class="ruby-identifier">b</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">256</span>)
+1308:      <span class="ruby-identifier">c</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">256</span>)
+1309:      <span class="ruby-identifier">d</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">256</span>)
+1310:      <span class="ruby-identifier">ip</span> = <span class="ruby-node">&quot;#{a}.#{b}.#{c}.#{d}&quot;</span>
+1311:      
+1312: 
+1313:      <span class="ruby-identifier">browserLang</span> = <span class="ruby-identifier">accept_languages</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">accept_languages</span>.<span class="ruby-identifier">size</span>)]
+1314:      
+1315: 
+1316: 
+1317:      <span class="ruby-identifier">configuration_hash</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(
+1318:       <span class="ruby-identifier">os</span> <span class="ruby-operator">+</span> 
+1319:         <span class="ruby-identifier">browserName</span> <span class="ruby-operator">+</span>
+1320:         <span class="ruby-identifier">browserVersion</span> <span class="ruby-operator">+</span>
+1321:         <span class="ruby-identifier">resolution</span> <span class="ruby-operator">+</span>
+1322:         <span class="ruby-identifier">plugin_Flash</span> <span class="ruby-operator">+</span>
+1323:         <span class="ruby-identifier">plugin_Director</span> <span class="ruby-operator">+</span> 
+1324:         <span class="ruby-identifier">plugin_RealPlayer</span> <span class="ruby-operator">+</span>
+1325:         <span class="ruby-identifier">plugin_Pdf</span> <span class="ruby-operator">+</span> 
+1326:         <span class="ruby-identifier">plugin_WindowsMedia</span> <span class="ruby-operator">+</span>
+1327:         <span class="ruby-identifier">plugin_Java</span> <span class="ruby-operator">+</span>
+1328:         <span class="ruby-identifier">plugin_Cookie</span> <span class="ruby-operator">+</span>
+1329:         <span class="ruby-identifier">ip</span> <span class="ruby-operator">+</span>
+1330:         <span class="ruby-identifier">browserLang</span>
+1331:      )
+1332:      <span class="ruby-identifier">minutes</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">60</span>).<span class="ruby-identifier">to_s</span>
+1333:      <span class="ruby-identifier">hours</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">13</span>).<span class="ruby-identifier">to_s</span>
+1334:      <span class="ruby-identifier">day</span> = (<span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">30</span>)).<span class="ruby-identifier">to_s</span>
+1335:      <span class="ruby-comment cmt">#month = (1+ rand(11)).to_s</span>
+1336:      <span class="ruby-identifier">month</span> = <span class="ruby-value">1</span>
+1337:      <span class="ruby-identifier">localtime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;2009/#{month}/#{day} #{hours}:#{minutes}&quot;</span>)
+1338:      
+1339:      <span class="ruby-identifier">user_settings</span> = { 
+1340:       <span class="ruby-identifier">:config_md5config</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">configuration_hash</span>,
+1341:       <span class="ruby-identifier">:config_os</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">os</span>,
+1342:       <span class="ruby-identifier">:config_browser_name</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">browserName</span>,
+1343:       <span class="ruby-identifier">:config_browser_version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">browserVersion</span>,
+1344:       <span class="ruby-identifier">:config_resolution</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resolution</span>,
+1345:       <span class="ruby-identifier">:config_pdf</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_Pdf</span>,
+1346:       <span class="ruby-identifier">:config_flash</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_Flash</span>,
+1347:       <span class="ruby-identifier">:config_java</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_Java</span>,
+1348:       <span class="ruby-identifier">:config_director</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_Director</span>,
+1349:       <span class="ruby-identifier">:config_quicktime</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_Quicktime</span>,
+1350:       <span class="ruby-identifier">:config_realplayer</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_RealPlayer</span>,
+1351:       <span class="ruby-identifier">:config_windowsmedia</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_WindowsMedia</span>,
+1352:       <span class="ruby-identifier">:config_cookie</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_Cookie</span>,
+1353:       <span class="ruby-identifier">:location_ip</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ip</span>,
+1354:       <span class="ruby-identifier">:location_browser_lang</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">browserLang</span>,
+1355:       <span class="ruby-comment cmt"># The time the request is done by the user using at his local time </span>
+1356:       <span class="ruby-identifier">:localtime</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">localtime</span> <span class="ruby-comment cmt"># THIS does NOT go into the md5 hash</span>
+1357:      }
+1358: 
+1359:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">user_settings</span>
+1360: 
+1361: 
+1362:    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="#M000027" class="method-signature">
+          <span class="method-name">add_random_actions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add random actions to the visitor. For testing purpose
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 1464</span>
+1464:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_random_actions</span>
+1465:     <span class="ruby-identifier">time</span> = <span class="ruby-identifier">created_at</span>
+1466:     <span class="ruby-identifier">nactions</span> = <span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">4</span>)
+1467:   
+1468:     
+1469:     <span class="ruby-identifier">nactions</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
+1470:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Action</span>.<span class="ruby-identifier">create_random</span>
+1471:       <span class="ruby-identifier">a</span>.<span class="ruby-identifier">created_at</span> = <span class="ruby-identifier">time</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">100</span>).<span class="ruby-identifier">seconds</span>
+1472:       <span class="ruby-identifier">a</span>.<span class="ruby-identifier">save</span>
+1473:       <span class="ruby-identifier">actions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">a</span>
+1474:     <span class="ruby-keyword kw">end</span>
+1475:     
+1476: 
+1477:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">time_spent</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Time spent on the website - It&#8216;s the difference between the first and
+last action
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
+<pre>
+      <span class="ruby-comment cmt"># File app/models/visitor.rb, line 1384</span>
+1384:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">time_spent</span>
+1385:     <span class="ruby-identifier">as</span>  = <span class="ruby-identifier">actions</span>.<span class="ruby-identifier">sort_by</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">created_at</span>}
+1386:     <span class="ruby-identifier">t</span> = <span class="ruby-identifier">as</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">created_at</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">as</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">created_at</span>
+1387:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">30</span>
+1388:       <span class="ruby-identifier">str</span> = <span class="ruby-value str">&quot;0:30 sec&quot;</span>
+1389:     <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">t</span> <span class="ruby-operator">&gt;=</span><span class="ruby-value">30</span>) <span class="ruby-keyword kw">and</span> (<span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">60</span>)
+1390:       <span class="ruby-identifier">str</span> = <span class="ruby-value str">&quot;30:60 sec&quot;</span>
+1391:     <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">t</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">60</span>)
+1392:       <span class="ruby-identifier">str</span> = <span class="ruby-value str">&quot;+60 sec&quot;</span>
+1393:     <span class="ruby-keyword kw">end</span>
+1394:    
+1395:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">str</span>
+1396:     
+1397:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

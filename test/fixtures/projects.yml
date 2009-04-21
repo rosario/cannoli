@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  generation_id: 1
+  ngen: 
+  lastgen: 
+
+two:
+  generation_id: 1
+  ngen: 
+  lastgen: 

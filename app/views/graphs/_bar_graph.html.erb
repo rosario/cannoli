@@ -1,0 +1,57 @@
+<%
+  # Formatting the data.
+   labels = []
+   values = []
+   
+   i = 0
+   for d in data
+     labels << "[#{i}, '#{d.first}']"
+     values << "[#{i}, '#{d.second}']"
+     
+     i = i + 1
+     
+   end
+      
+   labels = "[#{labels.join(",")}]"
+   values = "[#{values.join(",")}]"
+
+
+%>
+
+<div id="<%= placeholder %>" style="width:450px;height:250px;"></div>
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var points = <%= values %>;
+
+
+
+	var graph_options = { 
+		points : {show : true},
+		xaxis : { minTickSize : 1, ticks: <%= labels %> },
+		
+		
+		grid: { backgroundColor: "#eeeeee"}	
+	}
+
+	line =  { 
+		label: '<%= legend %>',  
+			data: points , 
+			bars : { 
+	//		lines : {
+				show : true, 
+				fill : true,
+				align: "center"
+			},
+			color : "#99aaee"
+		
+	}
+	
+
+    $.plot($("#<%= placeholder %>"), [line] , graph_options );
+
+
+});
+</script>
+
+

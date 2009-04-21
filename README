@@ -1,0 +1,12 @@
+Cannoli is a Click heatmaps generator written in Ruby on Rails 2.2. It's based on the Ruwa analytics 
+
+The main features are: 
+1) Database used to save clicks
+2) Heatmap can be generated per page
+3) Statistics provided by Ruwa (visitor settings, referers and so on)
+4) Fast Heamap generation in C++ 
+
+
+To install consult the wiki. 
+
+

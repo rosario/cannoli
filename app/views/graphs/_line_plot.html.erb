@@ -1,0 +1,54 @@
+<% 
+# Format the data in order to be used by the flot library
+
+formatted_data = []
+
+
+if not defined? xaxis_mode
+	xaxis_mode = "null"
+	for d in data
+	  formatted_data << "[#{d.first}, #{d.second}]"
+	end
+	
+else  #Time series data
+
+	for d in data
+	  formatted_data << "[#{Time.parse(d.first).to_i*1000}, #{d.second}]"
+	end
+
+end
+	formatted_data = "[#{formatted_data.join(",")}]"
+	
+%>
+
+
+<div id="<%= placeholder %>" style="width:450px;height:250px; "></div>
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var total = <%= formatted_data %>;
+
+	var graph_options = {
+		lines : {show : true },
+		points : {show : true},
+		xaxis : {mode : '<%= xaxis_mode %>'},
+		grid: { backgroundColor: "#eeeeee"},
+	}
+	
+	var line = {
+		label: "<%= legend %>",  
+		data: total  , 
+		lines : { 
+			show : true, 
+			fill : true,
+		},
+		color : "#99aaee"
+		
+	}
+	
+
+    $.plot($("#<%= placeholder %>"), [line], graph_options);
+
+});
+</script>
+

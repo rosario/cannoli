@@ -1,0 +1,42 @@
+#heatmap_panel {
+ width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  z-index: 1000000;
+  position: absolute;
+
+}
+#gray_panel {
+  top:0;
+  left:0;
+  z-index:1;
+  width: 100%;
+  position: absolute;
+  background-color: #000000;
+  opacity: 0.45;
+  -moz-opacity: 0.25;
+  filter:alpha(opacity=25);
+}
+
+a#clip {
+  top: 85%;
+  left: 0;
+  width: 30px;
+  height: 82px;
+  color: #FFF;
+  cursor:pointer;
+  text-indent:-100000px;
+  overflow:hidden;
+  position: fixed;
+  z-index: 100000;
+  margin-left: -7px;
+  background-image: url(/images/testo.png);
+	
+  _position: absolute;
+}
+
+a#clip:hover {
+    margin-left: -4px;
+}
+

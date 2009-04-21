@@ -1,0 +1,109 @@
+/**
+ * @author David Pardo: Corunet
+ * Run after loading
+ */
+
+/* Modified by Rosario Rascuna. 2009 */
+
+var xOffset,yOffset;
+var tempX = 0;
+var tempY = 0;
+
+
+//detect browser
+var IE = document.all?true:false
+if (!IE) {
+	document.captureEvents(Event.MOUSEMOVE)
+}
+
+
+// find the reference point 
+var firstElement=document.getElementById('prova');
+
+
+/*attach a handler to the onmousedown event that calls a function to store the values*/
+document.onmousedown = getMouseXY;
+
+
+
+function calculate_offsets() { 
+
+	
+	//find the offset coordinates
+	xOffset = 0;
+	yOffset = 0;
+	xOffset=findPosX(firstElement);
+	yOffset=findPosY(firstElement);
+	if (IE){ // In IE there's a default margin in the page body. If margin's not defined, use defaults
+		var marginLeftExplorer  = parseInt(document.getElementById('prova').style.marginLeft);
+		var marginTopExplorer   = parseInt(document.getElementById('prova').style.marginTop);
+		/*assume default 10px/15px margin in explorer*/
+		if (isNaN(marginLeftExplorer)) {marginLeftExplorer=10;}
+		if (isNaN(marginTopExplorer)) {marginTopExplorer=15;}
+		xOffset=xOffset+marginLeftExplorer;
+		yOffset=yOffset+marginTopExplorer;
+	}
+	
+}
+
+
+
+
+
+
+/*Functions*/
+/*Find positions*/
+function findPosX(obj){
+	var curleft = 0;
+	if (obj.offsetParent){
+		while (obj.offsetParent){
+			curleft += obj.offsetLeft
+			obj = obj.offsetParent;
+		}
+	}else if (obj.x){
+		curleft += obj.x;
+	}
+	return curleft;
+}
+
+function findPosY(obj){
+	var curtop = 0;
+	if (obj.offsetParent){
+		while (obj.offsetParent){
+			curtop += obj.offsetTop
+			obj = obj.offsetParent;
+		}
+	}else if (obj.y){
+		curtop += obj.y;
+	}
+	return curtop;
+}
+function getMouseXY(e) {
+	calculate_offsets()
+	if (IE) {
+		tempX = event.clientX + document.body.scrollLeft
+		tempY = event.clientY + document.body.scrollTop
+	} else {
+		tempX = e.pageX
+		tempY = e.pageY
+	}
+	tempX-=xOffset;
+	tempY-=yOffset;
+	if ((tempX >= 0) && (tempY >=0)) {
+		var url = '<%= @click_url %>?x='+tempX+"&y="+tempY;
+		saveclick(url);
+	}
+	return true;
+}
+
+
+
+
+function saveclick(url) {
+  var headID = document.getElementsByTagName("head")[0];         
+  var newScript = document.createElement('script');
+      newScript.type = 'text/javascript';
+      newScript.src = url;
+  headID.appendChild(newScript);
+}
+
