@@ -50,9 +50,7 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.root :controller => 'landpages'
-  map.root_about 'about', :controller =>'landpages', :action => 'about'
-  map.root_signup 'signup' , :controller => 'landpages' , :action =>'signup'
+ 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action.:format'
   
