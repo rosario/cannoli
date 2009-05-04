@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
        redirect_to :controller =>'dashboard', :action=> 'setup'
      else
        session[:project_id] = pid
-       redirect_to project_overview_url(:id =>pid)
+       redirect_to project_index_url
      end
      
    end
@@ -26,12 +26,11 @@ class DashboardController < ApplicationController
      u = User.find(session[:user_id])
      project_name = params[:project_name]
 
-
      if u.project_id.nil?
        p = Project.create(:name=>project_name)
        u.project_id = p.id
        u.save
-
+       # 
        # # Testing, add the actions
        #  urls = ["http://0.0.0.0:3000/website/page1",
        #           "http://0.0.0.0:3000/website/page2",
@@ -51,16 +50,12 @@ class DashboardController < ApplicationController
        #         p.visitors << v
        #    end
 
-
-
       else
        p= Project.find(u.project_id)
      end
      session[:project_id]= p.id
 
-
-
-     redirect_to project_overview_url(:id => p.id)
+     redirect_to project_index_url
    end
    
 end

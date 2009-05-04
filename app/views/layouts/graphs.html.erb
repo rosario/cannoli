@@ -5,8 +5,12 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title> Graphs </title>
-  	<%= stylesheet_link_tag 'screen2' %>
-	<%= javascript_include_tag 'flot/jquery' %>
+  	<%#= stylesheet_link_tag 'screen2' %>
+	<%#= javascript_include_tag 'flot/jquery' %>
+
+	<link type="text/css" href="/stylesheets/smoothness/jquery-ui-1.7.1.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="/javascripts/jquery/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery/jquery-ui-1.7.1.custom.min.js"></script>
 	<%= javascript_include_tag 'flot/jquery.flot'%>
 
 </head>
@@ -28,14 +32,6 @@
 	<%= yield  %>
 
 </div>
-			<!-- <div id="header">
-				This is header
-			</div>
-			<div id="main">
-				<%#= yield  %>	
-			</div>
-			<div id="footer">
-				This is footer
-			</div> -->
+	
 </body>
 </html>

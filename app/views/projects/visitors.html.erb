@@ -1,0 +1,76 @@
+
+
+
+<div class="column">
+
+	<%= render :partial =>"portlet", 
+			:locals =>{ 
+						:data =>@config_os,
+						:placeholder => "placeholder33",
+						:legend => "Operating Systems",
+						:title => "Operating Systems",
+						:graph_type => "bar_graph"
+						}
+	%>
+	
+	<%#= render :partial =>"portlet", 
+			:locals =>{ :data =>@hours_by_servertime,
+						:placeholder =>"placeholder4",
+						:legend =>"Hours by server time",
+						:title => "Hours by server time",
+						:graph_type => "bar_graph"
+						}
+	%>
+	
+
+	
+</div>
+
+<div class="column">
+
+	 <%= render :partial =>"portlet", 
+			:locals =>{ :data =>@browsers,
+						:placeholder =>"placeholder2",
+						:legend =>"Browsers",
+						:title => "Browsers",
+						:graph_type => "bar_graph"
+						}
+	%>
+	
+	<%= render :partial =>"portlet", 
+			:locals =>{ :data =>@config_resolution,
+						:placeholder =>"placeholder_resolution",
+						:legend =>"Visitors resolution",
+						:title => "Visitors resolution",
+						:graph_type => "bar_graph"
+						}
+	%>
+
+
+</div>
+
+
+<script type="text/javascript">
+$(function() {
+	$(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+		.find(".portlet-header")
+			.addClass("ui-widget-header ui-corner-all")
+			.prepend('<span class="ui-icon ui-icon-plusthick"></span>')
+			.end()
+		.find(".portlet-content");
+
+	$(".portlet-header .ui-icon").click(function() {
+		$(this).toggleClass("ui-icon-minusthick");
+		$(this).parents(".portlet:first").find(".portlet-content").toggle();
+	});
+
+});
+</script>
+
+	<script type="text/javascript">
+	$(function() {
+		$(".column").sortable({
+			connectWith: '.column'
+		});
+	});
+	</script>
