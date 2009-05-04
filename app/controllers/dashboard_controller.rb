@@ -32,23 +32,23 @@ class DashboardController < ApplicationController
        u.save
        # 
        # # Testing, add the actions
-       #  urls = ["http://0.0.0.0:3000/website/page1",
-       #           "http://0.0.0.0:3000/website/page2",
-       #           "http://0.0.0.0:3000/website/page3",
-       #           "http://0.0.0.0:3000/website/page4",
-       #           "http://0.0.0.0:3000/website/page5"]
-       # as = []
-       # for u in urls
-       #   p.add_action(Action.new(:url=>"#{u}", :url_id=> Digest::MD5.hexdigest(u), :kind => rand(2)))
-       # end
-       # 
-       # 
-       # # Randomly create 500 visitors. Useful for graphs generation
-       #  500.times do 
-       #    v = Visitor.create_random
-       #         v.add_random_actions(p.actions)
-       #         p.visitors << v
-       #    end
+       #      urls = ["http://0.0.0.0:3000/website/page1",
+       #               "http://0.0.0.0:3000/website/page2",
+       #               "http://0.0.0.0:3000/website/page3",
+       #               "http://0.0.0.0:3000/website/page4",
+       #               "http://0.0.0.0:3000/website/page5"]
+       #     as = []
+       #     for u in urls
+       #       p.add_action(Action.new(:url=>"#{u}", :url_id=> Digest::MD5.hexdigest(u), :kind => rand(2)))
+       #     end
+       #     
+       #     
+       #     # Randomly create 500 visitors. Useful for graphs generation
+       #      500.times do 
+       #        v = Visitor.create_random
+       #             v.add_random_actions(p.actions)
+       #             p.visitors << v
+       #        end
 
       else
        p= Project.find(u.project_id)
