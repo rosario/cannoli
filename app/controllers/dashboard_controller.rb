@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
        redirect_to :controller =>'dashboard', :action=> 'setup'
      else
        session[:project_id] = pid
-       redirect_to project_overview_url(:id =>pid)
+       redirect_to project_index_url
      end
      
    end
@@ -27,7 +27,6 @@ class DashboardController < ApplicationController
    def create
      u = User.find(session[:user_id])
      project_name = params[:project_name]
-
 
      if u.project_id.nil?
        p = Project.create(:name=>project_name)
@@ -60,9 +59,7 @@ class DashboardController < ApplicationController
      end
      session[:project_id]= p.id
 
-
-
-     redirect_to project_overview_url(:id => p.id)
+     redirect_to project_index_url
    end
    
 end

@@ -1,0 +1,73 @@
+
+	
+<% if @project == nil %>
+	Empty project <%= button_to "Create Project", :action => "create" %>
+
+<% else %>
+	
+<script type="text/javascript">
+$(function() {
+	$(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+		.find(".portlet-header")
+			.addClass("ui-widget-header ui-corner-all")
+			.prepend('<span class="ui-icon ui-icon-plusthick"></span>')
+			.end()
+		.find(".portlet-content");
+
+	$(".portlet-header .ui-icon").click(function() {
+		$(this).toggleClass("ui-icon-minusthick");
+		$(this).parents(".portlet:first").find(".portlet-content").toggle();
+	});
+
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+	$(".column_large").sortable({
+		connectWith: '.column_large'
+	});
+});
+</script>
+
+<div class="column_large">
+
+
+	<%= render :partial =>"portlet", 
+			:locals =>{ :data =>@total_clicks,
+						:placeholder =>"placeholder1",
+						:legend =>"Total visits",
+						:title => "Total visits",
+						:graph_type => "timeline_plot"
+						}
+	%>
+
+	<div class="portlet">
+		<div class="portlet-header"> Overview </div>
+		<div class="portlet-content">
+			<div style="font-size:16px">
+				<div style="width:450px; float:left; padding-left:30px">
+					<strong> <%= @nvisits %> </strong> Total visitors <br> <br>
+					<strong>  <%= @page_views %> </strong>  Page views <br> <br>
+			 		<strong> <%= @avg_pageviews%> </strong> Average page views <br> <br>
+				</div>
+				<div style="float:left; margin-right:auto">
+			 		<strong> <%= @time_on_site%> </strong> Time on site <br> <br>
+			 		<strong> <%= @bounce_rate%>% </strong> Bounce rate <br> <br>
+			 		<strong> <%= @new_visits%>% </strong>  New Visits <br> <br>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<%= render  :partial => "portlet_table" , 
+				:locals => {:data => @data_website,
+							:placeholder => "tabella2",
+							:title =>"Top referers"
+							} 
+	%>
+	
+</div>
+	
+<% end %>
+

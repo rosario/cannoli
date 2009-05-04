@@ -1,0 +1,43 @@
+<script type="text/javascript">
+$(function() {
+	$(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+		.find(".portlet-header")
+			.addClass("ui-widget-header ui-corner-all")
+			.prepend('<span class="ui-icon ui-icon-plusthick"></span>')
+			.end()
+		.find(".portlet-content");
+
+	$(".portlet-header .ui-icon").click(function() {
+		$(this).toggleClass("ui-icon-minusthick");
+		$(this).parents(".portlet:first").find(".portlet-content").toggle();
+	});
+
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+	$(".column_large").sortable({
+		connectWith: '.column_large'
+	});
+});
+</script>
+
+<div class="column_large">
+
+<%= render  :partial => "portlet_table" , 
+			:locals => {:data => @searched_keywords,
+						:placeholder => "tabella1",
+						:title => "Searched Keywords"
+						} 
+%>
+
+
+<%= render  :partial => "portlet_table" , 
+			:locals => {:data => @data_website,
+						:placeholder => "tabella2",
+						:title =>"Website Referrers"
+						} 
+%>
+
+</div>

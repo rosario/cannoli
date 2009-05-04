@@ -41,7 +41,7 @@ class LoginController < ApplicationController
 
   def delete_user
   end
- 
+
  
 
 end

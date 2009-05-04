@@ -81,7 +81,7 @@ class JavascriptsController < ApplicationController
         hostname = URI.parse(params[:url]).host
         if hostname.match(p.name) 
           puts " >>>>>>>>>>>>>>>>>> HOSTNAME MATCHES with the correct project_id"
-          visitor_settings = Tracker.get_settings(params,request)  
+          visitor_settings = Tracker.get_settings(params,request,p.name)  
           if session[:visitor_id]
             # Se c''e il visitor_id allora e' conosciuto
             # Vedo se l'ultima azione e' stata fatta in meno di mezzo'ora

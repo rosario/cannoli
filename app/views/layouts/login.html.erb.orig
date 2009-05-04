@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title> Login </title>
+<<<<<<< HEAD:app/views/layouts/login.html.erb
+  	<%= stylesheet_link_tag 'login' %>
+	<%= javascript_include_tag :defaults %>
+=======
+  	<%#= stylesheet_link_tag 'login' %>
+	<%#= javascript_include_tag :defaults %>
+	<link type="text/css" href="/stylesheets/smoothness/jquery-ui-1.7.1.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="/javascripts/jquery/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery/jquery-ui-1.7.1.custom.min.js"></script>
+>>>>>>> ruwa:app/views/layouts/login.html.erb
+
+</head>
+<body>
+	<p style="color: green"><%= flash[:notice] %></p>
+		<div id="wrapper">
+		
+				<%= yield  %>
+	
+		</div>
+</body>
+</html>

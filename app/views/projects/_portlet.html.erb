@@ -1,0 +1,11 @@
+<div class="portlet">
+	<div class="portlet-header"> <%= title %></div>
+	<div class="portlet-content">
+			<%= render  :partial => graph_type, 
+						:locals => {:data =>data, 
+									:placeholder => placeholder ,
+									:legend => legend}%>		
+	
+	
+	</div>
+</div>

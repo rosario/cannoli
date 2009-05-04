@@ -1,0 +1,9 @@
+class Visit < ActiveRecord::Base
+  belongs_to :visitor
+  belongs_to :action
+<<<<<<< HEAD:app/models/visit.rb
+  
+  
+=======
+>>>>>>> ruwa:app/models/visit.rb
+end

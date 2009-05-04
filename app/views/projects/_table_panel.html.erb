@@ -1,0 +1,23 @@
+
+
+<table id="<%= placeholder %>"  class="tablesorter">
+	 <thead>
+	<tr>
+		<th> Query String </th>
+		<th> Visits </th>
+		<th> Page/Visits </th>
+		<th> Avg. Time </th>
+
+	</tr>
+	</thead>
+	<tbody>
+	<%for ds in data%>
+		<tr>
+			<%for i in ds %>
+				<td> <%=h truncate(i.to_s, :length => 30)%></td>
+			<%end%>
+		</tr>
+	<% end %>
+
+	</tbody>
+</table>

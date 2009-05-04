@@ -1,0 +1,36 @@
+
+
+<div class="portlet">
+	<div class="portlet-header"><%=title%></div>
+	<div class="portlet-content">
+		<%= render  :partial => "table_panel" , 
+					:locals => {:data => data,
+								:placeholder => placeholder
+								} 
+		%>
+
+		<!-- <div id="<%=placeholder%>_pager" class="pager" style="float:bottom">
+			<form>
+				<img src="/images/icons/first.png" class="first"/>
+				<img src="/images/icons/prev.png" class="prev"/>
+				<input type="text" class="pagedisplay"/>
+				<img src="/images/icons/next.png" class="next"/>
+				<img src="/images/icons/last.png" class="last"/>
+				<select class="pagesize">
+					<option selected="selected"  value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option  value="40">40</option>
+				</select>
+			</form>
+		</div> -->
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() { 
+     $("#<%=placeholder%>") 
+     .tablesorter({ widthFixed: true, widgets: ['zebra']})
+		//.tablesorterPager({container: $("#<%=placeholder%>_pager")}); 
+ });
+</script>

@@ -31,12 +31,11 @@ class Tracker
 
     # Get referer informations 
     
-    def self.referer_info(urlref)
+    def self.referer_info(urlref,domain_name)
      
       
-      # This is the name of the domain running the analysis... at the moment is just localhost
-      # Later it should be the name of the host that signed up 
-      actual_domain = "localhost"
+      #the name of the host that signed up 
+      actual_domain = domain_name
      
      
       urlref = URI.encode(urlref)
@@ -58,7 +57,7 @@ class Tracker
            referer_keyword = Parser::Keyword.get_terms(urlref)
            puts referer_keyword
            referer_name = search_engine
-         elsif actual_domain == referer_name
+         elsif referer_name.match(actual_domain)
            referer_type = REFERER_TYPE_DIRECT_ENTRY
            referer_keyword = ""
          else
@@ -79,7 +78,7 @@ class Tracker
     end
   
     # Return a user_settings hash, containin the information extracted from params[] and request.env
-    def self.get_settings(p,r)
+    def self.get_settings(p,r,domain_name)
 
 
        # get user settings informations
@@ -105,7 +104,7 @@ class Tracker
 
        browserLang = r.env['HTTP_ACCEPT_LANGUAGE']
 
-       refererinfo = referer_info(p[:urlref])
+       refererinfo = referer_info(p[:urlref],domain_name)
        
        configuration_hash = Digest::MD5.hexdigest(
          os + 

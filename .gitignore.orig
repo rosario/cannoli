@@ -1,0 +1,9 @@
+.DS_Store
+log/*.log
+tmp/**/*
+<<<<<<< HEAD:.gitignore
+db/*.sqlite3
+public/datafiles/*
+=======
+db/*.sqlite3
+>>>>>>> ruwa:.gitignore

@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
  
+ 
   map.dashboard 'dashboard/index', :controller =>'dashboard', :action=>'index'
 
 
@@ -16,12 +17,10 @@ ActionController::Routing::Routes.draw do |map|
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
 
-  map.project_index 'projects/:id/index', :controller => 'projects', :action => 'overview'
-  map.project_overview 'projects/:id/overview', :controller => 'projects', :action => 'overview'
-
-  map.project_graph1 'projects/:id/graphs/graph1', :controller =>'graphs', :action =>'graph1'
+  map.project_index 'projects/index', :controller => 'projects', :action => 'index'
   
-  map.referers_queries 'projects/:id/referers/queries', :controller =>'referers', :action =>'queries'
+ 
+  map.logout 'login/logout', :controller=>'login', :action=>'logout'
   
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
@@ -50,7 +49,6 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
- 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action.:format'
   

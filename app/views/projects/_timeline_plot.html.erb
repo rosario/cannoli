@@ -1,0 +1,46 @@
+<% 
+# Format the data in order to be used by the flot library
+
+formatted_data = []
+
+	for d in data
+	  formatted_data << "[#{Time.parse(d.first).to_i*1000}, #{d.second}]"
+	end
+
+	formatted_data = "[#{formatted_data.join(",")}]"
+	
+%>
+
+
+<div id="<%= placeholder %>" style="width:850px;height:200px; "></div>
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+	var total = <%= formatted_data %>;
+
+	var graph_options = {
+		lines : {show : true },
+		points : {show : true},
+		xaxis : {mode : 'time'},
+		grid: { backgroundColor: "#ffffff",
+				borderWidth: 0,
+				tickColor: "#eeeeee"},
+	}
+	
+	var line = {
+		label: "<%= legend %>",  
+		data: total  , 
+		lines : { 
+			show : true, 
+			fill : true,
+		},
+		color : "#8888ff"
+		
+	}
+	
+
+    $.plot($("#<%= placeholder %>"), [line], graph_options);
+
+});
+</script>
+
