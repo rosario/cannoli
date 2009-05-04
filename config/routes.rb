@@ -17,21 +17,9 @@ ActionController::Routing::Routes.draw do |map|
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
 
-  #map.project_index 'projects/:id/index', :controller => 'projects', :action => 'index'
   map.project_index 'projects/index', :controller => 'projects', :action => 'index'
   
-  #map.project_overview 'projects/:id/overview', :controller => 'projects', :action => 'overview'
-  #map.project_prova 'projects/:id/prova', :controller => 'projects', :action => 'prova'
-  #map.project_visitors 'projects/:id/visitors', :controller =>'projects', :action =>'visitors'
-  
-
-  #map.project_graph1 'projects/:id/graphs/graph1', :controller =>'graphs', :action =>'graph1'
-  #map.project_bello 'projects/:id/graphs/bello', :controller =>'graphs', :action =>'bello'
-  
-  
-  #map.referers_queries 'projects/:id/referers/queries', :controller =>'referers', :action =>'queries'
-  #map.referers_bello 'projects/:id/referers/bello', :controller =>'referers', :action =>'bello'
-  
+ 
   map.logout 'login/logout', :controller=>'login', :action=>'logout'
   
   # Sample resource route (maps HTTP verbs to controller actions automatically):

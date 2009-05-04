@@ -13,6 +13,15 @@
 						}
 	%>
 	
+	<%= render :partial =>"portlet", 
+			:locals =>{ 
+						:data =>@traffic_sources,
+						:placeholder => "placeholder_traffic_sources",
+						:legend => "Traffic sources",
+						:title => "Traffic sources",
+						:graph_type => "bar_graph"
+						}
+	%>
 	<%#= render :partial =>"portlet", 
 			:locals =>{ :data =>@hours_by_servertime,
 						:placeholder =>"placeholder4",
